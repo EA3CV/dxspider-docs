@@ -1,35 +1,49 @@
 # `SHOW/STARTUP`
 
+<div class="command-hero" markdown>
+
+**View a user startup script**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-dual">User + SYSOP</span></div>
-<div>**authorization **  
-`0 / 6`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-dual">User + SYSOP</span></div>
+<div><span class="meta-label">Category</span><br>Command reference</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
+</div>
 
-Own startup script is user-level; another callsign requires authorization .
+## Syntax and variants
 
-## Syntax
+=== "SYSOP form"
 
-```text
-SHOW/STARTUP [<callsign>]
-```
+    ```text
+    SHOW/STARTUP <call>
+    ```
+
+    **View a user startup script**
 
 
-## Audience-specific behaviour
+=== "User form"
 
-This command has more than one access form. The normal-user and authorization d forms are deliberately treated separately in this manual. Check the syntax shown by the running node with `HELP` before using the administrative form.
+    ```text
+    SHOW/STARTUP
+    ```
 
-## Built-in help
+    **View your own startup script**
 
-On a running node, use:
+    View the contents of a startup script created with SET/STARTUP.
+
+!!! info "User and SYSOP forms"
+    This command has distinct normal-user and administration forms. Use the form appropriate to what you are trying to do.
+
+## Implementation
+
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/show/startup.pl){ .md-button }
+
+## Verify on a running node
 
 ```text
 HELP SHOW/STARTUP
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.

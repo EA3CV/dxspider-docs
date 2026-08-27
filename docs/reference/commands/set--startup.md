@@ -1,35 +1,59 @@
 # `SET/STARTUP`
 
+<div class="command-hero" markdown>
+
+**Create a user startup script**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-dual">User + SYSOP</span></div>
-<div>**authorization **  
-`0 / 6`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-dual">User + SYSOP</span></div>
+<div><span class="meta-label">Category</span><br>Command reference</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
+</div>
 
-User creates own startup script; SYSOP may create one for another callsign.
+## Syntax and variants
 
-## Syntax
+=== "SYSOP form"
 
-```text
-SET/STARTUP [<callsign>]
-```
+    ```text
+    SET/STARTUP <call>
+    ```
+
+    **Create a user startup script**
 
 
-## Audience-specific behaviour
+=== "User form"
 
-This command has more than one access form. The normal-user and authorization d forms are deliberately treated separately in this manual. Check the syntax shown by the running node with `HELP` before using the administrative form.
+    ```text
+    SET/STARTUP
+    ```
 
-## Built-in help
+    **Create your own startup script**
 
-On a running node, use:
+    Create a startup script of DXSpider commands which will be executed
+    everytime that you login into this node. You can only input the whole
+    script afresh, it is not possible to 'edit' it. Inputting a new script is
+    just like typing in a message using SEND. To finish inputting type: /EX
+    on a newline, to abandon the script type: /ABORT.
+
+    You may find the (curiously named) command BLANK useful to break
+    up the output. If you simply want a blank line, it is easier to
+    input one or more spaces and press the <return> key.
+
+    See UNSET/STARTUP to remove a script.
+
+!!! info "User and SYSOP forms"
+    This command has distinct normal-user and administration forms. Use the form appropriate to what you are trying to do.
+
+## Implementation
+
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/set/startup.pl){ .md-button }
+
+## Verify on a running node
 
 ```text
 HELP SET/STARTUP
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.

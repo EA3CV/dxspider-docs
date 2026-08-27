@@ -1,6 +1,6 @@
 site_name: DXSpider Documentation
 site_description: DXSpider 1.57 — Mojo build 686 and later
-site_url: https://example.github.io/dxspider-docs/
+site_url: https://ea3cv.github.io/dxspider-docs/
 repo_name: DXSpider Documentation
 
 theme:
@@ -70,7 +70,7 @@ nav:
       - User commands: user/commands/index.md
   - SYSOP / Administration:
       - Overview: sysop/index.md
-      - Privileges & Security: sysop/security.md
+      - Security: sysop/security.md
       - Users & Node Types: sysop/users-nodes.md
       - Connections: sysop/connections.md
       - Routing & Compatibility: sysop/routing.md

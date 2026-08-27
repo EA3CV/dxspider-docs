@@ -1,35 +1,76 @@
 # `ACCEPT/WCY`
 
+<div class="command-hero" markdown>
+
+**set an 'accept' WCY filter**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-dual">User + SYSOP</span></div>
-<div>**authorization **  
-`0 / 8`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-dual">User + SYSOP</span></div>
+<div><span class="meta-label">Category</span><br>Command reference</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
+</div>
 
-User form plus SYSOP form for another callsign/default filter.
+## Syntax and variants
 
-## Syntax
+=== "User form"
 
-```text
-ACCEPT/WCY
-```
+    ```text
+    ACCEPT/WCY [0-9] <pattern>
+    ```
 
+    **set an 'accept' WCY filter**
 
-## Audience-specific behaviour
+    It is unlikely that you will want to do this, but if you do then you can
+    filter on the following fields:-
 
-This command has more than one access form. The normal-user and authorization d forms are deliberately treated separately in this manual. Check the syntax shown by the running node with `HELP` before using the administrative form.
+    ```text
+    by <prefixes>            eg: G,M,2
+    origin <prefixes>
+    origin_dxcc <prefixes or numbers>    eg: 61,62 (from eg: sh/pre G)
+    origin_itu <prefixes or numbers>     or: G,GM,GW
+    origin_zone <prefixes or numbers>
+    by_dxcc <prefixes or numbers>
+    by_itu <prefixes or numbers>
+    by_zone <prefixes or numbers>
+    channel <prefixes>
+    ```
 
-## Built-in help
+    There are no examples because WCY Broadcasts only come from one place and
+    you either want them or not (see UNSET/WCY if you don't want them).
 
-On a running node, use:
+    This command is really provided for future use.
+
+    See HELP FILTER for information.
+
+=== "SYSOP form"
+
+    ```text
+    ACCEPT/WCY <call> [input] [0-9] <pattern>
+    ```
+
+    **WCY filter sysop version**
+
+    This version allows a sysop to set a filter for a callsign as well as the
+    default for nodes and users eg:-
+
+    ```text
+    accept/wcy node_default all
+    set/hops node_default 10
+    ```
+
+!!! info "User and SYSOP forms"
+    This command has distinct normal-user and administration forms. Use the form appropriate to what you are trying to do.
+
+## Implementation
+
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/accept/wcy.pl){ .md-button }
+
+## Verify on a running node
 
 ```text
 HELP ACCEPT/WCY
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.

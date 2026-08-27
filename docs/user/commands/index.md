@@ -1,159 +1,146 @@
 # User command reference
 
-Commands available to normal users are listed here. DUAL commands also have a separate authorization d form.
+This list is generated from the current DXSpider help metadata. Commands marked **DUAL** contain both user and privileged variants.
 
-| Command | authorization | Scope |
-|---|---:|---|
-| [`ACCEPT/ANNOUNCE`](../../reference/commands/accept--announce.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`ACCEPT/RBN`](../../reference/commands/accept--rbn.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`ACCEPT/SPOTS`](../../reference/commands/accept--spots.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`ACCEPT/WCY`](../../reference/commands/accept--wcy.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`ACCEPT/WWV`](../../reference/commands/accept--wwv.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`ANNOUNCE`](../../reference/commands/announce.md) | 0 / 5 | Send local or cluster-wide announcements; SYSOP form targets sysops. |
-| [`APROPOS`](../../reference/commands/apropos.md) | 0 | Search the built-in help database. |
-| [`BLANK`](../../reference/commands/blank.md) | 0 | Print blank or repeated separator lines. |
-| [`BYE`](../../reference/commands/bye.md) | 0 | Disconnect from the cluster. |
-| [`CHAT`](../../reference/commands/chat.md) | 0 | Send a message to a joined chat/conference group. |
-| [`CLEAR/ANNOUNCE`](../../reference/commands/clear--announce.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`CLEAR/RBN`](../../reference/commands/clear--rbn.md) | 0 / 8 | User form clears own RBN filter; SYSOP form can target another callsign/default. |
-| [`CLEAR/ROUTE`](../../reference/commands/clear--route.md) | 0 / 8 | User and SYSOP route-filter forms exist. |
-| [`CLEAR/SPOTS`](../../reference/commands/clear--spots.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`CLEAR/WCY`](../../reference/commands/clear--wcy.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`CLEAR/WWV`](../../reference/commands/clear--wwv.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`DBAVAIL`](../../reference/commands/dbavail.md) | 0 | List databases defined on the node. |
-| [`DBSHOW`](../../reference/commands/dbshow.md) | 0 | Query a defined database. |
-| [`DIRECTORY`](../../reference/commands/directory.md) | 0 / 5 | List messages; SYSOP can see otherwise hidden/private entries. |
-| [`DISABLE/AUTOFTX`](../../reference/commands/disable--autoftx.md) | 0 | Disable `autoftx`. |
-| [`DISABLE/FTX`](../../reference/commands/disable--ftx.md) | 0 | Disable `ftx`. |
-| [`DX`](../../reference/commands/dx.md) | 0 / 2 | Send a DX spot; authorization d form accepts additional origin metadata. |
-| [`ECHO`](../../reference/commands/echo.md) | 0 | Echo text/input. |
-| [`ENABLE/AUTOFTX`](../../reference/commands/enable--autoftx.md) | 0 | Enable `autoftx`. |
-| [`ENABLE/FTX`](../../reference/commands/enable--ftx.md) | 0 | Enable `ftx`. |
-| [`HELP`](../../reference/commands/help.md) | 0 | Show command help. |
-| [`JOIN`](../../reference/commands/join.md) | 0 | Join a chat/conference group. |
-| [`KILL`](../../reference/commands/kill.md) | 0 / 5 | Delete permitted messages; SYSOP has broader message-deletion scope. |
-| [`LEAVE`](../../reference/commands/leave.md) | 0 | Leave a chat/conference group. |
-| [`LINKS`](../../reference/commands/links.md) | 0 | Show link information. |
-| [`PING`](../../reference/commands/ping.md) | 0 / 1 | Ping a node; authorization d mode provides broader operational access. |
-| [`READ`](../../reference/commands/read.md) | 0 / 5 | Read permitted messages; SYSOP may read any message. |
-| [`REJECT/ANNOUNCE`](../../reference/commands/reject--announce.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`REJECT/RBN`](../../reference/commands/reject--rbn.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`REJECT/SPOTS`](../../reference/commands/reject--spots.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`REJECT/WCY`](../../reference/commands/reject--wcy.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`REJECT/WWV`](../../reference/commands/reject--wwv.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
-| [`REPLY`](../../reference/commands/reply.md) | 0 | Reply to a message, with bulletin/private/read-receipt variants. |
-| [`RUN`](../../reference/commands/run.md) | 0 / 8 | Run a script; higher authorization is required for scripts targeted at another callsign. |
-| [`SEND`](../../reference/commands/send.md) | 0 | Compose and send personal or bulletin messages. |
-| [`SET/ADDRESS`](../../reference/commands/set--address.md) | 0 | Enable or configure `address`. |
-| [`SET/ANNOUNCE`](../../reference/commands/set--announce.md) | 0 | Enable or configure `announce`. |
-| [`SET/ANNTALK`](../../reference/commands/set--anntalk.md) | 0 | Enable or configure `anntalk`. |
-| [`SET/BEEP`](../../reference/commands/set--beep.md) | 0 | Enable or configure `beep`. |
-| [`SET/BUDDY`](../../reference/commands/set--buddy.md) | 0 | Enable or configure `buddy`. |
-| [`SET/DX`](../../reference/commands/set--dx.md) | 0 | Enable or configure `dx`. |
-| [`SET/DXCQ`](../../reference/commands/set--dxcq.md) | 0 | Enable or configure `dxcq`. |
-| [`SET/DXGRID`](../../reference/commands/set--dxgrid.md) | 0 | Enable or configure `dxgrid`. |
-| [`SET/DXITU`](../../reference/commands/set--dxitu.md) | 0 | Enable or configure `dxitu`. |
-| [`SET/ECHO`](../../reference/commands/set--echo.md) | 0 | Enable or configure `echo`. |
-| [`SET/EMAIL`](../../reference/commands/set--email.md) | 0 | Enable or configure `email`. |
-| [`SET/GTK`](../../reference/commands/set--gtk.md) | 0 | Enables GTK/enhanced mode for the current session. |
-| [`SET/HERE`](../../reference/commands/set--here.md) | 0 | Enable or configure `here`. |
-| [`SET/HOMEBBS`](../../reference/commands/set--homebbs.md) | code: current user | Exists in code; sets and persists current user's home BBS; absent from help/manual/wiki. |
-| [`SET/HOMENODE`](../../reference/commands/set--homenode.md) | 0 | Enable or configure `homenode`. |
-| [`SET/LANGUAGE`](../../reference/commands/set--language.md) | 0 | Enable or configure `language`. |
-| [`SET/LOCATION`](../../reference/commands/set--location.md) | 0 | Enable or configure `location`. |
-| [`SET/LOGININFO`](../../reference/commands/set--logininfo.md) | 0 | Enable or configure `logininfo`. |
-| [`SET/NAME`](../../reference/commands/set--name.md) | 0 | Enable or configure `name`. |
-| [`SET/PAGE`](../../reference/commands/set--page.md) | 0 | Sets the user paging preference and stores it in the profile. |
-| [`SET/PASSWORD`](../../reference/commands/set--password.md) | 0 / 9 | Own-password form is user-level; targeted form requires authorization . |
-| [`SET/PROMPT`](../../reference/commands/set--prompt.md) | 0 | Enable or configure `prompt`. |
-| [`SET/QRA`](../../reference/commands/set--qra.md) | 0 | Enable or configure `qra`. |
-| [`SET/QTH`](../../reference/commands/set--qth.md) | 0 | Enable or configure `qth`. |
-| [`SET/SEEME`](../../reference/commands/set--seeme.md) | 0 | Enables the current user/session RBN “seeme” preference. |
-| [`SET/SEEMEE`](../../reference/commands/set--seemee.md) | 0 | Enables and persists the current user “seemee” preference. |
-| [`SET/STARTUP`](../../reference/commands/set--startup.md) | 0 / 6 | User creates own startup script; SYSOP may create one for another callsign. |
-| [`SET/TALK`](../../reference/commands/set--talk.md) | 0 | Enables talk messages for the current user. |
-| [`SET/USSTATE`](../../reference/commands/set--usstate.md) | 0 | Enable or configure `usstate`. |
-| [`SET/VE7CC`](../../reference/commands/set--ve7cc.md) | 0 | Enables VE7CC compatibility mode for the current session. |
-| [`SET/WANTRBN`](../../reference/commands/set--wantrbn.md) | 0 / 9 | User selects RBN categories; a authorization -9 targeted form is available to SYSOP. |
-| [`SET/WCY`](../../reference/commands/set--wcy.md) | 0 | Enable or configure `wcy`. |
-| [`SET/WIDTH`](../../reference/commands/set--width.md) | code: current user | Exists in code; updates active width and stored user width; absent from help/manual/wiki. |
-| [`SET/WWV`](../../reference/commands/set--wwv.md) | 0 | Enable or configure `wwv`. |
-| [`SET/WX`](../../reference/commands/set--wx.md) | 0 | Enable or configure `wx`. |
-| [`SHOW/425`](../../reference/commands/show--425.md) | 0 | Queries the 425 DX News service asynchronously. |
-| [`SHOW/ANNOUNCE`](../../reference/commands/show--announce.md) | 0 | Display `announce`. |
-| [`SHOW/BANDS`](../../reference/commands/show--bands.md) | 0 | Display `bands`. |
-| [`SHOW/BUDDY`](../../reference/commands/show--buddy.md) | 0 | Display `buddy`. |
-| [`SHOW/CHAT`](../../reference/commands/show--chat.md) | 0 | Display `chat`. |
-| [`SHOW/CLUSTER`](../../reference/commands/show--cluster.md) | 0 | Shows current cluster information. |
-| [`SHOW/CONFIGURATION`](../../reference/commands/show--configuration.md) | 0 | Display `configuration`. |
-| [`SHOW/CONTEST`](../../reference/commands/show--contest.md) | 0 | Display `contest`. |
-| [`SHOW/DATA_STATS`](../../reference/commands/show--data-stats.md) | 0 | Shows node data-transfer statistics. |
-| [`SHOW/DATE`](../../reference/commands/show--date.md) | 0 | Display `date`. |
-| [`SHOW/DB0SDX`](../../reference/commands/show--db0sdx.md) | 0 | Display `db0sdx`. |
-| [`SHOW/DX`](../../reference/commands/show--dx.md) | 0 | Display `dx`. |
-| [`SHOW/DXQSL`](../../reference/commands/show--dxqsl.md) | 0 | Display `dxqsl`. |
-| [`SHOW/DXSTATS`](../../reference/commands/show--dxstats.md) | 0 | Display `dxstats`. |
-| [`SHOW/FILES`](../../reference/commands/show--files.md) | 0 | Display `files`. |
-| [`SHOW/FILTER`](../../reference/commands/show--filter.md) | 0 | Display `filter`. |
-| [`SHOW/GRAYLINE`](../../reference/commands/show--grayline.md) | 0 | Display `grayline`. |
-| [`SHOW/GROUPS`](../../reference/commands/show--groups.md) | 0 | Shows chat/conference groups. |
-| [`SHOW/HEADING`](../../reference/commands/show--heading.md) | 0 | Shows heading information. |
-| [`SHOW/HFSTATS`](../../reference/commands/show--hfstats.md) | 0 | Display `hfstats`. |
-| [`SHOW/HFTABLE`](../../reference/commands/show--hftable.md) | 0 | Display `hftable`. |
-| [`SHOW/IK3QAR`](../../reference/commands/show--ik3qar.md) | 0 | Display `ik3qar`. |
-| [`SHOW/MOON`](../../reference/commands/show--moon.md) | 0 | Display `moon`. |
-| [`SHOW/MOTD`](../../reference/commands/show--motd.md) | 0 | Display `motd`. |
-| [`SHOW/MUF`](../../reference/commands/show--muf.md) | 0 | Display `muf`. |
-| [`SHOW/NEWCONFIGURATION`](../../reference/commands/show--newconfiguration.md) | 0 | Display `newconfiguration`. |
-| [`SHOW/PREFIX`](../../reference/commands/show--prefix.md) | 0 | Display `prefix`. |
-| [`SHOW/QRA`](../../reference/commands/show--qra.md) | 0 | Display `qra`. |
-| [`SHOW/QRZ`](../../reference/commands/show--qrz.md) | 0 | Display `qrz`. |
-| [`SHOW/ROUTE`](../../reference/commands/show--route.md) | 0 | Display `route`. |
-| [`SHOW/SATELLITE`](../../reference/commands/show--satellite.md) | 0 | Display `satellite`. |
-| [`SHOW/STARTUP`](../../reference/commands/show--startup.md) | 0 / 6 | Own startup script is user-level; another callsign requires authorization . |
-| [`SHOW/STATION`](../../reference/commands/show--station.md) | 0 / 6 | Normal lookup is user-level; SHOW/STATION ALL requires authorization . |
-| [`SHOW/SUN`](../../reference/commands/show--sun.md) | 0 | Display `sun`. |
-| [`SHOW/TALK`](../../reference/commands/show--talk.md) | 0 / 6 | User can view own talk log; SYSOP can inspect another callsign. |
-| [`SHOW/TIME`](../../reference/commands/show--time.md) | 0 | Display `time`. |
-| [`SHOW/USDB`](../../reference/commands/show--usdb.md) | 0 | Display `usdb`. |
-| [`SHOW/USERS`](../../reference/commands/show--users.md) | 0 | Shows users from current routing/user data. |
-| [`SHOW/VERSION`](../../reference/commands/show--version.md) | 0 / 6 | Normal version summary is user-visible; extended node/version query requires higher authorization . |
-| [`SHOW/VHFSTATS`](../../reference/commands/show--vhfstats.md) | 0 | Display `vhfstats`. |
-| [`SHOW/VHFTABLE`](../../reference/commands/show--vhftable.md) | 0 | Display `vhftable`. |
-| [`SHOW/WCY`](../../reference/commands/show--wcy.md) | 0 | Display `wcy`. |
-| [`SHOW/WM7D`](../../reference/commands/show--wm7d.md) | 0 | Display `wm7d`. |
-| [`SHOW/WWV`](../../reference/commands/show--wwv.md) | 0 | Display `wwv`. |
-| [`SHOW/WX`](../../reference/commands/show--wx.md) | 0 | Shows recent weather messages. |
-| [`STAT/NODECONFIG`](../../reference/commands/stat--nodeconfig.md) | 0 | Advanced diagnostic view of node configuration state. |
-| [`STAT/ROUTE`](../../reference/commands/stat--route.md) | 0 | Advanced diagnostic view of routing state. |
-| [`STAT/USERCONFIG`](../../reference/commands/stat--userconfig.md) | 0 | Advanced diagnostic view of user configuration state. |
-| [`SYSOP`](../../reference/commands/sysop.md) | 0 | Regain configured SYSOP authorization s after a remote login challenge. |
-| [`TALK`](../../reference/commands/talk.md) | 0 | Send a talk message or enter talk mode. |
-| [`TYPE`](../../reference/commands/type.md) | 0 | Display a file from a configured file area. |
-| [`UNSET/ANNOUNCE`](../../reference/commands/unset--announce.md) | 0 | Disable or clear `announce`. |
-| [`UNSET/ANNTALK`](../../reference/commands/unset--anntalk.md) | 0 | Disable or clear `anntalk`. |
-| [`UNSET/BEEP`](../../reference/commands/unset--beep.md) | 0 | Disable or clear `beep`. |
-| [`UNSET/BUDDY`](../../reference/commands/unset--buddy.md) | 0 | Disable or clear `buddy`. |
-| [`UNSET/DX`](../../reference/commands/unset--dx.md) | 0 | Disable or clear `dx`. |
-| [`UNSET/DXCQ`](../../reference/commands/unset--dxcq.md) | 0 | Disable or clear `dxcq`. |
-| [`UNSET/DXGRID`](../../reference/commands/unset--dxgrid.md) | 0 | Disable or clear `dxgrid`. |
-| [`UNSET/DXITU`](../../reference/commands/unset--dxitu.md) | 0 | Disable or clear `dxitu`. |
-| [`UNSET/ECHO`](../../reference/commands/unset--echo.md) | 0 | Disable or clear `echo`. |
-| [`UNSET/EMAIL`](../../reference/commands/unset--email.md) | 0 | Disable or clear `email`. |
-| [`UNSET/GTK`](../../reference/commands/unset--gtk.md) | 0 | Disables GTK/enhanced mode for the current session. |
-| [`UNSET/HERE`](../../reference/commands/unset--here.md) | 0 | Disable or clear `here`. |
-| [`UNSET/LOGININFO`](../../reference/commands/unset--logininfo.md) | 0 | Disable or clear `logininfo`. |
-| [`UNSET/authorization `](../../reference/commands/unset--authorization .md) | 0 | Drops authorization for the current session. |
-| [`UNSET/PROMPT`](../../reference/commands/unset--prompt.md) | 0 | Disable or clear `prompt`. |
-| [`UNSET/SEEME`](../../reference/commands/unset--seeme.md) | 0 | Disables current-user RBN seeme preference. |
-| [`UNSET/STARTUP`](../../reference/commands/unset--startup.md) | 0 / 6 | User removes own startup script; SYSOP may remove another callsign’s startup. |
-| [`UNSET/TALK`](../../reference/commands/unset--talk.md) | 0 | Disables talk messages for the current user. |
-| [`UNSET/USSTATE`](../../reference/commands/unset--usstate.md) | 0 | Disable or clear `usstate`. |
-| [`UNSET/VE7CC`](../../reference/commands/unset--ve7cc.md) | 0 | Disables VE7CC compatibility mode. |
-| [`UNSET/WANTRBN`](../../reference/commands/unset--wantrbn.md) | 0 | Disable or clear `wantrbn`. |
-| [`UNSET/WCY`](../../reference/commands/unset--wcy.md) | 0 | Disable or clear `wcy`. |
-| [`UNSET/WWV`](../../reference/commands/unset--wwv.md) | 0 | Disable or clear `wwv`. |
-| [`UNSET/WX`](../../reference/commands/unset--wx.md) | 0 | Disable or clear `wx`. |
-| [`UPTIME`](../../reference/commands/uptime.md) | 0 | Show node uptime. |
-| [`WHO`](../../reference/commands/who.md) | 0 | Show callsigns physically connected to the node. |
-| [`WX`](../../reference/commands/wx.md) | 0 / 5 | Send local/full weather messages; SYSOP form targets other clusters. |
+| Command | Guide | Purpose |
+|---|---|---|
+| [`ACCEPT`](../../reference/commands/accept.md) | User | Set a filter to accept something |
+| [`ACCEPT/ANNOUNCE`](../../reference/commands/accept--announce.md) | User + SYSOP | Set an 'accept' filter line for announce |
+| [`ACCEPT/RBN`](../../reference/commands/accept--rbn.md) | User | Apply an accept filter specifically to RBN/Skimmer spots. |
+| [`ACCEPT/SPOTS`](../../reference/commands/accept--spots.md) | User + SYSOP | Allow only DX spots that match one or more filter rules. |
+| [`ACCEPT/WCY`](../../reference/commands/accept--wcy.md) | User + SYSOP | set an 'accept' WCY filter |
+| [`ACCEPT/WWV`](../../reference/commands/accept--wwv.md) | User + SYSOP | set an 'accept' WWV filter |
+| [`ANNOUNCE`](../../reference/commands/announce.md) | User + SYSOP | Send local, cluster-wide or SYSOP-only announcements. |
+| [`APROPOS`](../../reference/commands/apropos.md) | User | Search help database for <string> |
+| [`BLANK`](../../reference/commands/blank.md) | User | Print nn (default 1) blank lines (or strings) |
+| [`BYE`](../../reference/commands/bye.md) | User | Exit from the cluster |
+| [`CHAT`](../../reference/commands/chat.md) | User | Chat or Conference to a group |
+| [`CLEAR/ANNOUNCE`](../../reference/commands/clear--announce.md) | User + SYSOP | Clear a announce filter line |
+| [`CLEAR/ROUTE`](../../reference/commands/clear--route.md) | User + SYSOP | Clear a route filter line |
+| [`CLEAR/SPOTS`](../../reference/commands/clear--spots.md) | User + SYSOP | Remove one line or the complete DX spot filter. |
+| [`CLEAR/WCY`](../../reference/commands/clear--wcy.md) | User + SYSOP | Clear a WCY filter line |
+| [`CLEAR/WWV`](../../reference/commands/clear--wwv.md) | User + SYSOP | Clear a WWV filter line |
+| [`DBAVAIL`](../../reference/commands/dbavail.md) | User | Show a list of all the Databases in the system |
+| [`DBSHOW`](../../reference/commands/dbshow.md) | User | Display an entry, if it exists, in a database |
+| [`DIRECTORY`](../../reference/commands/directory.md) | User + SYSOP | Browse DXSpider messages by ownership, age, sender, recipient, subject or message-number range. |
+| [`DISABLE/AUTOFTX`](../../reference/commands/disable--autoftx.md) | User | Suppress FT4/FT8 spots whose comments look automatically generated, while retaining more useful human-entered FT4/FT8 spots. |
+| [`DISABLE/FTX`](../../reference/commands/disable--ftx.md) | User | Suppress all spots whose comment contains FT4 or FT8. |
+| [`DX`](../../reference/commands/dx.md) | User + SYSOP | Send a DX spot into the cluster network. |
+| [`ECHO`](../../reference/commands/echo.md) | User | Echo the line to the output |
+| [`ENABLE/AUTOFTX`](../../reference/commands/enable--autoftx.md) | User | Enable Autogenerated FT4/8 spots |
+| [`ENABLE/FTX`](../../reference/commands/enable--ftx.md) | User | Enable ALL FT4/8 Spots |
+| [`FILTERING...`](../../reference/commands/filtering....md) | User | Filtering things in DXSpider |
+| [`HELP`](../../reference/commands/help.md) | User | The HELP Command |
+| [`JOIN`](../../reference/commands/join.md) | User | Join a chat or conference group |
+| [`KILL`](../../reference/commands/kill.md) | User + SYSOP | Delete a message from the local system |
+| [`LEAVE`](../../reference/commands/leave.md) | User | Leave a chat or conference group |
+| [`LINKS`](../../reference/commands/links.md) | User | Show which nodes is physically connected |
+| [`PING`](../../reference/commands/ping.md) | User + SYSOP | User level link check command |
+| [`RBN`](../../reference/commands/rbn.md) | User | The Reverse Beacon or Skimmer System |
+| [`READ`](../../reference/commands/read.md) | User + SYSOP | Read the next unread personal message addressed to you |
+| [`REJECT`](../../reference/commands/reject.md) | User | Set a filter to reject something |
+| [`REJECT/ANNOUNCE`](../../reference/commands/reject--announce.md) | User + SYSOP | Set a 'reject' filter line for announce |
+| [`REJECT/RBN`](../../reference/commands/reject--rbn.md) | User | Set a 'reject' filter line for RBN spots |
+| [`REJECT/SPOTS`](../../reference/commands/reject--spots.md) | User + SYSOP | Reject DX spots that match one or more filter rules. |
+| [`REJECT/WCY`](../../reference/commands/reject--wcy.md) | User + SYSOP | set a 'reject' WCY filter |
+| [`REJECT/WWV`](../../reference/commands/reject--wwv.md) | User + SYSOP | set a 'reject' WWV filter |
+| [`REPLY`](../../reference/commands/reply.md) | User | Reply (privately) to the last message that you have read |
+| [`SEND`](../../reference/commands/send.md) | User | Send a message to one or more callsigns |
+| [`SET/ADDRESS`](../../reference/commands/set--address.md) | User | Record your postal address |
+| [`SET/ANNOUNCE`](../../reference/commands/set--announce.md) | User | Allow announce messages to come out on your terminal |
+| [`SET/ANNTALK`](../../reference/commands/set--anntalk.md) | User | Allow talk like announce messages on your terminal |
+| [`SET/BEEP`](../../reference/commands/set--beep.md) | User | Add a beep to DX and other messages on your terminal |
+| [`SET/BUDDY`](../../reference/commands/set--buddy.md) | User | Add this call to my buddy list |
+| [`SET/DX`](../../reference/commands/set--dx.md) | User | Allow DX messages to come out on your terminal |
+| [`SET/DXCQ`](../../reference/commands/set--dxcq.md) | User | Show CQ Zones on the end of DX announcements |
+| [`SET/DXGRID`](../../reference/commands/set--dxgrid.md) | User | Allow QRA Grid Squares on the end of DX announcements |
+| [`SET/DXITU`](../../reference/commands/set--dxitu.md) | User | Show ITU Zones on the end of DX announcements |
+| [`SET/ECHO`](../../reference/commands/set--echo.md) | User | Make the cluster echo your input |
+| [`SET/EMAIL`](../../reference/commands/set--email.md) | User | Set email address(es) and forward your personals |
+| [`SET/HERE`](../../reference/commands/set--here.md) | User | Tell DXSpider that you are present at your terminal. |
+| [`SET/HOMENODE`](../../reference/commands/set--homenode.md) | User | Set your normal cluster callsign |
+| [`SET/LANGUAGE`](../../reference/commands/set--language.md) | User | Set the language you want to use |
+| [`SET/LOCATION`](../../reference/commands/set--location.md) | User | Set your latitude and longitude |
+| [`SET/LOGININFO`](../../reference/commands/set--logininfo.md) | User | Inform when a station logs in/out locally |
+| [`SET/NAME`](../../reference/commands/set--name.md) | User | Set your name |
+| [`SET/PAGE`](../../reference/commands/set--page.md) | User | Set the lines per page |
+| [`SET/PASSWORD`](../../reference/commands/set--password.md) | User + SYSOP | Change your own password interactively, or—at SYSOP privilege—set another user's password. |
+| [`SET/PROMPT`](../../reference/commands/set--prompt.md) | User | Set your prompt to <string> |
+| [`SET/QRA`](../../reference/commands/set--qra.md) | User | Set your QRA Grid locator |
+| [`SET/QTH`](../../reference/commands/set--qth.md) | User | Set your QTH |
+| [`SET/SKIMMER`](../../reference/commands/set--skimmer.md) | User + SYSOP | [category ..]^Allow (some) RBN/Skimmer spotsT |
+| [`SET/STARTUP`](../../reference/commands/set--startup.md) | User + SYSOP | Create a user startup script |
+| [`SET/TALK`](../../reference/commands/set--talk.md) | User | Allow TALK messages to come out on your terminal |
+| [`SET/USSTATE`](../../reference/commands/set--usstate.md) | User | Allow US State info on the end of DX announcements |
+| [`SET/WANTRBN`](../../reference/commands/set--wantrbn.md) | User + SYSOP | Choose which curated RBN/Skimmer categories are delivered to the user. |
+| [`SET/WCY`](../../reference/commands/set--wcy.md) | User | Allow WCY messages to come out on your terminal |
+| [`SET/WWV`](../../reference/commands/set--wwv.md) | User | Allow WWV messages to come out on your terminal |
+| [`SET/WX`](../../reference/commands/set--wx.md) | User | Allow WX messages to come out on your terminal |
+| [`SHOW/ANNOUNCE`](../../reference/commands/show--announce.md) | User | Show log of announces |
+| [`SHOW/BANDS`](../../reference/commands/show--bands.md) | User | Show the list of bands and regions |
+| [`SHOW/BUDDY`](../../reference/commands/show--buddy.md) | User | Show your list of buddies |
+| [`SHOW/CHAT`](../../reference/commands/show--chat.md) | User | Show any chat or conferencing |
+| [`SHOW/CONFIGURATION`](../../reference/commands/show--configuration.md) | User | Show all the nodes and users visible |
+| [`SHOW/CONFIGURATION/NODE`](../../reference/commands/show--configuration--node.md) | User | Show all the nodes connected locally |
+| [`SHOW/CONTEST`](../../reference/commands/show--contest.md) | User | Show all the contests for a month |
+| [`SHOW/DATE`](../../reference/commands/show--date.md) | User | Show the local time |
+| [`SHOW/DB0SDX`](../../reference/commands/show--db0sdx.md) | User | Show QSL infomation from DB0SDX database |
+| [`SHOW/DX`](../../reference/commands/show--dx.md) | User | Search the spot database by band, frequency, callsign, age, spotter, country, zone, state, origin, IP address and other selectors. |
+| [`SHOW/DXCC`](../../reference/commands/show--dxcc.md) | User | Interrogate the spot database by country |
+| [`SHOW/DXQSL`](../../reference/commands/show--dxqsl.md) | User | Show any QSL info gathered from spots |
+| [`SHOW/DXSTATS`](../../reference/commands/show--dxstats.md) | User | Show the DX Statistics |
+| [`SHOW/FDX`](../../reference/commands/show--fdx.md) | User | Show the DX data in realtime format. |
+| [`SHOW/FILES`](../../reference/commands/show--files.md) | User | List the contents of a filearea |
+| [`SHOW/FILTER`](../../reference/commands/show--filter.md) | User | Show the contents of all the filters you have set |
+| [`SHOW/GRAYLINE`](../../reference/commands/show--grayline.md) | User | Show Civil dawn/dusk times |
+| [`SHOW/HFSTATS`](../../reference/commands/show--hfstats.md) | User | Show the HF DX Statistics |
+| [`SHOW/HFTABLE`](../../reference/commands/show--hftable.md) | User | Show the HF DX Spotter Table |
+| [`SHOW/IK3QAR`](../../reference/commands/show--ik3qar.md) | User | Obtain QSL info from IK3QAR database |
+| [`SHOW/MOON`](../../reference/commands/show--moon.md) | User | Show Moon rise and set times |
+| [`SHOW/MOTD`](../../reference/commands/show--motd.md) | User | Show your MOTD (the Message of the Day) |
+| [`SHOW/MUF`](../../reference/commands/show--muf.md) | User | Show the likely propagation to a prefix |
+| [`SHOW/MYDX`](../../reference/commands/show--mydx.md) | User | Search the spot database after applying your personal spot filter. |
+| [`SHOW/NEWCONFIGURATION`](../../reference/commands/show--newconfiguration.md) | User | Show the cluster map |
+| [`SHOW/NEWCONFIGURATION/NODE`](../../reference/commands/show--newconfiguration--node.md) | User | Show all the nodes connected locally |
+| [`SHOW/PREFIX`](../../reference/commands/show--prefix.md) | User | Interrogate the prefix database |
+| [`SHOW/QRA`](../../reference/commands/show--qra.md) | User | Show distance between QRA Grid locators |
+| [`SHOW/QRZ`](../../reference/commands/show--qrz.md) | User | Show any callbook details on a callsign |
+| [`SHOW/ROUTE`](../../reference/commands/show--route.md) | User | Show the route to the callsign |
+| [`SHOW/SATELLITE`](../../reference/commands/show--satellite.md) | User | Show tracking data |
+| [`SHOW/STARTUP`](../../reference/commands/show--startup.md) | User + SYSOP | View a user startup script |
+| [`SHOW/STATION`](../../reference/commands/show--station.md) | User + SYSOP | Show list of users in the system |
+| [`SHOW/SUN`](../../reference/commands/show--sun.md) | User | Show sun rise and set times |
+| [`SHOW/TIME`](../../reference/commands/show--time.md) | User | Show the local time |
+| [`SHOW/USDB`](../../reference/commands/show--usdb.md) | User | Show information held on the FCC Call database |
+| [`SHOW/VHFSTATS`](../../reference/commands/show--vhfstats.md) | User | Show the VHF DX Statistics |
+| [`SHOW/VHFTABLE`](../../reference/commands/show--vhftable.md) | User | Show the VHF DX Spotter Table |
+| [`SHOW/WCY`](../../reference/commands/show--wcy.md) | User | Show last 10 WCY broadcasts |
+| [`SHOW/WM7D`](../../reference/commands/show--wm7d.md) | User | Show callbook details on a US callsigns |
+| [`SHOW/WWV`](../../reference/commands/show--wwv.md) | User | Show last 10 WWV broadcasts |
+| [`SYSOP`](../../reference/commands/sysop.md) | User | Regain your privileges if you login remotely |
+| [`TALK`](../../reference/commands/talk.md) | User | Send a private talk message or enter interactive talk mode. |
+| [`TYPE`](../../reference/commands/type.md) | User | Look at the contents of a file in one of the fileareas |
+| [`UNSET/ANNOUNCE`](../../reference/commands/unset--announce.md) | User | Stop announce messages coming out on your terminal |
+| [`UNSET/ANNTALK`](../../reference/commands/unset--anntalk.md) | User | Stop talk like announce messages on your terminal |
+| [`UNSET/BEEP`](../../reference/commands/unset--beep.md) | User | Stop beeps for DX and other messages on your terminal |
+| [`UNSET/BUDDY`](../../reference/commands/unset--buddy.md) | User | Remove this call from my buddy list |
+| [`UNSET/DX`](../../reference/commands/unset--dx.md) | User | Stop DX messages coming out on your terminal |
+| [`UNSET/DXCQ`](../../reference/commands/unset--dxcq.md) | User | Stop CQ Zones on the end of DX announcements |
+| [`UNSET/DXGRID`](../../reference/commands/unset--dxgrid.md) | User | Stop QRA Grid Squares on the end of DX announcements |
+| [`UNSET/DXITU`](../../reference/commands/unset--dxitu.md) | User | Stop ITU Zones on the end of DX announcements |
+| [`UNSET/ECHO`](../../reference/commands/unset--echo.md) | User | Stop the cluster echoing your input |
+| [`UNSET/EMAIL`](../../reference/commands/unset--email.md) | User | Stop personal msgs being forwarded by email |
+| [`UNSET/HERE`](../../reference/commands/unset--here.md) | User | Tell DXSpider that you are absent from your terminal. |
+| [`UNSET/LOGININFO`](../../reference/commands/unset--logininfo.md) | User | No longer inform when a station logs in/out locally |
+| [`UNSET/PRIVILEGE`](../../reference/commands/unset--privilege.md) | User | Remove any privilege for this session |
+| [`UNSET/PROMPT`](../../reference/commands/unset--prompt.md) | User | Set your prompt back to default |
+| [`UNSET/SKIMMER`](../../reference/commands/unset--skimmer.md) | User | Stop all RBN/Skimmer spots |
+| [`UNSET/STARTUP`](../../reference/commands/unset--startup.md) | User + SYSOP | Remove a user startup script |
+| [`UNSET/TALK`](../../reference/commands/unset--talk.md) | User | Stop TALK messages coming out on your terminal |
+| [`UNSET/USSTATE`](../../reference/commands/unset--usstate.md) | User | Stop US State info on the end of DX announcements |
+| [`UNSET/WANTRBN`](../../reference/commands/unset--wantrbn.md) | User | Stop all RBN/Skimmer spots |
+| [`UNSET/WCY`](../../reference/commands/unset--wcy.md) | User | Stop WCY messages coming out on your terminal |
+| [`UNSET/WWV`](../../reference/commands/unset--wwv.md) | User | Stop WWV messages coming out on your terminal |
+| [`UNSET/WX`](../../reference/commands/unset--wx.md) | User | Stop WX messages coming out on your terminal |
+| [`WHO`](../../reference/commands/who.md) | User | Show who is physically connected |
+| [`WX`](../../reference/commands/wx.md) | User + SYSOP | Send a weather message to local users |

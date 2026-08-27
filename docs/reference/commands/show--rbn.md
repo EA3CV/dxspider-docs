@@ -1,31 +1,52 @@
 # `SHOW/RBN`
 
+<div class="command-hero" markdown>
+
+**Show which connected users want RBN spots**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-sysop">SYSOP / Administration</span></div>
-<div>**authorization **  
-`1`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">SYSOP</span></div>
+<div><span class="meta-label">Category</span><br>Command reference</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
+</div>
 
-Display `rbn`.
+## Syntax and variants
 
-## Syntax
+=== "SYSOP form"
 
-```text
-SHOW/RBN
-```
+    ```text
+    SHOW/RBN [<callsign> ...]
+    ```
+
+    **Show which connected users want RBN spots**
 
 
-## Built-in help
+=== "SYSOP form"
 
-On a running node, use:
+    ```text
+    SHOW/RBN ALL
+    ```
+
+    **Show ALL users that want RBN spots**
+
+    Show a list of the users that want RBN spots of any the callsigns
+    specified on the command line. If no callsigns are specified then a
+    sorted list of all connected users wanting RBN spots will be displayed
+
+    SHOW/RBN ALL
+
+    will go through the user file and display ALL users that want RBN spots.
+
+## Implementation
+
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/show/rbn.pl){ .md-button }
+
+## Verify on a running node
 
 ```text
 HELP SHOW/RBN
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.

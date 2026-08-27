@@ -1,0 +1,81 @@
+# Generated reference audit
+
+- Help entries parsed: **324**
+- Unique commands documented from help: **252**
+- `.pl` command files without a matching help header: **73**
+
+## Code-present commands without help
+
+- `AGWRESTART`
+- `CLEAR/CMD_CACHE`
+- `CLEAR/RBN`
+- `DBDELKEY`
+- `DBUPDATE`
+- `DMESG`
+- `DO`
+- `FORWARD/OPERNAME`
+- `LOAD/DB`
+- `LOAD/DXQSL`
+- `LOAD/HOPS`
+- `LOAD/QSL`
+- `LOAD/SWOP`
+- `LOAD/USDB`
+- `MRTG`
+- `NOSPAWN`
+- `PRIVILEGE`
+- `RINIT`
+- `RUN`
+- `SET/BELIEVE`
+- `SET/EXTERNAL_IP`
+- `SET/GTK`
+- `SET/HOMEBBS`
+- `SET/PASSPHRASE`
+- `SET/ROUTEPC19`
+- `SET/SEEME`
+- `SET/SEEMEE`
+- `SET/SENDPC16`
+- `SET/SEND_DBG`
+- `SET/USERVAR`
+- `SET/VAR`
+- `SET/VE7CC`
+- `SET/WANTPC16`
+- `SET/WANTPC9X`
+- `SET/WIDTH`
+- `SHOW/425`
+- `SHOW/BADIP`
+- `SHOW/CLUSTER`
+- `SHOW/DATA_STATS`
+- `SHOW/DEBUG_RING`
+- `SHOW/DUP_ANN`
+- `SHOW/DUP_EPH`
+- `SHOW/DUP_SPOTS`
+- `SHOW/DUP_WCY`
+- `SHOW/DUP_WWV`
+- `SHOW/EXTERNAL_IP`
+- `SHOW/GROUPS`
+- `SHOW/HEADING`
+- `SHOW/MSG_STATUS`
+- `SHOW/SEEME`
+- `SHOW/TALK`
+- `SHOW/USERS`
+- `SHOW/VAR`
+- `SHOW/VERSION`
+- `SHOW/WX`
+- `SHU`
+- `STAT/NODECONFIG`
+- `STAT/PC19LIST`
+- `STAT/ROUTE`
+- `STAT/USERCONFIG`
+- `UNSET/BELIEVE`
+- `UNSET/GTK`
+- `UNSET/PASSPHRASE`
+- `UNSET/ROUTEPC19`
+- `UNSET/SEEME`
+- `UNSET/SENDPC16`
+- `UNSET/SEND_DBG`
+- `UNSET/VE7CC`
+- `UNSET/WANTPC16`
+- `UNSET/WANTPC9X`
+- `UPTIME`
+- `WCY`
+- `WWV`

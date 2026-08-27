@@ -1,31 +1,38 @@
 # `SHOW/HFSTATS`
 
+<div class="command-hero" markdown>
+
+**Show the HF DX Statistics**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-user">User</span></div>
-<div>**authorization **  
-`0`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User</span></div>
+<div><span class="meta-label">Category</span><br>Command reference</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
-
-Display `hfstats`.
+</div>
 
 ## Syntax
 
 ```text
-SHOW/HFSTATS
+SHOW/HFSTATS [days] [date]
 ```
 
+**Show the HF DX Statistics**
 
-## Built-in help
+## Details
 
-On a running node, use:
+Show the HF DX spots breakdown by band for the last <days> no of days
+(default is 31), starting from a <date> (default: today).
+
+## Implementation
+
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/show/hfstats.pl){ .md-button }
+
+## Verify on a running node
 
 ```text
 HELP SHOW/HFSTATS
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.

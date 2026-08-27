@@ -1,35 +1,92 @@
 # `DX`
 
+<div class="command-hero" markdown>
+
+**Send a DX spot into the cluster network.**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-dual">User + SYSOP</span></div>
-<div>**authorization **  
-`0 / 2`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-dual">User + SYSOP</span></div>
+<div><span class="meta-label">Category</span><br>Spots</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
+</div>
 
-Send a DX spot; authorization d form accepts additional origin metadata.
+## Syntax and variants
 
-## Syntax
+=== "User form"
+
+    ```text
+    DX <freq> <call> <remarks>
+    ```
+
+    **Send a DX spot**
+
+
+=== "SYSOP form"
+
+    ```text
+    DX [BY <call>] [ip <ipaddress>] <freq> <call> <remarks>
+    ```
+
+    **Send a DX spot**
+
+    This is how you send a DX Spot to other users. You can, in fact, now
+    enter the <freq> and the <call> either way round.
+
+    ```text
+     DX FR0G 144.600
+     DX 144.600 FR0G
+     DX 144600 FR0G
+    ```
+
+    will all give the same result. You can add some remarks to the end
+    of the command and they will be added to the spot.
+
+    ```text
+     DX FR0G 144600 this is a test
+    ```
+
+    You can credit someone else by saying:-
+
+    ```text
+     DX by G1TLH FR0G 144.600 he isn't on the cluster
+    ```
+
+    The <freq> is compared against the available bands set up in the
+    cluster.  See SHOW/BANDS for more information.
+
+## Practical examples
+
+### Normal spot
 
 ```text
-DX <frequency> <callsign> [remarks]
+DX 14025.0 K1ABC CQ
 ```
 
+### With a short comment
 
-## Audience-specific behaviour
+```text
+DX 50313.0 EA8XYZ FT8
+```
 
-This command has more than one access form. The normal-user and authorization d forms are deliberately treated separately in this manual. Check the syntax shown by the running node with `HELP` before using the administrative form.
+!!! info "User and SYSOP forms"
+    This command has distinct normal-user and administration forms. Use the form appropriate to what you are trying to do.
 
-## Built-in help
+## Implementation
 
-On a running node, use:
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/dx.pl){ .md-button }
+
+## Related commands
+
+- [`SHOW/DX`](show--dx.md)
+- [`ACCEPT/SPOTS`](accept--spots.md)
+- [`REJECT/SPOTS`](reject--spots.md)
+
+## Verify on a running node
 
 ```text
 HELP DX
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.

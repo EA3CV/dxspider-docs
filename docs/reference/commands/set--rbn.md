@@ -1,31 +1,44 @@
 # `SET/RBN`
 
+<div class="command-hero" markdown>
+
+**Mark this call as an RBN node**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-sysop">SYSOP / Administration</span></div>
-<div>**authorization **  
-`9`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">SYSOP</span></div>
+<div><span class="meta-label">Category</span><br>Command reference</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
-
-Enable or configure `rbn`.
+</div>
 
 ## Syntax
 
 ```text
-SET/RBN
+SET/RBN <call> ...
 ```
 
+**Mark this call as an RBN node**
 
-## Built-in help
+## Details
 
-On a running node, use:
+This will mark this callsign as a Reverse Beacon
+Network client. It's not a node in the normal sense of that word
+in DXSpider. But it will generate spots from the RBN/Skimmers and
+will act like a specialised node just for RBN spots.
+
+You will need to use this command to create your skimmer node
+connections. Normally one per RBN port (7000, 7001) but, in principle
+you could connect to any skimmer that uses the same spot format.
+
+## Implementation
+
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/set/rbn.pl){ .md-button }
+
+## Verify on a running node
 
 ```text
 HELP SET/RBN
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.

@@ -1,31 +1,45 @@
 # `SET/USDB`
 
+<div class="command-hero" markdown>
+
+**add/update a US DB callsign**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-sysop">SYSOP / Administration</span></div>
-<div>**authorization **  
-`9`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">SYSOP</span></div>
+<div><span class="meta-label">Category</span><br>Command reference</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
-
-Enable or configure `usdb`.
+</div>
 
 ## Syntax
 
 ```text
-SET/USDB
+SET/USDB <call> <state> <city>
 ```
 
+**add/update a US DB callsign**
 
-## Built-in help
+## Details
 
-On a running node, use:
+This command allows you to add or alter a callsign in the US state
+database. Use with extreme caution. Anything you do here will be
+overwritten by any weekly updates that affect this callsign
+
+```text
+set/usdb g1tlh nh downtown rindge
+```
+
+see also DELETE/USDB
+
+## Implementation
+
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/set/usdb.pl){ .md-button }
+
+## Verify on a running node
 
 ```text
 HELP SET/USDB
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.

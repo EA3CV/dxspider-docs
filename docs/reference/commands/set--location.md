@@ -1,31 +1,33 @@
 # `SET/LOCATION`
 
+<div class="command-hero" markdown>
+
+**Set your latitude and longitude**
+
 <div class="command-meta" markdown>
-<div>**Audience**  
-<span class="badge-user">User</span></div>
-<div>**authorization **  
-`0`</div>
-<div>**DXSpider**  
-1.57 / Mojo ≥ 686</div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User</span></div>
+<div><span class="meta-label">Category</span><br>Command reference</div>
+<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
-## Purpose
-
-Enable or configure `location`.
+</div>
 
 ## Syntax
 
 ```text
-SET/LOCATION
+SET/LOCATION <lat & long>
 ```
 
+**Set your latitude and longitude**
 
-## Built-in help
+## Implementation
 
-On a running node, use:
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/set/location.pl){ .md-button }
+
+## Verify on a running node
 
 ```text
 HELP SET/LOCATION
 ```
 
-The built-in help reflects the exact command set installed on that node.
+The built-in help is useful when checking the exact command set installed on a particular node.
