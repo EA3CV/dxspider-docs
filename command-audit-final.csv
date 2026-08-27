@@ -1,0 +1,310 @@
+command,kind,family,name,audience,privilege,status,note
+agwrestart,root,,agwrestart,SYSOP,5,verified,Restart the AGW connection subsystem.
+announce,root,,announce,DUAL,0 / 5,verified,Send local or cluster-wide announcements; SYSOP form targets sysops.
+apropos,root,,apropos,USER,0,verified,Search the built-in help database.
+blank,root,,blank,USER,0,verified,Print blank or repeated separator lines.
+bye,root,,bye,USER,0,verified,Disconnect from the cluster.
+catchup,root,,catchup,SYSOP,5,verified,Mark messages as already sent to a forwarding node.
+chat,root,,chat,USER,0,verified,Send a message to a joined chat/conference group.
+connect,root,,connect,SYSOP,5,verified,Start an outbound connection to another cluster node.
+dbavail,root,,dbavail,USER,0,verified,List databases defined on the node.
+dbcreate,root,,dbcreate,SYSOP,9,verified,"Define a local, chained, remote or command-backed database."
+dbdelkey,root,,dbdelkey,INTERNAL,,internal_review,Current file is a no-op placeholder; not exposed as supported documentation.
+dbexport,root,,dbexport,SYSOP,9,verified,Export database data.
+dbimport,root,,dbimport,SYSOP,9,verified,Import database data.
+dbremove,root,,dbremove,SYSOP,9,verified,Remove a database definition/data.
+dbshow,root,,dbshow,USER,0,verified,Query a defined database.
+dbupdate,root,,dbupdate,INTERNAL,,internal_review,Current file is a no-op placeholder; not exposed as supported documentation.
+debug,root,,debug,SYSOP,9,verified,Enter Perl debugger mode when the node is running under the debugger.
+demonstrate,root,,demonstrate,SYSOP,9,verified,Run a command as another user for demonstration/support.
+directory,root,,directory,DUAL,0 / 5,verified,List messages; SYSOP can see otherwise hidden/private entries.
+disconnect,root,,disconnect,SYSOP,8,verified,"Disconnect local users, nodes or groups of connections."
+dmesg,root,,dmesg,SYSOP,9,verified,Alias to SHOW/DEBUG_RING.
+do,root,,do,INTERNAL,9,internal_review,Local privileged Perl-eval command; intentionally excluded from normal operational docs.
+download,root,,download,SYSOP,9,verified,"Download a URL into local_data, including from cron."
+dx,root,,dx,DUAL,0 / 2,verified,Send a DX spot; privileged form accepts additional origin metadata.
+dxqsl_export,root,,dxqsl_export,SYSOP,9,verified,Export accumulated DX QSL-manager information.
+dxqsl_import,root,,dxqsl_import,SYSOP,9,verified,Import accumulated DX QSL-manager information.
+echo,root,,echo,USER,0,verified,Echo text/input.
+export,root,,export,SYSOP,9,verified,Export a message to a file from a privileged local console.
+export_users,root,,export_users,SYSOP,9,verified,Export the user database to ASCII.
+help,root,,help,USER,0,verified,Show command help.
+init,root,,init,SYSOP,5,verified,Re-initialise a legacy-compatible node link.
+join,root,,join,USER,0,verified,Join a chat/conference group.
+kill,root,,kill,DUAL,0 / 5,verified,Delete permitted messages; SYSOP has broader message-deletion scope.
+leave,root,,leave,USER,0,verified,Leave a chat/conference group.
+links,root,,links,USER,0,verified,Show link information.
+merge,root,,merge,SYSOP,5,verified,Administrative merge operation.
+mrtg,root,,mrtg,SYSOP,operational,verified,Generate MRTG configuration/data and optional plots for node statistics.
+msg,root,,msg,SYSOP,9,verified,Administrative message-system command.
+nospawn,root,,nospawn,SYSOP,2,verified,Run a command without the normal spawn/user impersonation path; local only.
+pc,root,,pc,SYSOP,8,verified,Send arbitrary text/protocol to a connected callsign.
+ping,root,,ping,DUAL,0 / 1,verified,Ping a node; privileged mode provides broader operational access.
+privilege,root,,privilege,SYSOP,9,verified,Privilege-management command/compatibility entry; prefer SET/PRIVILEGE.
+rcmd,root,,rcmd,SYSOP,1,verified,Send a remote command to another cluster node.
+read,root,,read,DUAL,0 / 5,verified,Read permitted messages; SYSOP may read any message.
+reply,root,,reply,USER,0,verified,"Reply to a message, with bulletin/private/read-receipt variants."
+rinit,root,,rinit,SYSOP,5,verified,Reverse-initialise a connected node and resend local configuration.
+run,root,,run,DUAL,0 / 8,verified,Run a script; higher privilege is required for scripts targeted at another callsign.
+save,root,,save,SYSOP,9,verified,Save command output to a file.
+send,root,,send,USER,0,verified,Compose and send personal or bulletin messages.
+send_config,root,,send_config,SYSOP,6,verified,Broadcast PC92 C configuration records.
+shu,root,,shu,SYSOP,5,verified,Guard/abbreviation handler requiring a longer SHUTDOWN command.
+shutdown,root,,shutdown,SYSOP,5,verified,Shut down the cluster and disconnect users.
+spoof,root,,spoof,SYSOP,9,verified,Run a command as another user.
+sysop,root,,sysop,USER,0,verified,Regain configured SYSOP privileges after a remote login challenge.
+talk,root,,talk,USER,0,verified,Send a talk message or enter talk mode.
+type,root,,type,USER,0,verified,Display a file from a configured file area.
+uncatchup,root,,uncatchup,SYSOP,5,verified,Undo CATCHUP forwarding marks.
+uptime,root,,uptime,USER,0,verified,Show node uptime.
+wcy,root,,wcy,SYSOP,operational,verified,Inject/send WCY data; operational command.
+who,root,,who,USER,0,verified,Show callsigns physically connected to the node.
+wwv,root,,wwv,SYSOP,operational,verified,Inject/send WWV data; operational command.
+wx,root,,wx,DUAL,0 / 5,verified,Send local/full weather messages; SYSOP form targets other clusters.
+accept/announce,subcommand,accept,announce,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+accept/rbn,subcommand,accept,rbn,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+accept/route,subcommand,accept,route,SYSOP,8,verified,
+accept/spots,subcommand,accept,spots,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+accept/wcy,subcommand,accept,wcy,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+accept/wwv,subcommand,accept,wwv,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+clear/announce,subcommand,clear,announce,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+clear/cmd_cache,subcommand,clear,cmd_cache,SYSOP,9,verified,Alias to LOAD/CMD_CACHE; clears/reloads the command cache.
+clear/dupefile,subcommand,clear,dupefile,SYSOP,6,verified,Clears the duplicate tracking file; use only for diagnosed duplicate problems.
+clear/rbn,subcommand,clear,rbn,DUAL,0 / 8,verified,User form clears own RBN filter; SYSOP form can target another callsign/default.
+clear/route,subcommand,clear,route,DUAL,0 / 8,verified,User and SYSOP route-filter forms exist.
+clear/spots,subcommand,clear,spots,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+clear/wcy,subcommand,clear,wcy,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+clear/wwv,subcommand,clear,wwv,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+create/user,subcommand,create,user,SYSOP,5,verified,
+delete/usdb,subcommand,delete,usdb,SYSOP,9,verified,
+delete/user,subcommand,delete,user,SYSOP,9,verified,
+disable/autoftx,subcommand,disable,autoftx,USER,0,verified,
+disable/ftx,subcommand,disable,ftx,USER,0,verified,
+enable/autoftx,subcommand,enable,autoftx,USER,0,verified,
+enable/ftx,subcommand,enable,ftx,USER,0,verified,
+forward/latlong,subcommand,forward,latlong,SYSOP,8,verified,Administrative forwarding operation for latitude/longitude data.
+forward/opername,subcommand,forward,opername,SYSOP,1,verified,Administrative forwarding operation; current help spells the command OPERNAM.
+get/keps,subcommand,get,keps,SYSOP,8,verified,"Fetches current satellite Keplerian data asynchronously, then loads it."
+load/aliases,subcommand,load,aliases,SYSOP,9,verified,Reload aliases.
+load/badip,subcommand,load,badip,SYSOP,6,verified,Reload bad-IP data.
+load/badmsg,subcommand,load,badmsg,SYSOP,9,verified,Reload bad-message data.
+load/badwords,subcommand,load,badwords,SYSOP,9,verified,Reload bad-word data.
+load/bands,subcommand,load,bands,SYSOP,9,verified,Reload band definitions.
+load/cmd_cache,subcommand,load,cmd_cache,SYSOP,9,verified,Reload command cache.
+load/db,subcommand,load,db,SYSOP,9,verified,Reload database definitions/state.
+load/dxqsl,subcommand,load,dxqsl,SYSOP,9,verified,Reload DX QSL data.
+load/forward,subcommand,load,forward,SYSOP,9,verified,Reload message forwarding configuration.
+load/hops,subcommand,load,hops,SYSOP,9,verified,Reload hop configuration.
+load/keps,subcommand,load,keps,SYSOP,5,verified,Reload satellite Keplerian data.
+load/messages,subcommand,load,messages,SYSOP,9,verified,Reload message text/configuration.
+load/prefixes,subcommand,load,prefixes,SYSOP,9,verified,Reload prefix data.
+load/qsl,subcommand,load,qsl,SYSOP,9,verified,Alias of LOAD/DXQSL.
+load/swop,subcommand,load,swop,SYSOP,9,verified,Reload SWOP data.
+load/usdb,subcommand,load,usdb,SYSOP,9,verified,Reload US callsign database data.
+reject/announce,subcommand,reject,announce,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+reject/rbn,subcommand,reject,rbn,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+reject/route,subcommand,reject,route,SYSOP,8,verified,
+reject/spots,subcommand,reject,spots,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+reject/wcy,subcommand,reject,wcy,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+reject/wwv,subcommand,reject,wwv,DUAL,0 / 8,verified,User form plus SYSOP form for another callsign/default filter.
+set/address,subcommand,set,address,USER,0,verified,
+set/agwengine,subcommand,set,agwengine,SYSOP,9,verified,
+set/agwmonitor,subcommand,set,agwmonitor,SYSOP,9,verified,
+set/announce,subcommand,set,announce,USER,0,verified,
+set/anntalk,subcommand,set,anntalk,USER,0,verified,
+set/arcluster,subcommand,set,arcluster,SYSOP,5,verified,
+set/baddx,subcommand,set,baddx,SYSOP,6,verified,
+set/badip,subcommand,set,badip,SYSOP,6,verified,
+set/badnode,subcommand,set,badnode,SYSOP,6,verified,
+set/badspotter,subcommand,set,badspotter,SYSOP,6,verified,
+set/badword,subcommand,set,badword,SYSOP,6,verified,
+set/bbs,subcommand,set,bbs,SYSOP,5,verified,
+set/beep,subcommand,set,beep,USER,0,verified,
+set/believe,subcommand,set,believe,SYSOP,6,verified,Administrative node flag.
+set/buddy,subcommand,set,buddy,USER,0,verified,
+set/ccluster,subcommand,set,ccluster,SYSOP,5,verified,
+set/clx,subcommand,set,clx,SYSOP,5,verified,
+set/debug,subcommand,set,debug,SYSOP,9,verified,
+set/dx,subcommand,set,dx,USER,0,verified,
+set/dxcq,subcommand,set,dxcq,USER,0,verified,
+set/dxgrid,subcommand,set,dxgrid,USER,0,verified,
+set/dxitu,subcommand,set,dxitu,USER,0,verified,
+set/dxnet,subcommand,set,dxnet,SYSOP,5,verified,
+set/echo,subcommand,set,echo,USER,0,verified,
+set/email,subcommand,set,email,USER,0,verified,
+set/external_ip,subcommand,set,external_ip,SYSOP,8,verified,Sets or refreshes the node external IP/host information.
+set/gtk,subcommand,set,gtk,USER,0,verified,Enables GTK/enhanced mode for the current session.
+set/here,subcommand,set,here,USER,0,verified,
+set/homebbs,subcommand,set,homebbs,USER,code: current user,code_verified_help_missing,Exists in code; sets and persists current user's home BBS; absent from help/manual/wiki.
+set/homenode,subcommand,set,homenode,USER,0,verified,
+set/hops,subcommand,set,hops,SYSOP,8,verified,
+set/isolate,subcommand,set,isolate,SYSOP,9,verified,
+set/language,subcommand,set,language,USER,0,verified,
+set/local_node,subcommand,set,local_node,SYSOP,5,verified,
+set/location,subcommand,set,location,USER,0,verified,
+set/lockout,subcommand,set,lockout,SYSOP,9,verified,
+set/logininfo,subcommand,set,logininfo,USER,0,verified,
+set/maxconnect,subcommand,set,maxconnect,SYSOP,8,verified,
+set/name,subcommand,set,name,USER,0,verified,
+set/node,subcommand,set,node,SYSOP,5,verified,
+set/obscount,subcommand,set,obscount,SYSOP,8,verified,
+set/page,subcommand,set,page,USER,0,verified,Sets the user paging preference and stores it in the profile.
+set/passphrase,subcommand,set,passphrase,SYSOP,9,verified,Sets a passphrase; local privileged operation.
+set/password,subcommand,set,password,DUAL,0 / 9,verified,Own-password form is user-level; targeted form requires privilege 9.
+set/pinginterval,subcommand,set,pinginterval,SYSOP,9,verified,
+set/privilege,subcommand,set,privilege,SYSOP,9,verified,
+set/prompt,subcommand,set,prompt,USER,0,verified,
+set/qra,subcommand,set,qra,USER,0,verified,
+set/qth,subcommand,set,qth,USER,0,verified,
+set/rbn,subcommand,set,rbn,SYSOP,9,verified,
+set/register,subcommand,set,register,SYSOP,9,verified,
+set/routepc19,subcommand,set,routepc19,SYSOP,9,verified,Administrative legacy-routing compatibility flag.
+set/seeme,subcommand,set,seeme,USER,0,verified,Enables the current user/session RBN “seeme” preference.
+set/seemee,subcommand,set,seemee,USER,0,verified,Enables and persists the current user “seemee” preference.
+set/send_dbg,subcommand,set,send_dbg,SYSOP,8,verified,Enables debug sending on the target/node context.
+set/sendpc16,subcommand,set,sendpc16,SYSOP,9,verified,Administrative legacy PC16 sending flag.
+set/spider,subcommand,set,spider,SYSOP,5,verified,Marks a callsign as a DXSpider node.
+set/startup,subcommand,set,startup,DUAL,0 / 6,verified,User creates own startup script; SYSOP may create one for another callsign.
+set/sys_location,subcommand,set,sys_location,SYSOP,9,verified,
+set/sys_qra,subcommand,set,sys_qra,SYSOP,9,verified,
+set/talk,subcommand,set,talk,USER,0,verified,Enables talk messages for the current user.
+set/usdb,subcommand,set,usdb,SYSOP,9,verified,
+set/user,subcommand,set,user,SYSOP,5,verified,Marks a callsign as a normal user.
+set/uservar,subcommand,set,uservar,INTERNAL,9,internal_review,Not published as a supported operational command pending code-control-flow review.
+set/usstate,subcommand,set,usstate,USER,0,verified,
+set/var,subcommand,set,var,SYSOP,9,verified,Sets an internal variable; local privileged operation.
+set/ve7cc,subcommand,set,ve7cc,USER,0,verified,Enables VE7CC compatibility mode for the current session.
+set/wantpc16,subcommand,set,wantpc16,SYSOP,9,verified,Administrative legacy PC16 preference.
+set/wantpc9x,subcommand,set,wantpc9x,SYSOP,9,verified,Administrative PC9x preference.
+set/wantrbn,subcommand,set,wantrbn,DUAL,0 / 9,verified,User selects RBN categories; a privilege-9 targeted form is available to SYSOP.
+set/wcy,subcommand,set,wcy,USER,0,verified,
+set/width,subcommand,set,width,USER,code: current user,code_verified_help_missing,Exists in code; updates active width and stored user width; absent from help/manual/wiki.
+set/wwv,subcommand,set,wwv,USER,0,verified,
+set/wx,subcommand,set,wx,USER,0,verified,
+show/425,subcommand,show,425,USER,0,verified,Queries the 425 DX News service asynchronously.
+show/announce,subcommand,show,announce,USER,0,verified,
+show/baddx,subcommand,show,baddx,SYSOP,1,verified,
+show/badip,subcommand,show,badip,SYSOP,6,verified,Shows bad-IP data.
+show/badnode,subcommand,show,badnode,SYSOP,1,verified,
+show/badspotter,subcommand,show,badspotter,SYSOP,1,verified,
+show/badword,subcommand,show,badword,SYSOP,6,verified,Shows bad-word data.
+show/bands,subcommand,show,bands,USER,0,verified,
+show/buddy,subcommand,show,buddy,USER,0,verified,
+show/chat,subcommand,show,chat,USER,0,verified,
+show/cluster,subcommand,show,cluster,USER,0,verified,Shows current cluster information.
+show/cmd_cache,subcommand,show,cmd_cache,SYSOP,9,verified,
+show/configuration,subcommand,show,configuration,USER,0,verified,
+show/connect,subcommand,show,connect,SYSOP,1,verified,
+show/contest,subcommand,show,contest,USER,0,verified,
+show/data_stats,subcommand,show,data_stats,USER,0,verified,Shows node data-transfer statistics.
+show/date,subcommand,show,date,USER,0,verified,
+show/db0sdx,subcommand,show,db0sdx,USER,0,verified,
+show/debug,subcommand,show,debug,SYSOP,9,verified,
+show/debug_ring,subcommand,show,debug_ring,SYSOP,9,verified,Shows the in-memory debug ring.
+show/dup_ann,subcommand,show,dup_ann,SYSOP,9,verified,Shows duplicate announcement tracking.
+show/dup_eph,subcommand,show,dup_eph,SYSOP,9,verified,Shows duplicate ephemeral tracking.
+show/dup_spots,subcommand,show,dup_spots,SYSOP,9,verified,Shows duplicate spot tracking.
+show/dup_wcy,subcommand,show,dup_wcy,SYSOP,9,verified,Shows duplicate WCY tracking.
+show/dup_wwv,subcommand,show,dup_wwv,SYSOP,9,verified,Shows duplicate WWV tracking.
+show/dx,subcommand,show,dx,USER,0,verified,
+show/dxqsl,subcommand,show,dxqsl,USER,0,verified,
+show/dxstats,subcommand,show,dxstats,USER,0,verified,
+show/external_ip,subcommand,show,external_ip,SYSOP,8,verified,Shows the node external IP information.
+show/files,subcommand,show,files,USER,0,verified,
+show/filter,subcommand,show,filter,USER,0,verified,
+show/grayline,subcommand,show,grayline,USER,0,verified,
+show/groups,subcommand,show,groups,USER,0,verified,Shows chat/conference groups.
+show/heading,subcommand,show,heading,USER,0,verified,Shows heading information.
+show/hfstats,subcommand,show,hfstats,USER,0,verified,
+show/hftable,subcommand,show,hftable,USER,0,verified,
+show/hops,subcommand,show,hops,SYSOP,8,verified,
+show/ik3qar,subcommand,show,ik3qar,USER,0,verified,
+show/isolate,subcommand,show,isolate,SYSOP,1,verified,
+show/lockout,subcommand,show,lockout,SYSOP,9,verified,
+show/log,subcommand,show,log,SYSOP,8,verified,
+show/moon,subcommand,show,moon,USER,0,verified,
+show/motd,subcommand,show,motd,USER,0,verified,
+show/msg_status,subcommand,show,msg_status,SYSOP,5,verified,Shows message-system status information.
+show/muf,subcommand,show,muf,USER,0,verified,
+show/newconfiguration,subcommand,show,newconfiguration,USER,0,verified,
+show/node,subcommand,show,node,SYSOP,1,verified,Shows node type/version information.
+show/prefix,subcommand,show,prefix,USER,0,verified,
+show/program,subcommand,show,program,SYSOP,5,verified,Shows loaded program module locations.
+show/qra,subcommand,show,qra,USER,0,verified,
+show/qrz,subcommand,show,qrz,USER,0,verified,
+show/rbn,subcommand,show,rbn,SYSOP,1,verified,
+show/rcmd,subcommand,show,rcmd,SYSOP,9,verified,
+show/registered,subcommand,show,registered,SYSOP,9,verified,
+show/route,subcommand,show,route,USER,0,verified,
+show/satellite,subcommand,show,satellite,USER,0,verified,
+show/seeme,subcommand,show,seeme,SYSOP,9,verified,Shows RBN seeme state.
+show/spotstats,subcommand,show,spotstats,SYSOP,1,verified,
+show/startup,subcommand,show,startup,DUAL,0 / 6,verified,Own startup script is user-level; another callsign requires privilege 6.
+show/station,subcommand,show,station,DUAL,0 / 6,verified,Normal lookup is user-level; SHOW/STATION ALL requires privilege 6.
+show/sun,subcommand,show,sun,USER,0,verified,
+show/talk,subcommand,show,talk,DUAL,0 / 6,verified,User can view own talk log; SYSOP can inspect another callsign.
+show/time,subcommand,show,time,USER,0,verified,
+show/usdb,subcommand,show,usdb,USER,0,verified,
+show/users,subcommand,show,users,USER,0,verified,Shows users from current routing/user data.
+show/var,subcommand,show,var,SYSOP,9,verified,Shows internal variables; local privileged operation.
+show/version,subcommand,show,version,DUAL,0 / 6,verified,Normal version summary is user-visible; extended node/version query requires higher privilege.
+show/vhfstats,subcommand,show,vhfstats,USER,0,verified,
+show/vhftable,subcommand,show,vhftable,USER,0,verified,
+show/wcy,subcommand,show,wcy,USER,0,verified,
+show/wm7d,subcommand,show,wm7d,USER,0,verified,
+show/wwv,subcommand,show,wwv,USER,0,verified,
+show/wx,subcommand,show,wx,USER,0,verified,Shows recent weather messages.
+stat/channel,subcommand,stat,channel,SYSOP,5,verified,Shows internal channel-object state.
+stat/db,subcommand,stat,db,SYSOP,5,verified,Shows internal database descriptor state.
+stat/msg,subcommand,stat,msg,SYSOP,1,verified,Shows message-system or message internal state.
+stat/nodeconfig,subcommand,stat,nodeconfig,USER,0,verified,Advanced diagnostic view of node configuration state.
+stat/pc19list,subcommand,stat,pc19list,SYSOP,9,verified,Shows internal PC19 tracking/list state.
+stat/route,subcommand,stat,route,USER,0,verified,Advanced diagnostic view of routing state.
+stat/route_node,subcommand,stat,route_node,SYSOP,5,verified,Shows Route::Node object data.
+stat/route_user,subcommand,stat,route_user,SYSOP,5,verified,Shows Route::User object data.
+stat/user,subcommand,stat,user,SYSOP,5,verified,Shows full internal user-record state.
+stat/userconfig,subcommand,stat,userconfig,USER,0,verified,Advanced diagnostic view of user configuration state.
+unset/agwengine,subcommand,unset,agwengine,SYSOP,9,verified,
+unset/agwmonitor,subcommand,unset,agwmonitor,SYSOP,9,verified,
+unset/announce,subcommand,unset,announce,USER,0,verified,
+unset/anntalk,subcommand,unset,anntalk,USER,0,verified,
+unset/baddx,subcommand,unset,baddx,SYSOP,6,verified,
+unset/badnode,subcommand,unset,badnode,SYSOP,6,verified,
+unset/badspotter,subcommand,unset,badspotter,SYSOP,6,verified,
+unset/badword,subcommand,unset,badword,SYSOP,6,verified,
+unset/beep,subcommand,unset,beep,USER,0,verified,
+unset/believe,subcommand,unset,believe,SYSOP,6,verified,Clears the administrative believe flag.
+unset/buddy,subcommand,unset,buddy,USER,0,verified,
+unset/debug,subcommand,unset,debug,SYSOP,9,verified,
+unset/dx,subcommand,unset,dx,USER,0,verified,
+unset/dxcq,subcommand,unset,dxcq,USER,0,verified,
+unset/dxgrid,subcommand,unset,dxgrid,USER,0,verified,
+unset/dxitu,subcommand,unset,dxitu,USER,0,verified,
+unset/echo,subcommand,unset,echo,USER,0,verified,
+unset/email,subcommand,unset,email,USER,0,verified,
+unset/gtk,subcommand,unset,gtk,USER,0,verified,Disables GTK/enhanced mode for the current session.
+unset/here,subcommand,unset,here,USER,0,verified,
+unset/hops,subcommand,unset,hops,SYSOP,8,verified,
+unset/isolate,subcommand,unset,isolate,SYSOP,9,verified,
+unset/local_node,subcommand,unset,local_node,SYSOP,5,verified,
+unset/lockout,subcommand,unset,lockout,SYSOP,9,verified,
+unset/logininfo,subcommand,unset,logininfo,USER,0,verified,
+unset/passphrase,subcommand,unset,passphrase,SYSOP,9,verified,Clears a passphrase; local privileged operation.
+unset/password,subcommand,unset,password,SYSOP,9,verified,
+unset/privilege,subcommand,unset,privilege,USER,0,verified,Drops privilege for the current session.
+unset/prompt,subcommand,unset,prompt,USER,0,verified,
+unset/register,subcommand,unset,register,SYSOP,9,verified,
+unset/routepc19,subcommand,unset,routepc19,SYSOP,9,verified,Clears legacy route-PC19 compatibility flag.
+unset/seeme,subcommand,unset,seeme,USER,0,verified,Disables current-user RBN seeme preference.
+unset/send_dbg,subcommand,unset,send_dbg,SYSOP,8,verified,Disables debug sending.
+unset/sendpc16,subcommand,unset,sendpc16,SYSOP,9,verified,Clears legacy PC16 sending flag.
+unset/startup,subcommand,unset,startup,DUAL,0 / 6,verified,User removes own startup script; SYSOP may remove another callsign’s startup.
+unset/talk,subcommand,unset,talk,USER,0,verified,Disables talk messages for the current user.
+unset/usstate,subcommand,unset,usstate,USER,0,verified,
+unset/ve7cc,subcommand,unset,ve7cc,USER,0,verified,Disables VE7CC compatibility mode.
+unset/wantpc16,subcommand,unset,wantpc16,SYSOP,9,verified,Clears administrative PC16 preference.
+unset/wantpc9x,subcommand,unset,wantpc9x,SYSOP,9,verified,Clears administrative PC9x preference.
+unset/wantrbn,subcommand,unset,wantrbn,USER,0,verified,
+unset/wcy,subcommand,unset,wcy,USER,0,verified,
+unset/wwv,subcommand,unset,wwv,USER,0,verified,
+unset/wx,subcommand,unset,wx,USER,0,verified,

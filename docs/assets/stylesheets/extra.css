@@ -1,0 +1,21 @@
+
+:root { --md-text-font: "Inter", "Segoe UI", sans-serif; }
+.md-grid { max-width: 1500px; }
+.hero {
+  padding: 2.4rem 2rem; border-radius: .8rem;
+  background: linear-gradient(135deg, rgba(30,136,229,.10), rgba(0,188,212,.08));
+  margin: 1rem 0 2rem 0;
+}
+.hero h1 { margin-bottom: .25rem; }
+.command-meta {
+  display:grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap:.6rem; margin:1rem 0 1.5rem;
+}
+.command-meta > div { border:1px solid var(--md-default-fg-color--lightest); border-radius:.4rem; padding:.7rem; }
+.badge-user,.badge-sysop,.badge-dual,.badge-internal {
+  display:inline-block; border-radius:999px; padding:.08rem .55rem; font-weight:600; font-size:.78rem;
+}
+.badge-user { background:rgba(76,175,80,.15); }
+.badge-sysop { background:rgba(255,152,0,.15); }
+.badge-dual { background:rgba(33,150,243,.15); }
+.badge-internal { background:rgba(244,67,54,.15); }

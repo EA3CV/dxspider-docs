@@ -1,0 +1,81 @@
+site_name: DXSpider Documentation
+site_description: DXSpider 1.57 — Mojo build 686 and later
+site_url: https://example.github.io/dxspider-docs/
+repo_name: DXSpider Documentation
+
+theme:
+  name: material
+  language: en
+  logo: material/radio-tower
+  favicon: material/radio-tower
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - User Guide:
+      - Overview: user/index.md
+      - Getting started: user/getting-started.md
+      - DX spots: user/spots.md
+      - RBN / Skimmer: user/rbn.md
+      - Filtering: user/filtering.md
+      - Announce, Chat & Talk: user/communications.md
+      - Messages: user/messages.md
+      - Personal settings: user/settings.md
+      - User commands: user/commands/index.md
+  - SYSOP / Administration:
+      - Overview: sysop/index.md
+      - Privileges & Security: sysop/security.md
+      - Users & Node Types: sysop/users-nodes.md
+      - Connections: sysop/connections.md
+      - Routing & Compatibility: sysop/routing.md
+      - RBN Administration: sysop/rbn.md
+      - Maintenance: sysop/maintenance.md
+      - Diagnostics: sysop/diagnostics.md
+      - SYSOP commands: sysop/commands/index.md
+      - Deploy this documentation: sysop/installation.md
+  - Command Reference:
+      - All commands: reference/commands/index.md
