@@ -1,8 +1,8 @@
 # User command reference
 
-Commands available to normal users are listed here. DUAL commands also have a separate privileged form.
+Commands available to normal users are listed here. DUAL commands also have a separate authorization d form.
 
-| Command | Privilege | Scope |
+| Command | authorization | Scope |
 |---|---:|---|
 | [`ACCEPT/ANNOUNCE`](../../reference/commands/accept--announce.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
 | [`ACCEPT/RBN`](../../reference/commands/accept--rbn.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
@@ -25,7 +25,7 @@ Commands available to normal users are listed here. DUAL commands also have a se
 | [`DIRECTORY`](../../reference/commands/directory.md) | 0 / 5 | List messages; SYSOP can see otherwise hidden/private entries. |
 | [`DISABLE/AUTOFTX`](../../reference/commands/disable--autoftx.md) | 0 | Disable `autoftx`. |
 | [`DISABLE/FTX`](../../reference/commands/disable--ftx.md) | 0 | Disable `ftx`. |
-| [`DX`](../../reference/commands/dx.md) | 0 / 2 | Send a DX spot; privileged form accepts additional origin metadata. |
+| [`DX`](../../reference/commands/dx.md) | 0 / 2 | Send a DX spot; authorization d form accepts additional origin metadata. |
 | [`ECHO`](../../reference/commands/echo.md) | 0 | Echo text/input. |
 | [`ENABLE/AUTOFTX`](../../reference/commands/enable--autoftx.md) | 0 | Enable `autoftx`. |
 | [`ENABLE/FTX`](../../reference/commands/enable--ftx.md) | 0 | Enable `ftx`. |
@@ -34,7 +34,7 @@ Commands available to normal users are listed here. DUAL commands also have a se
 | [`KILL`](../../reference/commands/kill.md) | 0 / 5 | Delete permitted messages; SYSOP has broader message-deletion scope. |
 | [`LEAVE`](../../reference/commands/leave.md) | 0 | Leave a chat/conference group. |
 | [`LINKS`](../../reference/commands/links.md) | 0 | Show link information. |
-| [`PING`](../../reference/commands/ping.md) | 0 / 1 | Ping a node; privileged mode provides broader operational access. |
+| [`PING`](../../reference/commands/ping.md) | 0 / 1 | Ping a node; authorization d mode provides broader operational access. |
 | [`READ`](../../reference/commands/read.md) | 0 / 5 | Read permitted messages; SYSOP may read any message. |
 | [`REJECT/ANNOUNCE`](../../reference/commands/reject--announce.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
 | [`REJECT/RBN`](../../reference/commands/reject--rbn.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
@@ -42,7 +42,7 @@ Commands available to normal users are listed here. DUAL commands also have a se
 | [`REJECT/WCY`](../../reference/commands/reject--wcy.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
 | [`REJECT/WWV`](../../reference/commands/reject--wwv.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
 | [`REPLY`](../../reference/commands/reply.md) | 0 | Reply to a message, with bulletin/private/read-receipt variants. |
-| [`RUN`](../../reference/commands/run.md) | 0 / 8 | Run a script; higher privilege is required for scripts targeted at another callsign. |
+| [`RUN`](../../reference/commands/run.md) | 0 / 8 | Run a script; higher authorization is required for scripts targeted at another callsign. |
 | [`SEND`](../../reference/commands/send.md) | 0 | Compose and send personal or bulletin messages. |
 | [`SET/ADDRESS`](../../reference/commands/set--address.md) | 0 | Enable or configure `address`. |
 | [`SET/ANNOUNCE`](../../reference/commands/set--announce.md) | 0 | Enable or configure `announce`. |
@@ -64,7 +64,7 @@ Commands available to normal users are listed here. DUAL commands also have a se
 | [`SET/LOGININFO`](../../reference/commands/set--logininfo.md) | 0 | Enable or configure `logininfo`. |
 | [`SET/NAME`](../../reference/commands/set--name.md) | 0 | Enable or configure `name`. |
 | [`SET/PAGE`](../../reference/commands/set--page.md) | 0 | Sets the user paging preference and stores it in the profile. |
-| [`SET/PASSWORD`](../../reference/commands/set--password.md) | 0 / 9 | Own-password form is user-level; targeted form requires privilege 9. |
+| [`SET/PASSWORD`](../../reference/commands/set--password.md) | 0 / 9 | Own-password form is user-level; targeted form requires authorization . |
 | [`SET/PROMPT`](../../reference/commands/set--prompt.md) | 0 | Enable or configure `prompt`. |
 | [`SET/QRA`](../../reference/commands/set--qra.md) | 0 | Enable or configure `qra`. |
 | [`SET/QTH`](../../reference/commands/set--qth.md) | 0 | Enable or configure `qth`. |
@@ -74,7 +74,7 @@ Commands available to normal users are listed here. DUAL commands also have a se
 | [`SET/TALK`](../../reference/commands/set--talk.md) | 0 | Enables talk messages for the current user. |
 | [`SET/USSTATE`](../../reference/commands/set--usstate.md) | 0 | Enable or configure `usstate`. |
 | [`SET/VE7CC`](../../reference/commands/set--ve7cc.md) | 0 | Enables VE7CC compatibility mode for the current session. |
-| [`SET/WANTRBN`](../../reference/commands/set--wantrbn.md) | 0 / 9 | User selects RBN categories; a privilege-9 targeted form is available to SYSOP. |
+| [`SET/WANTRBN`](../../reference/commands/set--wantrbn.md) | 0 / 9 | User selects RBN categories; a authorization -9 targeted form is available to SYSOP. |
 | [`SET/WCY`](../../reference/commands/set--wcy.md) | 0 | Enable or configure `wcy`. |
 | [`SET/WIDTH`](../../reference/commands/set--width.md) | code: current user | Exists in code; updates active width and stored user width; absent from help/manual/wiki. |
 | [`SET/WWV`](../../reference/commands/set--wwv.md) | 0 | Enable or configure `wwv`. |
@@ -110,14 +110,14 @@ Commands available to normal users are listed here. DUAL commands also have a se
 | [`SHOW/QRZ`](../../reference/commands/show--qrz.md) | 0 | Display `qrz`. |
 | [`SHOW/ROUTE`](../../reference/commands/show--route.md) | 0 | Display `route`. |
 | [`SHOW/SATELLITE`](../../reference/commands/show--satellite.md) | 0 | Display `satellite`. |
-| [`SHOW/STARTUP`](../../reference/commands/show--startup.md) | 0 / 6 | Own startup script is user-level; another callsign requires privilege 6. |
-| [`SHOW/STATION`](../../reference/commands/show--station.md) | 0 / 6 | Normal lookup is user-level; SHOW/STATION ALL requires privilege 6. |
+| [`SHOW/STARTUP`](../../reference/commands/show--startup.md) | 0 / 6 | Own startup script is user-level; another callsign requires authorization . |
+| [`SHOW/STATION`](../../reference/commands/show--station.md) | 0 / 6 | Normal lookup is user-level; SHOW/STATION ALL requires authorization . |
 | [`SHOW/SUN`](../../reference/commands/show--sun.md) | 0 | Display `sun`. |
 | [`SHOW/TALK`](../../reference/commands/show--talk.md) | 0 / 6 | User can view own talk log; SYSOP can inspect another callsign. |
 | [`SHOW/TIME`](../../reference/commands/show--time.md) | 0 | Display `time`. |
 | [`SHOW/USDB`](../../reference/commands/show--usdb.md) | 0 | Display `usdb`. |
 | [`SHOW/USERS`](../../reference/commands/show--users.md) | 0 | Shows users from current routing/user data. |
-| [`SHOW/VERSION`](../../reference/commands/show--version.md) | 0 / 6 | Normal version summary is user-visible; extended node/version query requires higher privilege. |
+| [`SHOW/VERSION`](../../reference/commands/show--version.md) | 0 / 6 | Normal version summary is user-visible; extended node/version query requires higher authorization . |
 | [`SHOW/VHFSTATS`](../../reference/commands/show--vhfstats.md) | 0 | Display `vhfstats`. |
 | [`SHOW/VHFTABLE`](../../reference/commands/show--vhftable.md) | 0 | Display `vhftable`. |
 | [`SHOW/WCY`](../../reference/commands/show--wcy.md) | 0 | Display `wcy`. |
@@ -127,7 +127,7 @@ Commands available to normal users are listed here. DUAL commands also have a se
 | [`STAT/NODECONFIG`](../../reference/commands/stat--nodeconfig.md) | 0 | Advanced diagnostic view of node configuration state. |
 | [`STAT/ROUTE`](../../reference/commands/stat--route.md) | 0 | Advanced diagnostic view of routing state. |
 | [`STAT/USERCONFIG`](../../reference/commands/stat--userconfig.md) | 0 | Advanced diagnostic view of user configuration state. |
-| [`SYSOP`](../../reference/commands/sysop.md) | 0 | Regain configured SYSOP privileges after a remote login challenge. |
+| [`SYSOP`](../../reference/commands/sysop.md) | 0 | Regain configured SYSOP authorization s after a remote login challenge. |
 | [`TALK`](../../reference/commands/talk.md) | 0 | Send a talk message or enter talk mode. |
 | [`TYPE`](../../reference/commands/type.md) | 0 | Display a file from a configured file area. |
 | [`UNSET/ANNOUNCE`](../../reference/commands/unset--announce.md) | 0 | Disable or clear `announce`. |
@@ -143,7 +143,7 @@ Commands available to normal users are listed here. DUAL commands also have a se
 | [`UNSET/GTK`](../../reference/commands/unset--gtk.md) | 0 | Disables GTK/enhanced mode for the current session. |
 | [`UNSET/HERE`](../../reference/commands/unset--here.md) | 0 | Disable or clear `here`. |
 | [`UNSET/LOGININFO`](../../reference/commands/unset--logininfo.md) | 0 | Disable or clear `logininfo`. |
-| [`UNSET/PRIVILEGE`](../../reference/commands/unset--privilege.md) | 0 | Drops privilege for the current session. |
+| [`UNSET/authorization `](../../reference/commands/unset--authorization .md) | 0 | Drops authorization for the current session. |
 | [`UNSET/PROMPT`](../../reference/commands/unset--prompt.md) | 0 | Disable or clear `prompt`. |
 | [`UNSET/SEEME`](../../reference/commands/unset--seeme.md) | 0 | Disables current-user RBN seeme preference. |
 | [`UNSET/STARTUP`](../../reference/commands/unset--startup.md) | 0 / 6 | User removes own startup script; SYSOP may remove another callsign’s startup. |

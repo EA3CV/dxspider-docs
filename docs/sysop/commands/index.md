@@ -1,8 +1,8 @@
 # SYSOP command reference
 
-Privileged commands and commands with additional SYSOP forms are listed here.
+authorization d commands and commands with additional SYSOP forms are listed here.
 
-| Command | Privilege | Scope |
+| Command | authorization | Scope |
 |---|---:|---|
 | [`ACCEPT/ANNOUNCE`](../../reference/commands/accept--announce.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
 | [`ACCEPT/RBN`](../../reference/commands/accept--rbn.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
@@ -35,10 +35,10 @@ Privileged commands and commands with additional SYSOP forms are listed here.
 | [`DISCONNECT`](../../reference/commands/disconnect.md) | 8 | Disconnect local users, nodes or groups of connections. |
 | [`DMESG`](../../reference/commands/dmesg.md) | 9 | Alias to SHOW/DEBUG_RING. |
 | [`DOWNLOAD`](../../reference/commands/download.md) | 9 | Download a URL into local_data, including from cron. |
-| [`DX`](../../reference/commands/dx.md) | 0 / 2 | Send a DX spot; privileged form accepts additional origin metadata. |
+| [`DX`](../../reference/commands/dx.md) | 0 / 2 | Send a DX spot; authorization d form accepts additional origin metadata. |
 | [`DXQSL_EXPORT`](../../reference/commands/dxqsl-export.md) | 9 | Export accumulated DX QSL-manager information. |
 | [`DXQSL_IMPORT`](../../reference/commands/dxqsl-import.md) | 9 | Import accumulated DX QSL-manager information. |
-| [`EXPORT`](../../reference/commands/export.md) | 9 | Export a message to a file from a privileged local console. |
+| [`EXPORT`](../../reference/commands/export.md) | 9 | Export a message to a file from a authorization d local console. |
 | [`EXPORT_USERS`](../../reference/commands/export-users.md) | 9 | Export the user database to ASCII. |
 | [`FORWARD/LATLONG`](../../reference/commands/forward--latlong.md) | 8 | Administrative forwarding operation for latitude/longitude data. |
 | [`FORWARD/OPERNAME`](../../reference/commands/forward--opername.md) | 1 | Administrative forwarding operation; current help spells the command OPERNAM. |
@@ -66,8 +66,8 @@ Privileged commands and commands with additional SYSOP forms are listed here.
 | [`MSG`](../../reference/commands/msg.md) | 9 | Administrative message-system command. |
 | [`NOSPAWN`](../../reference/commands/nospawn.md) | 2 | Run a command without the normal spawn/user impersonation path; local only. |
 | [`PC`](../../reference/commands/pc.md) | 8 | Send arbitrary text/protocol to a connected callsign. |
-| [`PING`](../../reference/commands/ping.md) | 0 / 1 | Ping a node; privileged mode provides broader operational access. |
-| [`PRIVILEGE`](../../reference/commands/privilege.md) | 9 | Privilege-management command/compatibility entry; prefer SET/PRIVILEGE. |
+| [`PING`](../../reference/commands/ping.md) | 0 / 1 | Ping a node; authorization d mode provides broader operational access. |
+| [`authorization `](../../reference/commands/authorization .md) | 9 | authorization -management command/compatibility entry; prefer SET/authorization . |
 | [`RCMD`](../../reference/commands/rcmd.md) | 1 | Send a remote command to another cluster node. |
 | [`READ`](../../reference/commands/read.md) | 0 / 5 | Read permitted messages; SYSOP may read any message. |
 | [`REJECT/ANNOUNCE`](../../reference/commands/reject--announce.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
@@ -77,7 +77,7 @@ Privileged commands and commands with additional SYSOP forms are listed here.
 | [`REJECT/WCY`](../../reference/commands/reject--wcy.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
 | [`REJECT/WWV`](../../reference/commands/reject--wwv.md) | 0 / 8 | User form plus SYSOP form for another callsign/default filter. |
 | [`RINIT`](../../reference/commands/rinit.md) | 5 | Reverse-initialise a connected node and resend local configuration. |
-| [`RUN`](../../reference/commands/run.md) | 0 / 8 | Run a script; higher privilege is required for scripts targeted at another callsign. |
+| [`RUN`](../../reference/commands/run.md) | 0 / 8 | Run a script; higher authorization is required for scripts targeted at another callsign. |
 | [`SAVE`](../../reference/commands/save.md) | 9 | Save command output to a file. |
 | [`SEND_CONFIG`](../../reference/commands/send-config.md) | 6 | Broadcast PC92 C configuration records. |
 | [`SET/AGWENGINE`](../../reference/commands/set--agwengine.md) | 9 | Enable or configure `agwengine`. |
@@ -102,10 +102,10 @@ Privileged commands and commands with additional SYSOP forms are listed here.
 | [`SET/MAXCONNECT`](../../reference/commands/set--maxconnect.md) | 8 | Enable or configure `maxconnect`. |
 | [`SET/NODE`](../../reference/commands/set--node.md) | 5 | Enable or configure `node`. |
 | [`SET/OBSCOUNT`](../../reference/commands/set--obscount.md) | 8 | Enable or configure `obscount`. |
-| [`SET/PASSPHRASE`](../../reference/commands/set--passphrase.md) | 9 | Sets a passphrase; local privileged operation. |
-| [`SET/PASSWORD`](../../reference/commands/set--password.md) | 0 / 9 | Own-password form is user-level; targeted form requires privilege 9. |
+| [`SET/PASSPHRASE`](../../reference/commands/set--passphrase.md) | 9 | Sets a passphrase; local authorization d operation. |
+| [`SET/PASSWORD`](../../reference/commands/set--password.md) | 0 / 9 | Own-password form is user-level; targeted form requires authorization . |
 | [`SET/PINGINTERVAL`](../../reference/commands/set--pinginterval.md) | 9 | Enable or configure `pinginterval`. |
-| [`SET/PRIVILEGE`](../../reference/commands/set--privilege.md) | 9 | Enable or configure `privilege`. |
+| [`SET/authorization `](../../reference/commands/set--authorization .md) | 9 | Enable or configure `authorization `. |
 | [`SET/RBN`](../../reference/commands/set--rbn.md) | 9 | Enable or configure `rbn`. |
 | [`SET/REGISTER`](../../reference/commands/set--register.md) | 9 | Enable or configure `register`. |
 | [`SET/ROUTEPC19`](../../reference/commands/set--routepc19.md) | 9 | Administrative legacy-routing compatibility flag. |
@@ -117,10 +117,10 @@ Privileged commands and commands with additional SYSOP forms are listed here.
 | [`SET/SYS_QRA`](../../reference/commands/set--sys-qra.md) | 9 | Enable or configure `sys_qra`. |
 | [`SET/USDB`](../../reference/commands/set--usdb.md) | 9 | Enable or configure `usdb`. |
 | [`SET/USER`](../../reference/commands/set--user.md) | 5 | Marks a callsign as a normal user. |
-| [`SET/VAR`](../../reference/commands/set--var.md) | 9 | Sets an internal variable; local privileged operation. |
+| [`SET/VAR`](../../reference/commands/set--var.md) | 9 | Sets an internal variable; local authorization d operation. |
 | [`SET/WANTPC16`](../../reference/commands/set--wantpc16.md) | 9 | Administrative legacy PC16 preference. |
 | [`SET/WANTPC9X`](../../reference/commands/set--wantpc9x.md) | 9 | Administrative PC9x preference. |
-| [`SET/WANTRBN`](../../reference/commands/set--wantrbn.md) | 0 / 9 | User selects RBN categories; a privilege-9 targeted form is available to SYSOP. |
+| [`SET/WANTRBN`](../../reference/commands/set--wantrbn.md) | 0 / 9 | User selects RBN categories; a authorization -9 targeted form is available to SYSOP. |
 | [`SHOW/BADDX`](../../reference/commands/show--baddx.md) | 1 | Display `baddx`. |
 | [`SHOW/BADIP`](../../reference/commands/show--badip.md) | 6 | Shows bad-IP data. |
 | [`SHOW/BADNODE`](../../reference/commands/show--badnode.md) | 1 | Display `badnode`. |
@@ -148,11 +148,11 @@ Privileged commands and commands with additional SYSOP forms are listed here.
 | [`SHOW/REGISTERED`](../../reference/commands/show--registered.md) | 9 | Display `registered`. |
 | [`SHOW/SEEME`](../../reference/commands/show--seeme.md) | 9 | Shows RBN seeme state. |
 | [`SHOW/SPOTSTATS`](../../reference/commands/show--spotstats.md) | 1 | Display `spotstats`. |
-| [`SHOW/STARTUP`](../../reference/commands/show--startup.md) | 0 / 6 | Own startup script is user-level; another callsign requires privilege 6. |
-| [`SHOW/STATION`](../../reference/commands/show--station.md) | 0 / 6 | Normal lookup is user-level; SHOW/STATION ALL requires privilege 6. |
+| [`SHOW/STARTUP`](../../reference/commands/show--startup.md) | 0 / 6 | Own startup script is user-level; another callsign requires authorization . |
+| [`SHOW/STATION`](../../reference/commands/show--station.md) | 0 / 6 | Normal lookup is user-level; SHOW/STATION ALL requires authorization . |
 | [`SHOW/TALK`](../../reference/commands/show--talk.md) | 0 / 6 | User can view own talk log; SYSOP can inspect another callsign. |
-| [`SHOW/VAR`](../../reference/commands/show--var.md) | 9 | Shows internal variables; local privileged operation. |
-| [`SHOW/VERSION`](../../reference/commands/show--version.md) | 0 / 6 | Normal version summary is user-visible; extended node/version query requires higher privilege. |
+| [`SHOW/VAR`](../../reference/commands/show--var.md) | 9 | Shows internal variables; local authorization d operation. |
+| [`SHOW/VERSION`](../../reference/commands/show--version.md) | 0 / 6 | Normal version summary is user-visible; extended node/version query requires higher authorization . |
 | [`SHU`](../../reference/commands/shu.md) | 5 | Guard/abbreviation handler requiring a longer SHUTDOWN command. |
 | [`SHUTDOWN`](../../reference/commands/shutdown.md) | 5 | Shut down the cluster and disconnect users. |
 | [`SPOOF`](../../reference/commands/spoof.md) | 9 | Run a command as another user. |
@@ -176,7 +176,7 @@ Privileged commands and commands with additional SYSOP forms are listed here.
 | [`UNSET/ISOLATE`](../../reference/commands/unset--isolate.md) | 9 | Disable or clear `isolate`. |
 | [`UNSET/LOCAL_NODE`](../../reference/commands/unset--local-node.md) | 5 | Disable or clear `local_node`. |
 | [`UNSET/LOCKOUT`](../../reference/commands/unset--lockout.md) | 9 | Disable or clear `lockout`. |
-| [`UNSET/PASSPHRASE`](../../reference/commands/unset--passphrase.md) | 9 | Clears a passphrase; local privileged operation. |
+| [`UNSET/PASSPHRASE`](../../reference/commands/unset--passphrase.md) | 9 | Clears a passphrase; local authorization d operation. |
 | [`UNSET/PASSWORD`](../../reference/commands/unset--password.md) | 9 | Disable or clear `password`. |
 | [`UNSET/REGISTER`](../../reference/commands/unset--register.md) | 9 | Disable or clear `register`. |
 | [`UNSET/ROUTEPC19`](../../reference/commands/unset--routepc19.md) | 9 | Clears legacy route-PC19 compatibility flag. |

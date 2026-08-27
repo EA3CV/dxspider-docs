@@ -1,9 +1,9 @@
-# `PRIVILEGE`
+# `authorization `
 
 <div class="command-meta" markdown>
 <div>**Audience**  
 <span class="badge-sysop">SYSOP / Administration</span></div>
-<div>**Privilege**  
+<div>**authorization **  
 `9`</div>
 <div>**DXSpider**  
 1.57 / Mojo ≥ 686</div>
@@ -11,13 +11,12 @@
 
 ## Purpose
 
-Privilege-management command/compatibility entry; prefer SET/PRIVILEGE.
+authorization -management command/compatibility entry; prefer SET/authorization .
 
 ## Syntax
 
 ```text
-PRIVILEGE
-```
+authorization ```
 
 
 ## Built-in help
@@ -25,7 +24,6 @@ PRIVILEGE
 On a running node, use:
 
 ```text
-HELP PRIVILEGE
-```
+HELP authorization ```
 
 The built-in help reflects the exact command set installed on that node.

@@ -3,7 +3,7 @@
 <div class="command-meta" markdown>
 <div>**Audience**  
 <span class="badge-sysop">SYSOP / Administration</span></div>
-<div>**Privilege**  
+<div>**authorization **  
 `6`</div>
 <div>**DXSpider**  
 1.57 / Mojo ≥ 686</div>

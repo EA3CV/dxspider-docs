@@ -17,9 +17,9 @@ Development-branch naming is not part of the public documentation.
 ## Audience separation
 
 - Normal-user command forms belong in **User**.
-- Privileged forms belong in **SYSOP / Administration**.
+- authorization d forms belong in **SYSOP / Administration**.
 - If one command name has both forms, each form is documented in its own audience section.
 
 ## No inferred semantics
 
-Command names are not sufficient evidence for behaviour. Targeting, persistence, side effects and privilege are verified before publication.
+Command names are not sufficient evidence for behaviour. Targeting, persistence, side effects and authorization are verified before publication.

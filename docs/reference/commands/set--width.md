@@ -3,7 +3,7 @@
 <div class="command-meta" markdown>
 <div>**Audience**  
 <span class="badge-user">User</span></div>
-<div>**Privilege**  
+<div>**authorization **  
 `code: current user`</div>
 <div>**DXSpider**  
 1.57 / Mojo ≥ 686</div>

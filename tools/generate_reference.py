@@ -152,8 +152,7 @@ def main():
             '<div class="command-hero" markdown>',"",
             f"**{summary}**","",
             '<div class="command-meta" markdown>',
-            f'<div><span class="meta-label">Audience</span><br><span class="badge badge-{aud.lower()}">{aud}</span></div>',
-            f'<div><span class="meta-label">Privilege</span><br>`{" / ".join(map(str,privs))}`</div>',
+            f'<div><span class="meta-label">Guide</span><br><span class="badge badge-{aud.lower()}">{("User + SYSOP" if aud=="DUAL" else ("User" if aud=="USER" else "SYSOP"))}</span></div>',
             f'<div><span class="meta-label">Category</span><br>{category}</div>',
             '<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>',
             '</div>',"",'</div>',"",
@@ -162,8 +161,12 @@ def main():
         if len(variants)>1:
             page += ["## Syntax and variants",""]
             for v in variants:
+                role = "User"
+                desc_l = (v.get("description") or "").lower()
+                if "sysop" in desc_l or v["privilege"] > 0:
+                    role = "SYSOP"
                 page += [
-                    f'=== "Privilege {v["privilege"]}"',"",
+                    f'=== "{role} form"',"",
                     "    ```text",
                     f'    {v["syntax"]}',
                     "    ```","",
@@ -182,6 +185,10 @@ def main():
             if body:
                 page += ["## Details","",body,""]
 
+        why=note.get("why","")
+        if why:
+            page += ["## When would I use this?","",why,""]
+
         examples=note.get("examples",[])
         if examples:
             page += ["## Practical examples",""]
@@ -191,8 +198,8 @@ def main():
         if aud=="DUAL":
             page += [
                 '!!! info "User and SYSOP forms"',
-                "    This command has both a normal-user form and one or more privileged forms. "
-                "The privilege tabs above are part of the command semantics; they are not merely aliases.",""
+                "    This command has distinct normal-user and administration forms. "
+                "Use the form appropriate to what you are trying to do.",""
             ]
 
         if source_link:
@@ -221,10 +228,11 @@ def main():
          '<div class="command-filter" markdown>',
          "Use the site search (`/`) for instant lookup by command name, option or help text.",
          "</div>","",
-         "| Command | Audience | Privilege | What it does |",
-         "|---|---|---:|---|"]
+         "| Command | Guide | What it does |",
+         "|---|---|---|"]
     for cmd,aud,privs,summary in public:
-        idx.append(f"| [`{cmd}`]({slug(cmd)}.md) | {aud} | {' / '.join(map(str,privs))} | {summary} |")
+        guide = "User + SYSOP" if aud=="DUAL" else ("User" if aud=="USER" else "SYSOP")
+        idx.append(f"| [`{cmd}`]({slug(cmd)}.md) | {guide} | {summary} |")
     (outdir/'index.md').write_text("\n".join(idx),encoding='utf-8')
 
     # User and SYSOP indexes
@@ -236,9 +244,10 @@ def main():
         md=[f"# {title}","",
             "This list is generated from the current DXSpider help metadata. "
             "Commands marked **DUAL** contain both user and privileged variants.","",
-            "| Command | Audience | Privilege | Purpose |","|---|---|---:|---|"]
+            "| Command | Guide | Purpose |","|---|---|---|"]
         for cmd,aud,privs,summary in data:
-            md.append(f"| [`{cmd}`](../../reference/commands/{slug(cmd)}.md) | {aud} | {' / '.join(map(str,privs))} | {summary} |")
+            guide = "User + SYSOP" if aud=="DUAL" else ("User" if aud=="USER" else "SYSOP")
+            md.append(f"| [`{cmd}`](../../reference/commands/{slug(cmd)}.md) | {guide} | {summary} |")
         target.write_text("\n".join(md),encoding='utf-8')
 
     audit=docs/'audit/generated-reference.md'

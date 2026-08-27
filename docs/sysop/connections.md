@@ -17,7 +17,7 @@ DISCONNECT NODES
 DISCONNECT ALL
 ```
 
-`DISCONNECT` requires higher administrative privilege than `CONNECT`.
+`DISCONNECT` requires higher administrative authorization than `CONNECT`.
 
 ## Link recovery
 

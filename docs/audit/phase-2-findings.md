@@ -38,11 +38,11 @@ Exists in the current implementation and reads routing/user information, but no 
 ### `set/password`
 
 - `SET/PASSWORD` — normal user changes their own existing password.
-- `SET/PASSWORD <callsign> <password>` — SYSOP operation requiring privilege 9.
+- `SET/PASSWORD <callsign> <password>` — SYSOP operation requiring authorization .
 
 ### Filter families
 
-Several ACCEPT, REJECT and CLEAR commands have a privilege-0 user form and a separate privilege-8 SYSOP form for another callsign or defaults.
+Several ACCEPT, REJECT and CLEAR commands have a authorization -0 user form and a separate authorization -8 SYSOP form for another callsign or defaults.
 
 ## Legacy-content warning
 

@@ -3,7 +3,7 @@
 <div class="command-meta" markdown>
 <div>**Audience**  
 <span class="badge-sysop">SYSOP / Administration</span></div>
-<div>**Privilege**  
+<div>**authorization **  
 `9`</div>
 <div>**DXSpider**  
 1.57 / Mojo ≥ 686</div>
@@ -11,7 +11,7 @@
 
 ## Purpose
 
-Export a message to a file from a privileged local console.
+Export a message to a file from a authorization d local console.
 
 ## Syntax
 

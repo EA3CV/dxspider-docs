@@ -1,36 +1,11 @@
-# Privileges and security
+# Security
 
-DXSpider command help defines the traditional privilege levels used by the command dispatcher:
+DXSpider separates normal user operations from SYSOP administration.
 
-| Level | Meaning |
-|---:|---|
-| 0 | Normal user |
-| 1 | Limited privileged/remote-node operations |
-| 5 | Common node/SYSOP operations |
-| 8 | Higher administrative operations |
-| 9 | Local full SYSOP |
+This documentation intentionally does **not** publish internal authorization levels. A command is documented in the **User Guide**, the **SYSOP Guide**, or both, according to its intended operational use.
 
-A remote login normally starts with reduced privilege. The `SYSOP` challenge command is used to regain configured privileges.
+## Operational guidance
 
-```text
-SYSOP
-```
+Use SYSOP commands only from trusted administrative sessions. Treat commands that modify users, node types, routing, files, databases, connections or runtime state as administrative operations.
 
-Manage stored privilege levels with:
-
-```text
-SET/PRIVILEGE <level> <callsign>
-```
-
-Drop privilege for the current session with:
-
-```text
-UNSET/PRIVILEGE
-```
-
-!!! danger
-    Do not assign privilege 9 to remote users or nodes. Commands at this level include operations that can change files, internal state or execute highly privileged administrative actions.
-
-## Internal commands
-
-A small number of source-tree commands are intentionally **not** presented as normal supported administration commands. This includes no-op placeholders and commands whose implementation exposes raw internal execution/state. They remain listed in the maintainer audit but are hidden from the public command indexes.
+The command reference focuses on **what an administrator is trying to accomplish**, the accepted syntax and safe operational examples rather than exposing internal authorization implementation details.

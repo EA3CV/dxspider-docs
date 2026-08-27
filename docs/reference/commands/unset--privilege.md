@@ -1,9 +1,9 @@
-# `UNSET/PRIVILEGE`
+# `UNSET/authorization `
 
 <div class="command-meta" markdown>
 <div>**Audience**  
 <span class="badge-user">User</span></div>
-<div>**Privilege**  
+<div>**authorization **  
 `0`</div>
 <div>**DXSpider**  
 1.57 / Mojo ≥ 686</div>
@@ -11,13 +11,12 @@
 
 ## Purpose
 
-Drops privilege for the current session.
+Drops authorization for the current session.
 
 ## Syntax
 
 ```text
-UNSET/PRIVILEGE
-```
+UNSET/authorization ```
 
 
 ## Built-in help
@@ -25,7 +24,6 @@ UNSET/PRIVILEGE
 On a running node, use:
 
 ```text
-HELP UNSET/PRIVILEGE
-```
+HELP UNSET/authorization ```
 
 The built-in help reflects the exact command set installed on that node.

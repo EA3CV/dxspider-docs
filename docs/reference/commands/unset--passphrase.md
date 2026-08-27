@@ -3,7 +3,7 @@
 <div class="command-meta" markdown>
 <div>**Audience**  
 <span class="badge-sysop">SYSOP / Administration</span></div>
-<div>**Privilege**  
+<div>**authorization **  
 `9`</div>
 <div>**DXSpider**  
 1.57 / Mojo ≥ 686</div>
@@ -11,7 +11,7 @@
 
 ## Purpose
 
-Clears a passphrase; local privileged operation.
+Clears a passphrase; local authorization d operation.
 
 ## Syntax
 

@@ -129,7 +129,7 @@ Current working inventory: **247** commands.
 - `set/passphrase`
 - `set/password`
 - `set/pinginterval`
-- `set/privilege`
+- `set/authorization `
 - `set/prompt`
 - `set/qra`
 - `set/qth`
@@ -277,7 +277,7 @@ Current working inventory: **247** commands.
 - `unset/logininfo`
 - `unset/passphrase`
 - `unset/password`
-- `unset/privilege`
+- `unset/authorization `
 - `unset/prompt`
 - `unset/register`
 - `unset/routepc19`

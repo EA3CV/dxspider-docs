@@ -2,7 +2,7 @@
 
 This is the complete public command catalogue for this documentation snapshot.
 
-| Command | Audience | Privilege |
+| Command | Audience | authorization |
 |---|---|---:|
 | [`ACCEPT/ANNOUNCE`](accept--announce.md) | DUAL | 0 / 8 |
 | [`ACCEPT/RBN`](accept--rbn.md) | DUAL | 0 / 8 |
@@ -82,7 +82,7 @@ This is the complete public command catalogue for this documentation snapshot.
 | [`NOSPAWN`](nospawn.md) | SYSOP | 2 |
 | [`PC`](pc.md) | SYSOP | 8 |
 | [`PING`](ping.md) | DUAL | 0 / 1 |
-| [`PRIVILEGE`](privilege.md) | SYSOP | 9 |
+| [`authorization `](authorization .md) | SYSOP | 9 |
 | [`RCMD`](rcmd.md) | SYSOP | 1 |
 | [`READ`](read.md) | DUAL | 0 / 5 |
 | [`REJECT/ANNOUNCE`](reject--announce.md) | DUAL | 0 / 8 |
@@ -142,7 +142,7 @@ This is the complete public command catalogue for this documentation snapshot.
 | [`SET/PASSPHRASE`](set--passphrase.md) | SYSOP | 9 |
 | [`SET/PASSWORD`](set--password.md) | DUAL | 0 / 9 |
 | [`SET/PINGINTERVAL`](set--pinginterval.md) | SYSOP | 9 |
-| [`SET/PRIVILEGE`](set--privilege.md) | SYSOP | 9 |
+| [`SET/authorization `](set--authorization .md) | SYSOP | 9 |
 | [`SET/PROMPT`](set--prompt.md) | USER | 0 |
 | [`SET/QRA`](set--qra.md) | USER | 0 |
 | [`SET/QTH`](set--qth.md) | USER | 0 |
@@ -287,7 +287,7 @@ This is the complete public command catalogue for this documentation snapshot.
 | [`UNSET/LOGININFO`](unset--logininfo.md) | USER | 0 |
 | [`UNSET/PASSPHRASE`](unset--passphrase.md) | SYSOP | 9 |
 | [`UNSET/PASSWORD`](unset--password.md) | SYSOP | 9 |
-| [`UNSET/PRIVILEGE`](unset--privilege.md) | USER | 0 |
+| [`UNSET/authorization `](unset--authorization .md) | USER | 0 |
 | [`UNSET/PROMPT`](unset--prompt.md) | USER | 0 |
 | [`UNSET/REGISTER`](unset--register.md) | SYSOP | 9 |
 | [`UNSET/ROUTEPC19`](unset--routepc19.md) | SYSOP | 9 |

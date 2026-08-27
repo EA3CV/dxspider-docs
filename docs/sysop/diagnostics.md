@@ -33,4 +33,4 @@ SHOW/DUP_WWV
 SHOW/DUP_WCY
 ```
 
-Most internal diagnostics are privileged because they expose implementation state rather than normal user information.
+Most internal diagnostics are authorization d because they expose implementation state rather than normal user information.

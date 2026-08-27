@@ -1,33 +1,30 @@
 # DXSpider Documentation
 
-Web-first documentation for **DXSpider 1.57**, applicable to **Mojo build 686 and later**.
+Modern web documentation for **DXSpider 1.57**, applicable to **Mojo build 686 and later**.
 
-The goal is not to reproduce the old manual. The site combines:
+## Philosophy
 
-1. **Current `Commands_en.hlp`** — authoritative syntax, options, explanations and examples.
-2. **Current `cmd/` source tree** — detects real commands and documentation gaps.
-3. **Editorial guides** — task-oriented explanations, filter grammar, RBN workflows, administration and practical examples.
-4. **GitHub Pages** — searchable, responsive web publication.
+This is not an A–Z list padded with generated one-line descriptions.
 
-## Automatic command reference
+The site combines:
 
-`tools/generate_reference.py` parses the current DXSpider source and generates the command reference.
+- the current `Commands_en.hlp`;
+- the current `cmd/` source tree;
+- task-oriented guides and recipes;
+- a dedicated filter-language guide;
+- editorial examples for important workflows;
+- separate User and SYSOP navigation;
+- a searchable MkDocs Material site.
 
-Every generated command page includes:
+Internal command authorization levels are intentionally not published.
 
-- USER / SYSOP / DUAL audience;
-- all help-defined privilege variants;
-- exact syntax;
-- the current built-in help text;
-- examples;
-- links to related commands;
-- a link to the current command source when available.
+## Automatic reference build
 
-The GitHub workflow checks out the current documentation source revision, generates the reference, validates links, performs a strict MkDocs build and publishes to `gh-pages`.
+The GitHub workflow checks out the current DXSpider source, parses its help and command tree, generates the reference, validates the documentation and publishes GitHub Pages.
 
-## Preview locally
+The generator never invents descriptions from command filenames. If a command lacks useful source/help documentation, that is a documentation gap to fix rather than an excuse to publish filler text.
 
-If DXSpider is checked out at `../dxspider`:
+## Local preview
 
 ```bash
 python3 -m venv .venv
@@ -40,13 +37,7 @@ mkdocs serve
 ## Publish
 
 ```bash
-git add .
-git commit -m "Rebuild DXSpider documentation"
+git add -A
+git commit -m "Upgrade DXSpider documentation"
 git push
 ```
-
-GitHub Actions performs the source checkout and reference generation automatically.
-
-## Important maintenance rule
-
-Do not hand-copy hundreds of command pages. Improve the DXSpider help or the generator/curated notes instead. That way the web reference follows the actual command set instead of slowly becoming another stale manual.

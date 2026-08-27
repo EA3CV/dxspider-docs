@@ -3,7 +3,7 @@
 <div class="command-meta" markdown>
 <div>**Audience**  
 <span class="badge-user">User</span></div>
-<div>**Privilege**  
+<div>**authorization **  
 `0`</div>
 <div>**DXSpider**  
 1.57 / Mojo ≥ 686</div>
@@ -11,7 +11,7 @@
 
 ## Purpose
 
-Regain configured SYSOP privileges after a remote login challenge.
+Regain configured SYSOP authorization s after a remote login challenge.
 
 ## Syntax
 

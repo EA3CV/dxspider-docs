@@ -3,7 +3,7 @@
 <div class="command-meta" markdown>
 <div>**Audience**  
 <span class="badge-dual">User + SYSOP</span></div>
-<div>**Privilege**  
+<div>**authorization **  
 `0 / 6`</div>
 <div>**DXSpider**  
 1.57 / Mojo ≥ 686</div>
@@ -11,7 +11,7 @@
 
 ## Purpose
 
-Own startup script is user-level; another callsign requires privilege 6.
+Own startup script is user-level; another callsign requires authorization .
 
 ## Syntax
 
@@ -22,7 +22,7 @@ SHOW/STARTUP [<callsign>]
 
 ## Audience-specific behaviour
 
-This command has more than one access form. The normal-user and privileged forms are deliberately treated separately in this manual. Check the syntax shown by the running node with `HELP` before using the administrative form.
+This command has more than one access form. The normal-user and authorization d forms are deliberately treated separately in this manual. Check the syntax shown by the running node with `HELP` before using the administrative form.
 
 ## Built-in help
 
