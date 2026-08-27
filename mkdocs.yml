@@ -62,6 +62,8 @@ nav:
       - DX spots: user/spots.md
       - RBN / Skimmer: user/rbn.md
       - Filtering: user/filtering.md
+      - Filter language: user/filter-language.md
+      - Command cookbook: user/cookbook.md
       - Announce, Chat & Talk: user/communications.md
       - Messages: user/messages.md
       - Personal settings: user/settings.md

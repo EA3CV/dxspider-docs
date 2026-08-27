@@ -1,71 +1,52 @@
-# DXSpider Documentation 1.57
+# DXSpider Documentation
 
-Modern, web-first documentation for **DXSpider 1.57**, applicable to **Mojo build 686 and later**.
+Web-first documentation for **DXSpider 1.57**, applicable to **Mojo build 686 and later**.
 
-## What is included
+The goal is not to reproduce the old manual. The site combines:
 
-- Clear **User** / **SYSOP** separation.
-- Searchable MkDocs Material website.
-- **305 public command-reference entries**.
-- Root commands plus command families such as `SHOW/`, `SET/`, `UNSET/`, `ACCEPT/`, `REJECT/`, `CLEAR/`, `LOAD/`, `STAT/` and others.
-- Modern RBN documentation.
-- Current privilege model.
-- Legacy protocol material isolated from current-operation guidance.
-- Maintainer audit CSV and internal audit notes.
-- GitHub Pages workflow.
+1. **Current `Commands_en.hlp`** — authoritative syntax, options, explanations and examples.
+2. **Current `cmd/` source tree** — detects real commands and documentation gaps.
+3. **Editorial guides** — task-oriented explanations, filter grammar, RBN workflows, administration and practical examples.
+4. **GitHub Pages** — searchable, responsive web publication.
 
-## Install locally
+## Automatic command reference
+
+`tools/generate_reference.py` parses the current DXSpider source and generates the command reference.
+
+Every generated command page includes:
+
+- USER / SYSOP / DUAL audience;
+- all help-defined privilege variants;
+- exact syntax;
+- the current built-in help text;
+- examples;
+- links to related commands;
+- a link to the current command source when available.
+
+The GitHub workflow checks out the current documentation source revision, generates the reference, validates links, performs a strict MkDocs build and publishes to `gh-pages`.
+
+## Preview locally
+
+If DXSpider is checked out at `../dxspider`:
 
 ```bash
-unzip dxspider-docs-final.zip
-cd dxspider-docs-final
-
 python3 -m venv .venv
 . .venv/bin/activate
 pip install -r requirements.txt
-
+./rebuild.sh ../dxspider
 mkdocs serve
 ```
 
-Browse to:
-
-```text
-http://127.0.0.1:8000/
-```
-
-## Validate/build
+## Publish
 
 ```bash
-mkdocs build --strict
-```
-
-## Install on GitHub
-
-Create an empty GitHub repository, then:
-
-```bash
-git init
 git add .
-git commit -m "DXSpider 1.57 documentation"
-git branch -M main
-git remote add origin https://github.com/<owner>/<repository>.git
-git push -u origin main
+git commit -m "Rebuild DXSpider documentation"
+git push
 ```
 
-The included GitHub Actions workflow publishes the site with `mkdocs gh-deploy`.
+GitHub Actions performs the source checkout and reference generation automatically.
 
-If required, open **GitHub → Settings → Pages** and select the `gh-pages` branch.
+## Important maintenance rule
 
-## Custom domain
-
-Edit:
-
-```yaml
-site_url: https://docs.example.org/
-```
-
-in `mkdocs.yml`, then configure the same domain in GitHub Pages.
-
-## Source-of-truth policy
-
-Current DXSpider code is authoritative. Historical manuals and wiki pages are secondary sources and are not copied blindly when their protocol or storage descriptions no longer represent current operation.
+Do not hand-copy hundreds of command pages. Improve the DXSpider help or the generator/curated notes instead. That way the web reference follows the actual command set instead of slowly becoming another stale manual.

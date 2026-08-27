@@ -1,24 +1,46 @@
-name: Publish documentation
+name: Publish DXSpider documentation
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"
 
 permissions:
   contents: write
 
 jobs:
-  deploy:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout documentation
         uses: actions/checkout@v4
-      - name: Python
+
+      - name: Checkout current DXSpider source
+        uses: actions/checkout@v4
+        with:
+          repository: EA3CV/dxspider
+          ref: test
+          path: _dxspider
+          fetch-depth: 1
+
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+
       - name: Install documentation dependencies
         run: pip install -r requirements.txt
-      - name: Build and publish
+
+      - name: Generate command reference from DXSpider
+        run: python tools/generate_reference.py --source _dxspider
+
+      - name: Validate internal links
+        run: python tools/check_docs.py
+
+      - name: Strict MkDocs build
+        run: mkdocs build --strict
+
+      - name: Publish to GitHub Pages branch
         run: mkdocs gh-deploy --force

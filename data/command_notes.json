@@ -1,0 +1,236 @@
+{
+  "ACCEPT/SPOTS": {
+    "category": "Filtering",
+    "summary": "Allow only DX spots that match one or more filter rules.",
+    "examples": [
+      [
+        "Accept CW spots on HF",
+        "ACCEPT/SPOTS 1 ON HF/CW"
+      ],
+      [
+        "Accept VHF spots from or for CQ zones 14\u201316",
+        "ACCEPT/SPOTS 2 ON VHF AND (BY_ZONE 14,15,16 OR CALL_ZONE 14,15,16)"
+      ],
+      [
+        "Accept spots reported by US states",
+        "ACCEPT/SPOTS BY_STATE VA,NH,RI,MA,ME"
+      ],
+      [
+        "Accept everything",
+        "ACCEPT/SPOTS 3 ALL"
+      ]
+    ],
+    "related": [
+      "REJECT/SPOTS",
+      "CLEAR/SPOTS",
+      "SHOW/FILTER",
+      "SHOW/BANDS"
+    ]
+  },
+  "ACCEPT/RBN": {
+    "category": "RBN / Filtering",
+    "summary": "Apply an accept filter specifically to RBN/Skimmer spots.",
+    "examples": [
+      [
+        "Accept HF CW RBN spots",
+        "ACCEPT/RBN 1 ON HF/CW"
+      ],
+      [
+        "Accept RBN spots for selected DXCCs",
+        "ACCEPT/RBN 2 CALL_DXCC 230,291"
+      ],
+      [
+        "Remove the RBN filter later",
+        "CLEAR/RBN ALL"
+      ]
+    ],
+    "related": [
+      "REJECT/RBN",
+      "CLEAR/RBN",
+      "SET/WANTRBN",
+      "SHOW/FILTER"
+    ]
+  },
+  "REJECT/SPOTS": {
+    "category": "Filtering",
+    "summary": "Reject DX spots that match one or more filter rules.",
+    "examples": [
+      [
+        "Reject a band",
+        "REJECT/SPOTS 1 ON 160M"
+      ],
+      [
+        "Reject selected origins",
+        "REJECT/SPOTS 2 ORIGIN BADNODE1,BADNODE2"
+      ]
+    ],
+    "related": [
+      "ACCEPT/SPOTS",
+      "CLEAR/SPOTS",
+      "SHOW/FILTER"
+    ]
+  },
+  "CLEAR/SPOTS": {
+    "category": "Filtering",
+    "summary": "Remove one line or the complete DX spot filter.",
+    "examples": [
+      [
+        "Remove line 1",
+        "CLEAR/SPOTS 1"
+      ],
+      [
+        "Remove the complete filter",
+        "CLEAR/SPOTS ALL"
+      ]
+    ],
+    "related": [
+      "ACCEPT/SPOTS",
+      "REJECT/SPOTS",
+      "SHOW/FILTER"
+    ]
+  },
+  "SET/WANTRBN": {
+    "category": "RBN",
+    "summary": "Choose which curated RBN/Skimmer categories are delivered to the user.",
+    "examples": [
+      [
+        "Enable the default RBN selection",
+        "SET/WANTRBN"
+      ],
+      [
+        "CW only",
+        "SET/WANTRBN CW"
+      ],
+      [
+        "Digital categories",
+        "SET/WANTRBN PSK RTTY FT"
+      ],
+      [
+        "Disable RBN delivery",
+        "UNSET/WANTRBN"
+      ]
+    ],
+    "related": [
+      "UNSET/WANTRBN",
+      "ACCEPT/RBN",
+      "REJECT/RBN",
+      "CLEAR/RBN"
+    ]
+  },
+  "DX": {
+    "category": "Spots",
+    "summary": "Send a DX spot into the cluster network.",
+    "examples": [
+      [
+        "Normal spot",
+        "DX 14025.0 K1ABC CQ"
+      ],
+      [
+        "With a short comment",
+        "DX 50313.0 EA8XYZ FT8"
+      ]
+    ],
+    "related": [
+      "SHOW/DX",
+      "ACCEPT/SPOTS",
+      "REJECT/SPOTS"
+    ]
+  },
+  "SHOW/DX": {
+    "category": "Spots",
+    "summary": "Query the spot database using the selectors supported by the running node.",
+    "examples": [
+      [
+        "Recent spots",
+        "SHOW/DX"
+      ],
+      [
+        "Ask the node for all currently supported selectors",
+        "HELP SHOW/DX"
+      ]
+    ],
+    "related": [
+      "DX",
+      "SHOW/DXSTATS",
+      "SHOW/FILTER"
+    ]
+  },
+  "TALK": {
+    "category": "Communications",
+    "summary": "Send a private talk message or enter interactive talk mode.",
+    "examples": [
+      [
+        "Send a message",
+        "TALK G1ABC Hello John"
+      ],
+      [
+        "Route explicitly through a node",
+        "TALK G1ABC > GB7DJK Hello John"
+      ],
+      [
+        "Run a DXSpider command while in talk mode",
+        "/SHOW/DX"
+      ]
+    ],
+    "related": [
+      "SHOW/TALK",
+      "SET/TALK",
+      "UNSET/TALK"
+    ]
+  },
+  "ANNOUNCE": {
+    "category": "Communications",
+    "summary": "Send local, cluster-wide or SYSOP-only announcements.",
+    "examples": [
+      [
+        "Local users only",
+        "ANNOUNCE Local net starts at 20:00Z"
+      ],
+      [
+        "Cluster-wide",
+        "ANNOUNCE FULL Contest starts in 10 minutes"
+      ],
+      [
+        "SYSOP audience",
+        "ANNOUNCE SYSOP Link maintenance at 22:00Z"
+      ]
+    ],
+    "related": [
+      "SHOW/ANNOUNCE",
+      "ACCEPT/ANNOUNCE",
+      "REJECT/ANNOUNCE"
+    ]
+  },
+  "SET/PASSWORD": {
+    "category": "Identity & Security",
+    "summary": "Change your own password interactively, or\u2014at SYSOP privilege\u2014set another user's password.",
+    "examples": [
+      [
+        "User form",
+        "SET/PASSWORD"
+      ],
+      [
+        "SYSOP form",
+        "SET/PASSWORD G1ABC new-password"
+      ]
+    ],
+    "related": [
+      "UNSET/PASSWORD",
+      "SYSOP"
+    ]
+  },
+  "SET/WIDTH": {
+    "category": "Personal settings",
+    "summary": "Set terminal width for the live session and stored user profile.",
+    "examples": [
+      [
+        "120-column terminal",
+        "SET/WIDTH 120"
+      ]
+    ],
+    "related": [
+      "SET/PAGE",
+      "SHOW/CONFIGURATION"
+    ]
+  }
+}
