@@ -103,7 +103,6 @@ TALK G1ABC > GB7DJK Hello John
 
 ## Related commands
 
-- [`SHOW/TALK`](show--talk.md)
 - [`SET/TALK`](set--talk.md)
 - [`UNSET/TALK`](unset--talk.md)
 

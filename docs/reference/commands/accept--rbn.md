@@ -104,7 +104,6 @@ CLEAR/RBN ALL
 ## Related commands
 
 - [`REJECT/RBN`](reject--rbn.md)
-- [`CLEAR/RBN`](clear--rbn.md)
 - [`SET/WANTRBN`](set--wantrbn.md)
 - [`SHOW/FILTER`](show--filter.md)
 

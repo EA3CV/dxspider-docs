@@ -70,7 +70,6 @@ UNSET/WANTRBN
 - [`UNSET/WANTRBN`](unset--wantrbn.md)
 - [`ACCEPT/RBN`](accept--rbn.md)
 - [`REJECT/RBN`](reject--rbn.md)
-- [`CLEAR/RBN`](clear--rbn.md)
 
 ## Verify on a running node
 

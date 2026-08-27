@@ -84,10 +84,16 @@ def body_markdown(lines):
         cleaned.append(x)
     return "\n".join(cleaned).strip()
 
-def related_links(names):
-    if not names: return ""
-    rows=["## Related commands",""]
-    for c in names:
+def related_links(names, available_commands):
+    if not names:
+        return ""
+
+    valid = [c for c in names if c in available_commands]
+    if not valid:
+        return ""
+
+    rows = ["## Related commands", ""]
+    for c in valid:
         rows.append(f"- [`{c}`]({slug(c)}.md)")
     return "\n".join(rows)
 
@@ -210,7 +216,9 @@ def main():
 
         rel=note.get("related",[])
         if rel:
-            page += [related_links(rel),""]
+            related = related_links(rel, set(grouped))
+            if related:
+                page += [related,""]
 
         page += [
             "## Verify on a running node","",
