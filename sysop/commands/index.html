@@ -1,0 +1,1969 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="DXSpider 1.57 — Mojo build 686 and later">
+      
+      
+      
+        <link rel="canonical" href="https://ea3cv.github.io/dxspider-docs/sysop/commands/">
+      
+      
+        <link rel="prev" href="../diagnostics/">
+      
+      
+        <link rel="next" href="../installation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../material/radio-tower">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>SYSOP commands - DXSpider Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sysop-command-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="DXSpider Documentation" class="md-header__button md-logo" aria-label="DXSpider Documentation" data-md-component="logo">
+      
+  <img src="../../material/radio-tower" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DXSpider Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              SYSOP commands
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="cyan"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SYSOP / Administration
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reference/commands/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Command Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="DXSpider Documentation" class="md-nav__button md-logo" aria-label="DXSpider Documentation" data-md-component="logo">
+      
+  <img src="../../material/radio-tower" alt="logo">
+
+    </a>
+    DXSpider Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../user/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    User Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/spots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DX spots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/rbn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RBN / Skimmer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/filtering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filtering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/filter-language/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filter language
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/cookbook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command cookbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/communications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Announce, Chat & Talk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/messages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Messages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personal settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user/commands/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSOP / Administration
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SYSOP / Administration
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users-nodes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Users & Node Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connections
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing & Compatibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rbn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    RBN Administration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maintenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maintenance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../diagnostics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diagnostics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SYSOP commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deploy this documentation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../reference/commands/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Command Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Command Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sysop-command-reference">SYSOP command reference<a class="headerlink" href="#sysop-command-reference" title="Permanent link">&para;</a></h1>
+<p>This list is generated from the current DXSpider help metadata. Commands marked <strong>DUAL</strong> contain both user and privileged variants.</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Guide</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../reference/commands/accept--announce/"><code>ACCEPT/ANNOUNCE</code></a></td>
+<td>User + SYSOP</td>
+<td>Set an 'accept' filter line for announce</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/accept--route/"><code>ACCEPT/ROUTE</code></a></td>
+<td>SYSOP</td>
+<td>Set an 'accept' filter line for routing</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/accept--spots/"><code>ACCEPT/SPOTS</code></a></td>
+<td>User + SYSOP</td>
+<td>Allow only DX spots that match one or more filter rules.</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/accept--wcy/"><code>ACCEPT/WCY</code></a></td>
+<td>User + SYSOP</td>
+<td>set an 'accept' WCY filter</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/accept--wwv/"><code>ACCEPT/WWV</code></a></td>
+<td>User + SYSOP</td>
+<td>set an 'accept' WWV filter</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/announce/"><code>ANNOUNCE</code></a></td>
+<td>User + SYSOP</td>
+<td>Send local, cluster-wide or SYSOP-only announcements.</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/catchup/"><code>CATCHUP</code></a></td>
+<td>SYSOP</td>
+<td>Mark a message as sent</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/clear--announce/"><code>CLEAR/ANNOUNCE</code></a></td>
+<td>User + SYSOP</td>
+<td>Clear a announce filter line</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/clear--dupefile/"><code>CLEAR/DUPEFILE</code></a></td>
+<td>SYSOP</td>
+<td>Clear out the dupefile completely</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/clear--route/"><code>CLEAR/ROUTE</code></a></td>
+<td>User + SYSOP</td>
+<td>Clear a route filter line</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/clear--spots/"><code>CLEAR/SPOTS</code></a></td>
+<td>User + SYSOP</td>
+<td>Remove one line or the complete DX spot filter.</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/clear--wcy/"><code>CLEAR/WCY</code></a></td>
+<td>User + SYSOP</td>
+<td>Clear a WCY filter line</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/clear--wwv/"><code>CLEAR/WWV</code></a></td>
+<td>User + SYSOP</td>
+<td>Clear a WWV filter line</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/connect/"><code>CONNECT</code></a></td>
+<td>SYSOP</td>
+<td>Start a connection to another DX Cluster</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/create--user/"><code>CREATE/USER</code></a></td>
+<td>SYSOP</td>
+<td>Create this user from the User Database</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/dbcreate/"><code>DBCREATE</code></a></td>
+<td>SYSOP</td>
+<td>Create a database entry</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/dbexport/"><code>DBEXPORT</code></a></td>
+<td>SYSOP</td>
+<td>Export an AK1A data to a file</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/dbimport/"><code>DBIMPORT</code></a></td>
+<td>SYSOP</td>
+<td>Import AK1A data into a database</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/dbremove/"><code>DBREMOVE</code></a></td>
+<td>SYSOP</td>
+<td>Delete a database</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/debug/"><code>DEBUG</code></a></td>
+<td>SYSOP</td>
+<td>Set the cluster program into debug mode</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/delete--usdb/"><code>DELETE/USDB</code></a></td>
+<td>SYSOP</td>
+<td>Delete this user from the US State Database</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/delete--user/"><code>DELETE/USER</code></a></td>
+<td>SYSOP</td>
+<td>Delete this user from the User Database</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/demonstrate/"><code>DEMONSTRATE</code></a></td>
+<td>SYSOP</td>
+<td>Demonstrate a command to another user</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/directory/"><code>DIRECTORY</code></a></td>
+<td>User + SYSOP</td>
+<td>Browse DXSpider messages by ownership, age, sender, recipient, subject or message-number range.</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/disconnect/"><code>DISCONNECT</code></a></td>
+<td>SYSOP</td>
+<td>Disconnect user(s) or node(s)</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/download/"><code>DOWNLOAD</code></a></td>
+<td>SYSOP</td>
+<td>Download a file into local_data</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/dx/"><code>DX</code></a></td>
+<td>User + SYSOP</td>
+<td>Send a DX spot into the cluster network.</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/dxqsl-export/"><code>DXQSL_EXPORT</code></a></td>
+<td>SYSOP</td>
+<td>Export SH/DXSQL information to a file</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/dxqsl-import/"><code>DXQSL_IMPORT</code></a></td>
+<td>SYSOP</td>
+<td>Import SH/DXSQL information from a file</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/export/"><code>EXPORT</code></a></td>
+<td>SYSOP</td>
+<td>Export a message to a file</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/export-users/"><code>EXPORT_USERS</code></a></td>
+<td>SYSOP</td>
+<td>Export the users database to ascii</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/forward--latlong/"><code>FORWARD/LATLONG</code></a></td>
+<td>SYSOP</td>
+<td>Send latitude and longitude information to another cluster</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/forward--opernam/"><code>FORWARD/OPERNAM</code></a></td>
+<td>SYSOP</td>
+<td>Send out information on this <call> to all clusters</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/get--keps/"><code>GET/KEPS</code></a></td>
+<td>SYSOP</td>
+<td>Obtain the latest AMSAT Keplarian Elements from the web</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/init/"><code>INIT</code></a></td>
+<td>SYSOP</td>
+<td>Re-initialise a link to an AK1A compatible node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/kill/"><code>KILL</code></a></td>
+<td>User + SYSOP</td>
+<td>Delete a message from the local system</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--aliases/"><code>LOAD/ALIASES</code></a></td>
+<td>SYSOP</td>
+<td>Reload the command alias table</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--badip/"><code>LOAD/BADIP</code></a></td>
+<td>SYSOP</td>
+<td>Reload the bad IP address table</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--badmsg/"><code>LOAD/BADMSG</code></a></td>
+<td>SYSOP</td>
+<td>Reload the bad msg table</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--badwords/"><code>LOAD/BADWORDS</code></a></td>
+<td>SYSOP</td>
+<td>Reload the bad words table</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--bands/"><code>LOAD/BANDS</code></a></td>
+<td>SYSOP</td>
+<td>Reload the band limits table</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--cmd-cache/"><code>LOAD/CMD_CACHE</code></a></td>
+<td>SYSOP</td>
+<td>Reload the automatic command cache</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--forward/"><code>LOAD/FORWARD</code></a></td>
+<td>SYSOP</td>
+<td>Reload the msg forwarding routing table</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--keps/"><code>LOAD/KEPS</code></a></td>
+<td>SYSOP</td>
+<td>Load new keps data</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--messages/"><code>LOAD/MESSAGES</code></a></td>
+<td>SYSOP</td>
+<td>Reload the system messages file</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/load--prefixes/"><code>LOAD/PREFIXES</code></a></td>
+<td>SYSOP</td>
+<td>Reload the prefix table</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/merge/"><code>MERGE</code></a></td>
+<td>SYSOP</td>
+<td>Ask for the latest spots and WWV</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/msg/"><code>MSG</code></a></td>
+<td>SYSOP</td>
+<td>Alter various message parameters</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/pc/"><code>PC</code></a></td>
+<td>SYSOP</td>
+<td>Send text (eg PC Protocol) to <call></td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/ping/"><code>PING</code></a></td>
+<td>User + SYSOP</td>
+<td>User level link check command</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/rcmd/"><code>RCMD</code></a></td>
+<td>SYSOP</td>
+<td>Send a command to another DX Cluster</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/read/"><code>READ</code></a></td>
+<td>User + SYSOP</td>
+<td>Read the next unread personal message addressed to you</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/reject--announce/"><code>REJECT/ANNOUNCE</code></a></td>
+<td>User + SYSOP</td>
+<td>Set a 'reject' filter line for announce</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/reject--route/"><code>REJECT/ROUTE</code></a></td>
+<td>SYSOP</td>
+<td>Set an 'reject' filter line for routing</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/reject--spots/"><code>REJECT/SPOTS</code></a></td>
+<td>User + SYSOP</td>
+<td>Reject DX spots that match one or more filter rules.</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/reject--wcy/"><code>REJECT/WCY</code></a></td>
+<td>User + SYSOP</td>
+<td>set a 'reject' WCY filter</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/reject--wwv/"><code>REJECT/WWV</code></a></td>
+<td>User + SYSOP</td>
+<td>set a 'reject' WWV filter</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/save/"><code>SAVE</code></a></td>
+<td>SYSOP</td>
+<td>Save command output to a file</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/send-config/"><code>SEND_CONFIG</code></a></td>
+<td>SYSOP</td>
+<td>Broadcast PC92 C records</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--agwengine/"><code>SET/AGWENGINE</code></a></td>
+<td>SYSOP</td>
+<td>Enable the AGW Engine</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--agwmonitor/"><code>SET/AGWMONITOR</code></a></td>
+<td>SYSOP</td>
+<td>Enable Monitoring on the AGW Engine</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--arcluster/"><code>SET/ARCLUSTER</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign an AR-Cluster node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--baddx/"><code>SET/BADDX</code></a></td>
+<td>SYSOP</td>
+<td>Stop callsigns in a dx spot being propagated</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--badip/"><code>SET/BADIP</code></a></td>
+<td>SYSOP</td>
+<td>Stop logins and spots with this IP address</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--badnode/"><code>SET/BADNODE</code></a></td>
+<td>SYSOP</td>
+<td>Stop spots from this node being propagated</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--badspotter/"><code>SET/BADSPOTTER</code></a></td>
+<td>SYSOP</td>
+<td>Stop spots from this callsign being propagated</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--badword/"><code>SET/BADWORD</code></a></td>
+<td>SYSOP</td>
+<td>Stop things like this word being propagated</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--bbs/"><code>SET/BBS</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign a BBS</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--ccluster/"><code>SET/CCLUSTER</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign an CC Cluster node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--clx/"><code>SET/CLX</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign an CLX node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--debug/"><code>SET/DEBUG</code></a></td>
+<td>SYSOP</td>
+<td>Add a debug level to the debug set</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--dxnet/"><code>SET/DXNET</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign an DXNet node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--hops/"><code>SET/HOPS</code></a></td>
+<td>SYSOP</td>
+<td>Set hop count</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--isolate/"><code>SET/ISOLATE</code></a></td>
+<td>SYSOP</td>
+<td>Isolate a node from the rest of the network</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--local-node/"><code>SET/LOCAL_NODE</code></a></td>
+<td>SYSOP</td>
+<td>Add node to the local_node group</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--lockout/"><code>SET/LOCKOUT</code></a></td>
+<td>SYSOP</td>
+<td>Stop a callsign connecting to the cluster</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--maxconnect/"><code>SET/MAXCONNECT</code></a></td>
+<td>SYSOP</td>
+<td>Set max incoming connections for user/node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--node/"><code>SET/NODE</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign an AK1A cluster</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--obscount/"><code>SET/OBSCOUNT</code></a></td>
+<td>SYSOP</td>
+<td>Set the 'pump-up' obscelence PING counter</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--password/"><code>SET/PASSWORD</code></a></td>
+<td>User + SYSOP</td>
+<td>Change your own password interactively, or—at SYSOP privilege—set another user's password.</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--pinginterval/"><code>SET/PINGINTERVAL</code></a></td>
+<td>SYSOP</td>
+<td>Set ping time to neighbouring nodes</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--privilege/"><code>SET/PRIVILEGE</code></a></td>
+<td>SYSOP</td>
+<td>Set privilege level on a call</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--rbn/"><code>SET/RBN</code></a></td>
+<td>SYSOP</td>
+<td>Mark this call as an RBN node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--register/"><code>SET/REGISTER</code></a></td>
+<td>SYSOP</td>
+<td>Mark a user as registered</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--skimmer/"><code>SET/SKIMMER</code></a></td>
+<td>User + SYSOP</td>
+<td>[category ..]^Allow (some) RBN/Skimmer spotsT</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--spider/"><code>SET/SPIDER</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign an DXSpider node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--startup/"><code>SET/STARTUP</code></a></td>
+<td>User + SYSOP</td>
+<td>Create a user startup script</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--sys-location/"><code>SET/SYS_LOCATION</code></a></td>
+<td>SYSOP</td>
+<td>Set your cluster latitude and longitude</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--sys-qra/"><code>SET/SYS_QRA</code></a></td>
+<td>SYSOP</td>
+<td>Set your cluster QRA Grid locator</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--usdb/"><code>SET/USDB</code></a></td>
+<td>SYSOP</td>
+<td>add/update a US DB callsign</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--user/"><code>SET/USER</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign a normal user</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/set--wantrbn/"><code>SET/WANTRBN</code></a></td>
+<td>User + SYSOP</td>
+<td>Choose which curated RBN/Skimmer categories are delivered to the user.</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--baddx/"><code>SHOW/BADDX</code></a></td>
+<td>SYSOP</td>
+<td>Show all the bad dx calls in the system</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--badnode/"><code>SHOW/BADNODE</code></a></td>
+<td>SYSOP</td>
+<td>Show all the bad nodes in the system</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--badspotter/"><code>SHOW/BADSPOTTER</code></a></td>
+<td>SYSOP</td>
+<td>Show all the bad spotters in the system</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--badword/"><code>SHOW/BADWORD</code></a></td>
+<td>SYSOP</td>
+<td>Show all the bad words in the system</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--cmd-cache/"><code>SHOW/CMD_CACHE</code></a></td>
+<td>SYSOP</td>
+<td>Show the real source path of commands</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--connect/"><code>SHOW/CONNECT</code></a></td>
+<td>SYSOP</td>
+<td>Show all the active connections</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--debug/"><code>SHOW/DEBUG</code></a></td>
+<td>SYSOP</td>
+<td>Show what levels of debug information you are logging</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--hops/"><code>SHOW/HOPS</code></a></td>
+<td>SYSOP</td>
+<td>Show the hop counts for a node</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--isolate/"><code>SHOW/ISOLATE</code></a></td>
+<td>SYSOP</td>
+<td>Show list of ISOLATED nodes</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--lockout/"><code>SHOW/LOCKOUT</code></a></td>
+<td>SYSOP</td>
+<td>Show the list of locked out or excluded callsigns</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--log/"><code>SHOW/LOG</code></a></td>
+<td>SYSOP</td>
+<td>Show excerpts from the system log</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--node/"><code>SHOW/NODE</code></a></td>
+<td>SYSOP</td>
+<td>Show the type and version number of nodes</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--program/"><code>SHOW/PROGRAM</code></a></td>
+<td>SYSOP</td>
+<td>Show the locations of all the included program modules</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--rbn/"><code>SHOW/RBN</code></a></td>
+<td>SYSOP</td>
+<td>Show which connected users want RBN spots</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--rcmd/"><code>SHOW/RCMD</code></a></td>
+<td>SYSOP</td>
+<td>Show log of rcmds</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--registered/"><code>SHOW/REGISTERED</code></a></td>
+<td>SYSOP</td>
+<td>Show the registered users</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--spotstats/"><code>SHOW/SPOTSTATS</code></a></td>
+<td>SYSOP</td>
+<td>Show the current Spot statistics</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--startup/"><code>SHOW/STARTUP</code></a></td>
+<td>User + SYSOP</td>
+<td>View a user startup script</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/show--station/"><code>SHOW/STATION</code></a></td>
+<td>User + SYSOP</td>
+<td>Show list of users in the system</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/shutdown/"><code>SHUTDOWN</code></a></td>
+<td>SYSOP</td>
+<td>Shutdown the cluster</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/spoof/"><code>SPOOF</code></a></td>
+<td>SYSOP</td>
+<td>Do a command as though you are another user</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/stat--channel/"><code>STAT/CHANNEL</code></a></td>
+<td>SYSOP</td>
+<td>Show the status of a channel on the cluster</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/stat--db/"><code>STAT/DB</code></a></td>
+<td>SYSOP</td>
+<td>Show the status of a database</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/stat--msg/"><code>STAT/MSG</code></a></td>
+<td>SYSOP</td>
+<td>Show the status of the message system</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/stat--route-node/"><code>STAT/ROUTE_NODE</code></a></td>
+<td>SYSOP</td>
+<td>Show the data in a Route::Node object</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/stat--route-user/"><code>STAT/ROUTE_USER</code></a></td>
+<td>SYSOP</td>
+<td>Show the data in a Route::User object</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/stat--user/"><code>STAT/USER</code></a></td>
+<td>SYSOP</td>
+<td>Show the full status of a user</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/uncatchup/"><code>UNCATCHUP</code></a></td>
+<td>SYSOP</td>
+<td>Unmark a message as sent</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--agwengine/"><code>UNSET/AGWENGINE</code></a></td>
+<td>SYSOP</td>
+<td>Disable the AGW Engine</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--agwmonitor/"><code>UNSET/AGWMONITOR</code></a></td>
+<td>SYSOP</td>
+<td>Disable Monitoring on the AGW Engine</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--ak1a/"><code>UNSET/AK1A</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign a normal user</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--arcluster/"><code>UNSET/ARCLUSTER</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign a normal user</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--baddx/"><code>UNSET/BADDX</code></a></td>
+<td>SYSOP</td>
+<td>Propagate a dx spot with this callsign again</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--badnode/"><code>UNSET/BADNODE</code></a></td>
+<td>SYSOP</td>
+<td>Allow spots from this node again</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--badspotter/"><code>UNSET/BADSPOTTER</code></a></td>
+<td>SYSOP</td>
+<td>Allow spots from this callsign again</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--badword/"><code>UNSET/BADWORD</code></a></td>
+<td>SYSOP</td>
+<td>Propagate things like this word again</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--debug/"><code>UNSET/DEBUG</code></a></td>
+<td>SYSOP</td>
+<td>Remove a debug level from the debug set</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--hops/"><code>UNSET/HOPS</code></a></td>
+<td>SYSOP</td>
+<td>Unset hop count</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--isolate/"><code>UNSET/ISOLATE</code></a></td>
+<td>SYSOP</td>
+<td>Stop Isolation of a node from the rest of the network</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--local-node/"><code>UNSET/LOCAL_NODE</code></a></td>
+<td>SYSOP</td>
+<td>Remove node from the local_node group</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--lockout/"><code>UNSET/LOCKOUT</code></a></td>
+<td>SYSOP</td>
+<td>Allow a callsign to connect to the cluster</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--node/"><code>UNSET/NODE</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign a normal user</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--password/"><code>UNSET/PASSWORD</code></a></td>
+<td>SYSOP</td>
+<td>Delete (remove) a user's password</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--register/"><code>UNSET/REGISTER</code></a></td>
+<td>SYSOP</td>
+<td>Mark a user as not registered</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--spider/"><code>UNSET/SPIDER</code></a></td>
+<td>SYSOP</td>
+<td>Make the callsign a normal user</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/unset--startup/"><code>UNSET/STARTUP</code></a></td>
+<td>User + SYSOP</td>
+<td>Remove a user startup script</td>
+</tr>
+<tr>
+<td><a href="../../reference/commands/wx/"><code>WX</code></a></td>
+<td>User + SYSOP</td>
+<td>Send a weather message to local users</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
