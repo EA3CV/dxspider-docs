@@ -5,14 +5,127 @@
 **Search the spot database by band, frequency, callsign, age, spotter, country, zone, state, origin, IP address and other selectors.**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User</span></div>
+<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
 <div><span class="meta-label">Category</span><br>DX spots</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-## Syntax
+!!! warning "Implementation is authoritative"
+    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
+
+## Effective interface from code
+
+```text
+SHOW/DX [token ...]
+```
+
+The handler tokenizes the argument line on whitespace; branches below determine ordering and cardinality.
+
+### Access and execution restrictions
+
+No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
+
+### Observable implementation effects
+
+- Reads or modifies filter state/files.
+- Uses the SQL subsystem.
+- Reads or changes spot data.
+
+### Recognized tokens, keys or enumerated values in this handler
+
+`<es>`, `<ms>`, `<tr>`, `by`, `by_dxcc`, `by_itu`, `by_state`, `by_zone`, `bycq`, `bydxcc`, `byitu`, `bystate`, `byzone`, `call`, `call_dxcc`, `call_itu`, `call_state`, `call_zone`, `cq`, `day`, `dxcc`, `exact`, `freq`, `info`, `iota`, `ip`, `itu`, `on`, `origin`, `qra`, `qsl`, `rt`, `spotter`, `state`, `zone`
+
+These values are extracted from comparisons, argument hashes and `qw(...)` lists in the handler. Their exact role and combinations are established by the parser evidence below.
+
+### Important calls
+
+`Band::get_freq()`, `DXCommandmode::format_dx_spot()`, `Filter::Cmd::decode_regex()`, `Filter::Cmd::encode_regex()`, `Spot::formatl()`, `Spot::search()`, `VE7CC::dx_spot()`, `filterdef->parse()`, `self->msg()`, `self->spawn_cmd()`
+
+### Argument parsing evidence
+
+Source: `cmd/show/dx.pl` · SHA-256 `c75fe102faf5453eeae09af718ce9f2afdd263a8ebf4afcbd198a96c44d7916c`
+
+```perl
+L12: my $word = lc shift;
+L20: my $input = shift;
+L21: my $exact = shift || 0;
+L23: $input .= '*' unless $input =~ /[\*\?\[]$/o;
+L28: $input =~ s|\.\*\$$||;
+L31: $input =~ s|\$+|\$|;
+L32: $input =~ s|\\^||g;
+L33: $input =~ s|^\.\*(.+)\$?$|$1\$|;
+L34: $input =~ s|\$+$|\$|; # tidy up multiple $ signs at the end
+L43: my ($self, $line) = @_;
+L46: dbg("sh/dx disguise any regex input: '$line'") if isdbg('sh/dx');
+L47: $line = Filter::Cmd::encode_regex($line);
+L48: dbg("sh/dx disguise any regex now: '$line'") if isdbg('sh/dx');
+L51: $line =~ s/([\(\!\)])/ $1 /g;
+L53: $line = Filter::Cmd::decode_regex($line);
+L55: my @list = split /\s+/, $line; # split the line up
+L60: dbg("sh/dx after regex return: '" . join(' ', @list) . "'") if isdbg('sh/dx') || isdbg('filterparse');
+L77: dbg("sh/dx list: " . join(" ", @list)) if isdbg('sh/dx');
+L81: while (@list) { # next field
+L82: $f = shift @list;
+L84: dbg("sh/dx buildup: \$pre: '$pre' \$f: '$f' left: ". join(',', @list) . " created: " . join(',', @flist)) if isdbg('sh/dx');
+L87: ($from, $to) = $f =~ m|^(\d+)[-/](\d+)$| || (0,0); # is it a from -> to count?
+L92: ($to) = $f =~ /^(\d+)$/o if !$to; # is it a to count?
+L98: ($fromday, $today) = split m|[-/]|, shift(@list);
+L107: if (lc $f eq 'rt' || $f =~ /^real/i) {
+L112: if (lc $f =~ /^filt/) {
+L140: if (@list && $list[0] && (($a, $b) = $list[0] =~ /(AF|AN|NA|SA|EU|AS|OC)[-\s]?(\d\d?\d?)/i)) {
+L143: shift @list;
+L151: my $doqra = uc shift @list if @list && $list[0] =~ /[A-Z][A-Z]\d\d/i;
+L158: my $in = shift @list;
+L179: my $arg = shift @list;
+L190: if (@list) {
+L191: my $string = shift @list;
+L192: if ($string =~ /^\{/ || $string =~ m|[,/]|) {
+L212: dbg("sh/dx buildup: \$pre: $pre left: ". join(',', @list) . " created: " . join(',', @flist)) if isdbg('sh/dx');
+L225: dbg("sh/dx buildup: \$pre: '$pre' left: ". join(',', @list) . " created: " . join(',', @flist)) if isdbg('sh/dx');
+L257: push @out, $self->spawn_cmd("sh/dx $line", \&Spot::search,
+L277: push @out, $self->msg('e3', "sh/dx", "'$line'") unless @out;
+```
+
+### Validation and access evidence
+
+Source: `cmd/show/dx.pl` · SHA-256 `c75fe102faf5453eeae09af718ce9f2afdd263a8ebf4afcbd198a96c44d7916c`
+
+```perl
+L23: $input .= '*' unless $input =~ /[\*\?\[]$/o;
+L107: if (lc $f eq 'rt' || $f =~ /^real/i) {
+L112: if (lc $f =~ /^filt/) {
+L140: if (@list && $list[0] && (($a, $b) = $list[0] =~ /(AF|AN|NA|SA|EU|AS|OC)[-\s]?(\d\d?\d?)/i)) {
+L151: my $doqra = uc shift @list if @list && $list[0] =~ /[A-Z][A-Z]\d\d/i;
+L192: if ($string =~ /^\{/ || $string =~ m|[,/]|) {
+L217: if ($pre =~ m'^{.*}$') {
+```
+
+### Output and error evidence
+
+Source: `cmd/show/dx.pl` · SHA-256 `c75fe102faf5453eeae09af718ce9f2afdd263a8ebf4afcbd198a96c44d7916c`
+
+```perl
+L231: return (0, "sh/dx parse error '$r' " . $filter) if $r;
+L244: push @out, VE7CC::dx_spot($self, @$ref);
+L248: push @out, DXCommandmode::format_dx_spot($self, @$ref);
+L251: push @out, Spot::formatl($self->{width}, @$ref);
+L257: push @out, $self->spawn_cmd("sh/dx $line", \&Spot::search,
+L266: push @out, VE7CC::dx_spot($self, @$ref);
+L270: push @out, DXCommandmode::format_dx_spot($self, @$ref);
+L273: push @out, Spot::formatl($self->{width}, @$ref);
+L277: push @out, $self->msg('e3', "sh/dx", "'$line'") unless @out;
+L283: return (1, @out);
+```
+
+### Message keys returned
+
+`e3`
+
+## Built-in help (secondary)
+
+This section comes from `Commands_en.hlp` and may lag the implementation.
 
 ```text
 SHOW/DX
@@ -245,13 +358,10 @@ SHOW/MYDX
 
 ## Implementation
 
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/show/dx.pl){ .md-button }
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/show/dx.pl){ .md-button }
 
 ## Related commands
 
-- [`SHOW/MYDX`](show--mydx.md)
-- [`SHOW/DXCC`](show--dxcc.md)
-- [`SHOW/FDX`](show--fdx.md)
 - [`DX`](dx.md)
 - [`ACCEPT/SPOTS`](accept--spots.md)
 - [`REJECT/SPOTS`](reject--spots.md)
@@ -262,4 +372,4 @@ SHOW/MYDX
 HELP SHOW/DX
 ```
 
-The built-in help is useful when checking the exact command set installed on a particular node.
+Compare the installed handler with this page when local overrides or a different revision may be present.

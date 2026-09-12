@@ -1,8 +1,8 @@
 # Generated reference audit
 
 - Help entries parsed: **324**
-- Unique commands documented from help: **252**
-- `.pl` command files without a matching help header: **73**
+- Unique command pages generated from code + help: **315**
+- `.pl` command files without a matching help header: **79**
 
 ## Code-present commands without help
 
@@ -23,6 +23,11 @@
 - `MRTG`
 - `NOSPAWN`
 - `PRIVILEGE`
+- `REGISTER/ACCEPT`
+- `REGISTER/REJECT`
+- `REGISTER/REMOVE`
+- `REGISTER/REQUEST`
+- `REGISTER/SHOW`
 - `RINIT`
 - `RUN`
 - `SET/BELIEVE`
@@ -66,6 +71,7 @@
 - `STAT/PC19LIST`
 - `STAT/ROUTE`
 - `STAT/USERCONFIG`
+- `TESTBADIP`
 - `UNSET/BELIEVE`
 - `UNSET/GTK`
 - `UNSET/PASSPHRASE`
@@ -79,3 +85,22 @@
 - `UPTIME`
 - `WCY`
 - `WWV`
+
+## Help headers without a matching executable handler
+
+- `ACCEPT`
+- `FILTERING...`
+- `FORWARD/OPERNAM`
+- `RBN`
+- `REJECT`
+- `SET/SKIMMER`
+- `SHOW/CONFIGURATION/NODE`
+- `SHOW/DXCC`
+- `SHOW/FDX`
+- `SHOW/MYDX`
+- `SHOW/NEWCONFIGURATION/NODE`
+- `UNSET/AK1A`
+- `UNSET/ARCLUSTER`
+- `UNSET/NODE`
+- `UNSET/SKIMMER`
+- `UNSET/SPIDER`

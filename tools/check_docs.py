@@ -5,7 +5,11 @@ root=Path('docs')
 broken=[]
 pat=re.compile(r'\[[^\]]+\]\(([^)]+)\)')
 for p in root.rglob('*.md'):
-    for t in pat.findall(p.read_text(errors='replace')):
+    text=p.read_text(errors='replace')
+    # Code evidence can legitimately contain Perl constructs that resemble
+    # Markdown links. Only validate links in prose.
+    text=re.sub(r'```.*?```', '', text, flags=re.S)
+    for t in pat.findall(text):
         t=t.split()[0].strip('<>').split('#')[0]
         if not t or t.startswith(('http://','https://','mailto:')):
             continue

@@ -5,14 +5,75 @@
 **Show all the nodes and users visible**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User</span></div>
+<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-## Syntax
+!!! warning "Implementation is authoritative"
+    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
+
+## Effective interface from code
+
+```text
+SHOW/CONFIGURATION [token ...]
+```
+
+The handler tokenizes the argument line on whitespace; branches below determine ordering and cardinality.
+
+### Access and execution restrictions
+
+No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
+
+### Important calls
+
+`DXChannel::get()`, `Route::Node::get_all()`, `Route::User::get()`, `self->msg()`
+
+### Argument parsing evidence
+
+Source: `cmd/show/configuration.pl` · SHA-256 `43a00f496047ea7704df605a542e12635099e2989c13e707008524f99c5f2e00`
+
+```perl
+L9: my ($self, $line) = @_;
+L10: my @list = map { uc } split /\s+/, $line; # list of callsigns of nodes
+L18: if ($list[0] && $list[0] =~ /^NOD/) {
+L50: $printall = 1 if @list && $list[0] =~ /^ALL/i;
+L55: if (@list) {
+L56: next unless grep $node->call =~ /^$_/, @list;
+```
+
+### Validation and access evidence
+
+Source: `cmd/show/configuration.pl` · SHA-256 `43a00f496047ea7704df605a542e12635099e2989c13e707008524f99c5f2e00`
+
+```perl
+L18: if ($list[0] && $list[0] =~ /^NOD/) {
+L50: $printall = 1 if @list && $list[0] =~ /^ALL/i;
+L56: next unless grep $node->call =~ /^$_/, @list;
+```
+
+### Output and error evidence
+
+Source: `cmd/show/configuration.pl` · SHA-256 `43a00f496047ea7704df605a542e12635099e2989c13e707008524f99c5f2e00`
+
+```perl
+L17: push @out, $self->msg('showconf');
+L35: push @out, sprintf "%-12s %-12s %-12s %-12s %-12s %-12s", @l;
+L45: push @out, sprintf "%-12s %-12s %-12s %-12s %-12s %-12s", @l;
+L73: push @out, sprintf "%-12s %-12s %-12s %-12s %-12s %-12s", @l;
+L87: push @out, sprintf "%-12s %-12s %-12s %-12s %-12s %-12s", @l;
+L93: return (1, @out);
+```
+
+### Message keys returned
+
+`showconf`
+
+## Built-in help (secondary)
+
+This section comes from `Commands_en.hlp` and may lag the implementation.
 
 ```text
 SHOW/CONFIGURATION [<node>]
@@ -52,7 +113,7 @@ SH/C SK
 
 ## Implementation
 
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/show/configuration.pl){ .md-button }
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/show/configuration.pl){ .md-button }
 
 ## Verify on a running node
 
@@ -60,4 +121,4 @@ SH/C SK
 HELP SHOW/CONFIGURATION
 ```
 
-The built-in help is useful when checking the exact command set installed on a particular node.
+Compare the installed handler with this page when local overrides or a different revision may be present.

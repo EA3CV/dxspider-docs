@@ -2,6 +2,7 @@
 from pathlib import Path
 import argparse, json, re, html, os, subprocess
 from collections import defaultdict
+from code_intel import inspect_command
 
 HEADER = re.compile(r'^===\s+(\d+)\^([^^]+)\^(.*)$')
 
@@ -132,47 +133,96 @@ def main():
         if p.name != 'index.md':
             p.unlink()
 
-    all_commands=sorted(set(grouped)|set(code))
+    # Executable handlers define the public inventory. Help-only headers are
+    # audited separately and never promoted to executable commands.
+    all_commands=sorted(code)
+    help_without_code=sorted(set(grouped)-set(code))
     public=[]
     missing_help=[]
 
     for cmd in all_commands:
         variants=grouped.get(cmd,[])
+        source_rel=code.get(cmd)
+        facts=inspect_command(source_rel) if source_rel else None
         if not variants:
             missing_help.append(cmd)
-            continue
 
-        aud=audience(variants)
+        # Code is authoritative. Help privilege metadata is never used to claim
+        # authorization. A direct source guard is enough to place a command in
+        # the administration index; delegated checks remain visibly unresolved.
+        aud="SYSOP" if facts and facts["direct_privilege_guard"] else "USER"
         privs=sorted(set(v["privilege"] for v in variants))
         note=notes.get(cmd,{})
-        summary=note.get("summary") or variants[0]["description"]
+        summary=(note.get("summary") or (variants[0]["description"] if variants else "") or
+                 (facts and facts["summary"]) or "Source-present command; review implementation evidence.")
         category=note.get("category","Command reference")
-        source_rel=code.get(cmd)
         source_link=""
+        source_display=""
         if source_rel and source_revision:
             rel=Path(source_rel).relative_to(src).as_posix()
             source_link=f"https://github.com/EA3CV/dxspider/blob/{source_revision}/{rel}"
+        if source_rel:
+            try:
+                source_display=Path(source_rel).relative_to(src).as_posix()
+            except ValueError:
+                source_display=str(source_rel)
 
         page=[
             f"# `{cmd}`","",
             '<div class="command-hero" markdown>',"",
             f"**{summary}**","",
             '<div class="command-meta" markdown>',
-            f'<div><span class="meta-label">Guide</span><br><span class="badge badge-{aud.lower()}">{("User + SYSOP" if aud=="DUAL" else ("User" if aud=="USER" else "SYSOP"))}</span></div>',
+            f'<div><span class="meta-label">Code classification</span><br><span class="badge badge-{aud.lower()}">{("Direct administration guard" if aud=="SYSOP" else "No direct handler guard")}</span></div>',
             f'<div><span class="meta-label">Category</span><br>{category}</div>',
             '<div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>',
             '</div>',"",'</div>',"",
         ]
 
+        page += [
+            '!!! warning "Implementation is authoritative"',
+            "    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.",""
+        ]
+
+        if facts:
+            page += ["## Effective interface from code","", "```text", f"{cmd} {facts['usage'].split(' ',1)[1] if ' ' in facts['usage'] else ''}".rstrip(), "```","",
+                     facts["input_model"],""]
+            if facts["restrictions"]:
+                page += ["### Access and execution restrictions",""] + [f"- {x}" for x in facts["restrictions"]] + [""]
+            else:
+                page += ["### Access and execution restrictions","",
+                         "No direct privilege, remote-command, script, or local-context guard was found in this handler. "
+                         "This does not rule out checks in delegated functions or the surrounding session path.",""]
+            if facts["effects"]:
+                page += ["### Observable implementation effects",""] + [f"- {x}" for x in facts["effects"]] + [""]
+            if facts["named_fields"]:
+                page += ["### Named fields consumed by the parser","",
+                         ", ".join(f"`{x}`" for x in facts["named_fields"]),""]
+            if facts["recognized_tokens"]:
+                page += ["### Recognized tokens, keys or enumerated values in this handler","",
+                         ", ".join(f"`{x}`" for x in facts["recognized_tokens"]),"",
+                         "These values are extracted from comparisons, argument hashes and `qw(...)` lists in the handler. "
+                         "Their exact role and combinations are established by the parser evidence below.",""]
+            if facts["calls"]:
+                page += ["### Important calls", "", ", ".join(f"`{x}()`" for x in facts["calls"]), ""]
+            for title,key in [
+                ("Argument parsing evidence","argument_evidence"),
+                ("Validation and access evidence","validation_evidence"),
+                ("Output and error evidence","output_evidence"),
+            ]:
+                if facts[key]:
+                    page += [f"### {title}","",f"Source: `{source_display}` · SHA-256 `{facts['sha256']}`","", "```perl", facts[key], "```",""]
+            if facts["message_keys"]:
+                page += ["### Message keys returned", "", ", ".join(f"`{x}`" for x in facts["message_keys"]), ""]
+        else:
+            page += ['!!! danger "No command handler found"',
+                     "    This help entry has no matching `cmd/*.pl` handler in the checked source tree and is not asserted to be executable.",""]
+
         if len(variants)>1:
-            page += ["## Syntax and variants",""]
+            page += ["## Built-in help (secondary)","",
+                     "The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.",""]
             for v in variants:
-                role = "User"
-                desc_l = (v.get("description") or "").lower()
-                if "sysop" in desc_l or v["privilege"] > 0:
-                    role = "SYSOP"
                 page += [
-                    f'=== "{role} form"',"",
+                    f'=== "Help variant"',"",
                     "    ```text",
                     f'    {v["syntax"]}',
                     "    ```","",
@@ -183,9 +233,11 @@ def main():
                     for line in body.splitlines():
                         page.append("    "+line if line else "")
                 page.append("")
-        else:
+        elif variants:
             v=variants[0]
-            page += ["## Syntax","", "```text",v["syntax"],"```","",
+            page += ["## Built-in help (secondary)","",
+                     "This section comes from `Commands_en.hlp` and may lag the implementation.","",
+                     "```text",v["syntax"],"```","",
                      f"**{v['description']}**",""]
             body=body_markdown(v["body"])
             if body:
@@ -201,12 +253,10 @@ def main():
             for title, ex in examples:
                 page += [f"### {title}","", "```text",ex,"```",""]
 
-        if aud=="DUAL":
-            page += [
-                '!!! info "User and SYSOP forms"',
-                "    This command has distinct normal-user and administration forms. "
-                "Use the form appropriate to what you are trying to do.",""
-            ]
+        if not variants:
+            page += ['!!! info "No built-in help entry"',
+                     "    This command exists in `cmd/` but has no matching header in `Commands_en.hlp`. "
+                     "Its page is therefore derived from implementation evidence only.",""]
 
         if source_link:
             page += [
@@ -216,14 +266,13 @@ def main():
 
         rel=note.get("related",[])
         if rel:
-            related = related_links(rel, set(grouped))
+            related = related_links(rel, set(code))
             if related:
                 page += [related,""]
 
         page += [
-            "## Verify on a running node","",
-            "```text",f"HELP {cmd}","```","",
-            "The built-in help is useful when checking the exact command set installed on a particular node."
+            "## Verify on a running node","", "```text",f"HELP {cmd}","```","",
+            "Compare the installed handler with this page when local overrides or a different revision may be present."
         ]
 
         (outdir/f"{slug(cmd)}.md").write_text("\n".join(page), encoding='utf-8')
@@ -231,30 +280,30 @@ def main():
 
     # Full index
     idx=["# Command Reference","",
-         "Search or browse the current command set. Every page below is generated from the current "
-         "`Commands_en.hlp`; where a command also has source code, the page links directly to it.","",
+         "Search or browse the current command set. The inventory is generated from `cmd/*.pl`; "
+         "implementation evidence is authoritative and `Commands_en.hlp` is secondary.","",
          '<div class="command-filter" markdown>',
          "Use the site search (`/`) for instant lookup by command name, option or help text.",
          "</div>","",
          "| Command | Guide | What it does |",
          "|---|---|---|"]
     for cmd,aud,privs,summary in public:
-        guide = "User + SYSOP" if aud=="DUAL" else ("User" if aud=="USER" else "SYSOP")
+        guide = "Direct administration guard" if aud=="SYSOP" else "No direct handler guard"
         idx.append(f"| [`{cmd}`]({slug(cmd)}.md) | {guide} | {summary} |")
     (outdir/'index.md').write_text("\n".join(idx),encoding='utf-8')
 
     # User and SYSOP indexes
     for target, allowed, title in [
-        (docs/'user/commands/index.md', {'USER','DUAL'}, 'User command reference'),
-        (docs/'sysop/commands/index.md', {'SYSOP','DUAL'}, 'SYSOP command reference')
+        (docs/'user/commands/index.md', {'USER'}, 'Commands without a direct administration guard'),
+        (docs/'sysop/commands/index.md', {'SYSOP'}, 'Commands with a direct administration guard')
     ]:
         data=[x for x in public if x[1] in allowed]
         md=[f"# {title}","",
-            "This list is generated from the current DXSpider help metadata. "
-            "Commands marked **DUAL** contain both user and privileged variants.","",
+            "This list is generated from the current command handlers. Classification reflects direct guards "
+            "visible in each handler; delegated authorization is called out on the command page.","",
             "| Command | Guide | Purpose |","|---|---|---|"]
         for cmd,aud,privs,summary in data:
-            guide = "User + SYSOP" if aud=="DUAL" else ("User" if aud=="USER" else "SYSOP")
+            guide = "Direct administration guard" if aud=="SYSOP" else "No direct handler guard"
             md.append(f"| [`{cmd}`](../../reference/commands/{slug(cmd)}.md) | {guide} | {summary} |")
         target.write_text("\n".join(md),encoding='utf-8')
 
@@ -263,13 +312,15 @@ def main():
     audit.write_text(
         "# Generated reference audit\n\n"
         f"- Help entries parsed: **{len(entries)}**\n"
-        f"- Unique commands documented from help: **{len(public)}**\n"
+        f"- Unique command pages generated from code + help: **{len(public)}**\n"
         f"- `.pl` command files without a matching help header: **{len(missing_help)}**\n\n"
         "## Code-present commands without help\n\n" +
-        ("\n".join(f"- `{x}`" for x in missing_help) if missing_help else "_None._")
+        ("\n".join(f"- `{x}`" for x in missing_help) if missing_help else "_None._") +
+        "\n\n## Help headers without a matching executable handler\n\n" +
+        ("\n".join(f"- `{x}`" for x in help_without_code) if help_without_code else "_None._")
     )
 
-    print(f"Generated {len(public)} command pages from {helpfile}")
+    print(f"Generated {len(public)} command pages; cmd/*.pl is authoritative")
     print(f"Code commands without help: {len(missing_help)}")
 
 if __name__ == '__main__':

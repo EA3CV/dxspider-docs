@@ -5,14 +5,65 @@
 **Suppress FT4/FT8 spots whose comments look automatically generated, while retaining more useful human-entered FT4/FT8 spots.**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User</span></div>
+<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
 <div><span class="meta-label">Category</span><br>DX spots</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-## Syntax
+!!! warning "Implementation is authoritative"
+    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
+
+## Effective interface from code
+
+```text
+DISABLE/AUTOFTX
+```
+
+No command arguments are consumed by this handler.
+
+### Access and execution restrictions
+
+No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
+
+### Important calls
+
+`DXUser::get_current()`, `self->msg()`, `user->autoftx()`
+
+### Argument parsing evidence
+
+Source: `cmd/disable/autoftx.pl` · SHA-256 `bf7478ad4b9f78dcdac6a7a4269aa11ea9d17c512e2e445ae5a9e5cb12a00a07`
+
+```perl
+L8: my $self = shift;
+```
+
+### Validation and access evidence
+
+Source: `cmd/disable/autoftx.pl` · SHA-256 `bf7478ad4b9f78dcdac6a7a4269aa11ea9d17c512e2e445ae5a9e5cb12a00a07`
+
+```perl
+L14: return (1, $self->msg('autoftxd'));
+L16: return (1, $self->msg('namee2', $call));
+```
+
+### Output and error evidence
+
+Source: `cmd/disable/autoftx.pl` · SHA-256 `bf7478ad4b9f78dcdac6a7a4269aa11ea9d17c512e2e445ae5a9e5cb12a00a07`
+
+```perl
+L14: return (1, $self->msg('autoftxd'));
+L16: return (1, $self->msg('namee2', $call));
+```
+
+### Message keys returned
+
+`autoftxd`, `namee2`
+
+## Built-in help (secondary)
+
+This section comes from `Commands_en.hlp` and may lag the implementation.
 
 ```text
 DISABLE/AUTOFTX
@@ -41,7 +92,7 @@ ENABLE/AUTOFTX
 
 ## Implementation
 
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/disable/autoftx.pl){ .md-button }
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/disable/autoftx.pl){ .md-button }
 
 ## Related commands
 
@@ -55,4 +106,4 @@ ENABLE/AUTOFTX
 HELP DISABLE/AUTOFTX
 ```
 
-The built-in help is useful when checking the exact command set installed on a particular node.
+Compare the installed handler with this page when local overrides or a different revision may be present.

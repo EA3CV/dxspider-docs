@@ -5,16 +5,94 @@
 **Browse DXSpider messages by ownership, age, sender, recipient, subject or message-number range.**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Guide</span><br><span class="badge badge-dual">User + SYSOP</span></div>
+<div><span class="meta-label">Code classification</span><br><span class="badge badge-sysop">Direct administration guard</span></div>
 <div><span class="meta-label">Category</span><br>Messages</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-## Syntax and variants
+!!! warning "Implementation is authoritative"
+    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
 
-=== "User form"
+## Effective interface from code
+
+```text
+DIRECTORY [token ...]
+```
+
+The handler tokenizes the argument line on whitespace; branches below determine ordering and cardinality.
+
+### Access and execution restrictions
+
+- The handler contains a direct privilege guard.
+
+### Observable implementation effects
+
+- Uses the internal message subsystem.
+
+### Recognized tokens, keys or enumerated values in this handler
+
+`<`, `>`, `ALL`
+
+These values are extracted from comparisons, argument hashes and `qw(...)` lists in the handler. Their exact role and combinations are established by the parser evidence below.
+
+### Important calls
+
+`DXMsg::get_all()`, `self->msg()`
+
+### Argument parsing evidence
+
+Source: `cmd/directory.pl` · SHA-256 `d98ebb24bac540d250f1ef8333c26a53c247876864454867649e97eb4b609020`
+
+```perl
+L9: my ($self, $line) = @_;
+L10: my @f = split /\s+/, $line;
+L27: $f = uc shift @f;
+L32: } elsif ($f =~ /^O/o) { # dir/own
+L35: } elsif ($f =~ /^N/o) { # dir/new
+L38: } elsif ($f =~ /^S/o) { # dir/subject
+L39: $f = shift @f;
+L41: $f =~ s{(.)}{"\Q$1"}ge;
+L42: @ref = grep { $_->subject =~ m{$f}i } @all;
+L45: } elsif ($f eq '>' || $f =~ /^T/o){
+L46: $f = uc shift @f;
+L49: @ref = grep { $_->to =~ m{$f} } @all;
+L52: } elsif ($f eq '<' || $f =~ /^F/o){
+L53: $f = uc shift @f;
+L56: @ref = grep { $_->from =~ m{$f} } @all;
+L59: } elsif ($f =~ /^(\d+)-(\d+)$/) { # a range of items
+L62: } elsif ($f =~ /^\d+$/ && $f > 0) { # a number of items
+```
+
+### Validation and access evidence
+
+Source: `cmd/directory.pl` · SHA-256 `d98ebb24bac540d250f1ef8333c26a53c247876864454867649e97eb4b609020`
+
+```perl
+L21: return (1, $self->msg('dir1')) unless @all;
+```
+
+### Output and error evidence
+
+Source: `cmd/directory.pl` · SHA-256 `d98ebb24bac540d250f1ef8333c26a53c247876864454867649e97eb4b609020`
+
+```perl
+L21: return (1, $self->msg('dir1')) unless @all;
+L79: push @out, $ref->dir;
+L83: push @out, $self->msg('dir1');
+L85: return (1, @out);
+```
+
+### Message keys returned
+
+`dir1`
+
+## Built-in help (secondary)
+
+The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.
+
+=== "Help variant"
 
     ```text
     DIRECTORY
@@ -23,7 +101,7 @@
     **List messages**
 
 
-=== "User form"
+=== "Help variant"
 
     ```text
     DIRECTORY ALL
@@ -32,7 +110,7 @@
     **List all messages**
 
 
-=== "User form"
+=== "Help variant"
 
     ```text
     DIRECTORY OWN
@@ -41,7 +119,7 @@
     **List your own messages**
 
 
-=== "User form"
+=== "Help variant"
 
     ```text
     DIRECTORY NEW
@@ -50,7 +128,7 @@
     **List all new messages**
 
 
-=== "User form"
+=== "Help variant"
 
     ```text
     DIRECTORY TO <call>
@@ -59,7 +137,7 @@
     **List all messages to <call>**
 
 
-=== "User form"
+=== "Help variant"
 
     ```text
     DIRECTORY FROM <call>
@@ -68,7 +146,7 @@
     **List all messages from <call>**
 
 
-=== "User form"
+=== "Help variant"
 
     ```text
     DIRECTORY SUBJECT <string>
@@ -77,7 +155,7 @@
     **List all messages with <string> in subject**
 
 
-=== "User form"
+=== "Help variant"
 
     ```text
     DIRECTORY <nn>
@@ -86,7 +164,7 @@
     **List last <nn> messages**
 
 
-=== "User form"
+=== "Help variant"
 
     ```text
     DIRECTORY <from>-<to>
@@ -120,7 +198,7 @@
      DIR/S QSL 10-100 5
     ```
 
-=== "SYSOP form"
+=== "Help variant"
 
     ```text
     DIRECTORY-
@@ -172,12 +250,9 @@ DIRECTORY SUBJECT IOTA 200-250
 DIR/T G1* 10
 ```
 
-!!! info "User and SYSOP forms"
-    This command has distinct normal-user and administration forms. Use the form appropriate to what you are trying to do.
-
 ## Implementation
 
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/directory.pl){ .md-button }
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/directory.pl){ .md-button }
 
 ## Related commands
 
@@ -192,4 +267,4 @@ DIR/T G1* 10
 HELP DIRECTORY
 ```
 
-The built-in help is useful when checking the exact command set installed on a particular node.
+Compare the installed handler with this page when local overrides or a different revision may be present.

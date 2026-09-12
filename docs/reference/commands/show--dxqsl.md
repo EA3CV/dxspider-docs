@@ -5,14 +5,68 @@
 **Show any QSL info gathered from spots**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User</span></div>
+<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-## Syntax
+!!! warning "Implementation is authoritative"
+    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
+
+## Effective interface from code
+
+```text
+SHOW/DXQSL [token ...]
+```
+
+The handler tokenizes the argument line on whitespace; branches below determine ordering and cardinality.
+
+### Access and execution restrictions
+
+No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
+
+### Important calls
+
+`QSL::get()`, `self->msg()`
+
+### Argument parsing evidence
+
+Source: `cmd/show/dxqsl.pl` · SHA-256 `84357d3005cc7dc43ea599966b5bf822845a1889cb9f0ea1c76aa9cb95bc7a01`
+
+```perl
+L9: my ($self, $line) = @_;
+L10: my @call = split /\s+/, uc $line;
+```
+
+### Validation and access evidence
+
+Source: `cmd/show/dxqsl.pl` · SHA-256 `84357d3005cc7dc43ea599966b5bf822845a1889cb9f0ea1c76aa9cb95bc7a01`
+
+```perl
+L15: return (1, $self->msg('db3', 'QSL')) unless $QSL::dbm;
+```
+
+### Output and error evidence
+
+Source: `cmd/show/dxqsl.pl` · SHA-256 `84357d3005cc7dc43ea599966b5bf822845a1889cb9f0ea1c76aa9cb95bc7a01`
+
+```perl
+L15: return (1, $self->msg('db3', 'QSL')) unless $QSL::dbm;
+L17: push @out, $self->msg('qsl1');
+L23: push @out, sprintf "%-14s %-10s %4d %s %s", $c, $_->[0], $_->[1], cldatetime($_->[2]), $_->[3];
+L27: push @out, $self->msg('db2', $call, 'QSL');
+L31: return (1, @out);
+```
+
+### Message keys returned
+
+`db2`, `db3`, `qsl1`
+
+## Built-in help (secondary)
+
+This section comes from `Commands_en.hlp` and may lag the implementation.
 
 ```text
 SHOW/DXQSL <callsign>
@@ -46,7 +100,7 @@ This gives you more background information.
 
 ## Implementation
 
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/show/dxqsl.pl){ .md-button }
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/show/dxqsl.pl){ .md-button }
 
 ## Verify on a running node
 
@@ -54,4 +108,4 @@ This gives you more background information.
 HELP SHOW/DXQSL
 ```
 
-The built-in help is useful when checking the exact command set installed on a particular node.
+Compare the installed handler with this page when local overrides or a different revision may be present.

@@ -23,3 +23,5 @@ Development-branch naming is not part of the public documentation.
 ## No inferred semantics
 
 Command names are not sufficient evidence for behaviour. Targeting, persistence, side effects and authorization are verified before publication.
+
+`cmd/*.pl` is the executable inventory. A `Commands_en.hlp` entry cannot create a command page by itself and cannot override the implementation. Missing, conflicting or potentially stale help is retained only as secondary comparison material.

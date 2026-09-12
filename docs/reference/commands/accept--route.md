@@ -5,14 +5,68 @@
 **Set an 'accept' filter line for routing**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">SYSOP</span></div>
+<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-## Syntax
+!!! warning "Implementation is authoritative"
+    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
+
+## Effective interface from code
+
+```text
+ACCEPT/ROUTE <arguments accepted by delegated parser>
+```
+
+The complete argument line is delegated to another parser. Follow the cited call for the final grammar.
+
+### Access and execution restrictions
+
+No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
+
+### Observable implementation effects
+
+- Reads or modifies filter state/files.
+
+### Important calls
+
+`filterdef->cmd()`, `self->msg()`
+
+### Argument parsing evidence
+
+Source: `cmd/accept/route.pl` · SHA-256 `b824cf53a34b559ee64fd3acae61a80d852ed79c60afded30239bd2758311099`
+
+```perl
+L9: my ($self, $line) = @_;
+L13: my ($r, $filter, $fno) = $Route::filterdef->cmd($self, $sort, $type, $line);
+```
+
+### Validation and access evidence
+
+Source: `cmd/accept/route.pl` · SHA-256 `b824cf53a34b559ee64fd3acae61a80d852ed79c60afded30239bd2758311099`
+
+```perl
+L15: return ($ok, $r ? $filter : $self->msg('filter1', $fno, $filter->{name}));
+```
+
+### Output and error evidence
+
+Source: `cmd/accept/route.pl` · SHA-256 `b824cf53a34b559ee64fd3acae61a80d852ed79c60afded30239bd2758311099`
+
+```perl
+L15: return ($ok, $r ? $filter : $self->msg('filter1', $fno, $filter->{name}));
+```
+
+### Message keys returned
+
+`filter1`
+
+## Built-in help (secondary)
+
+This section comes from `Commands_en.hlp` and may lag the implementation.
 
 ```text
 ACCEPT/ROUTE <call> [0-9] <pattern>
@@ -67,7 +121,7 @@ acc/route all
 
 ## Implementation
 
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/accept/route.pl){ .md-button }
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/accept/route.pl){ .md-button }
 
 ## Verify on a running node
 
@@ -75,4 +129,4 @@ acc/route all
 HELP ACCEPT/ROUTE
 ```
 
-The built-in help is useful when checking the exact command set installed on a particular node.
+Compare the installed handler with this page when local overrides or a different revision may be present.

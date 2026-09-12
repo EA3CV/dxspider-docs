@@ -5,16 +5,70 @@
 **set an 'accept' WCY filter**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Guide</span><br><span class="badge badge-dual">User + SYSOP</span></div>
+<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-## Syntax and variants
+!!! warning "Implementation is authoritative"
+    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
 
-=== "User form"
+## Effective interface from code
+
+```text
+ACCEPT/WCY <arguments accepted by delegated parser>
+```
+
+The complete argument line is delegated to another parser. Follow the cited call for the final grammar.
+
+### Access and execution restrictions
+
+No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
+
+### Observable implementation effects
+
+- Reads or modifies filter state/files.
+
+### Important calls
+
+`filterdef->cmd()`, `self->msg()`
+
+### Argument parsing evidence
+
+Source: `cmd/accept/wcy.pl` · SHA-256 `52e4742d08108b11bbcbd1af044593184c58b8fd53f6e1e9b5f94c0c4a3fb700`
+
+```perl
+L9: my ($self, $line) = @_;
+L13: my ($r, $filter, $fno) = $WCY::filterdef->cmd($self, $sort, $type, $line);
+```
+
+### Validation and access evidence
+
+Source: `cmd/accept/wcy.pl` · SHA-256 `52e4742d08108b11bbcbd1af044593184c58b8fd53f6e1e9b5f94c0c4a3fb700`
+
+```perl
+L15: return ($ok, $r ? $filter : $self->msg('filter1', $fno, $filter->{name}));
+```
+
+### Output and error evidence
+
+Source: `cmd/accept/wcy.pl` · SHA-256 `52e4742d08108b11bbcbd1af044593184c58b8fd53f6e1e9b5f94c0c4a3fb700`
+
+```perl
+L15: return ($ok, $r ? $filter : $self->msg('filter1', $fno, $filter->{name}));
+```
+
+### Message keys returned
+
+`filter1`
+
+## Built-in help (secondary)
+
+The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.
+
+=== "Help variant"
 
     ```text
     ACCEPT/WCY [0-9] <pattern>
@@ -44,7 +98,7 @@
 
     See HELP FILTER for information.
 
-=== "SYSOP form"
+=== "Help variant"
 
     ```text
     ACCEPT/WCY <call> [input] [0-9] <pattern>
@@ -60,12 +114,9 @@
     set/hops node_default 10
     ```
 
-!!! info "User and SYSOP forms"
-    This command has distinct normal-user and administration forms. Use the form appropriate to what you are trying to do.
-
 ## Implementation
 
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/4904e1866076e1a4d0292caef36e994472a393b6/cmd/accept/wcy.pl){ .md-button }
+[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/accept/wcy.pl){ .md-button }
 
 ## Verify on a running node
 
@@ -73,4 +124,4 @@
 HELP ACCEPT/WCY
 ```
 
-The built-in help is useful when checking the exact command set installed on a particular node.
+Compare the installed handler with this page when local overrides or a different revision may be present.
