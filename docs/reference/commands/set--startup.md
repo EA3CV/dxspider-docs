@@ -5,76 +5,28 @@
 **Create a user startup script**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-sysop">Direct administration guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">Administration</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 SET/STARTUP [arguments; see parser evidence]
 ```
 
-The handler uses a custom parser or treats the argument line as free text. See parser evidence.
+### Who can use it
 
-### Access and execution restrictions
+- This command is restricted to an appropriately privileged operator.
+- It cannot be run through remote-command execution.
+- It cannot be run from a command script.
 
-- The handler contains a direct privilege guard.
-- The handler restricts remote-command execution.
-- The handler restricts execution from scripts.
+## Command forms and examples
 
-### Important calls
-
-`self->func()`, `self->msg()`, `self->state()`
-
-### Argument parsing evidence
-
-Source: `cmd/set/startup.pl` · SHA-256 `1814d79e0f70499ccf4fb4577be499f4d823374ac5640bed334d9fe4d7403ae5`
-
-```perl
-L8: my ($self, $line) = @_;
-L10: return (1, $self->msg('e5')) if $line && $self->priv < 6;
-L11: return (1, $self->msg('e36')) unless $self->state =~ /^prompt/;
-L14: my $loc = $self->{loc} = { call => ($line || $self->call),
-```
-
-### Validation and access evidence
-
-Source: `cmd/set/startup.pl` · SHA-256 `1814d79e0f70499ccf4fb4577be499f4d823374ac5640bed334d9fe4d7403ae5`
-
-```perl
-L9: return (1, $self->msg('e5')) if $self->remotecmd || $self->inscript;
-L10: return (1, $self->msg('e5')) if $line && $self->priv < 6;
-L11: return (1, $self->msg('e36')) unless $self->state =~ /^prompt/;
-```
-
-### Output and error evidence
-
-Source: `cmd/set/startup.pl` · SHA-256 `1814d79e0f70499ccf4fb4577be499f4d823374ac5640bed334d9fe4d7403ae5`
-
-```perl
-L9: return (1, $self->msg('e5')) if $self->remotecmd || $self->inscript;
-L10: return (1, $self->msg('e5')) if $line && $self->priv < 6;
-L11: return (1, $self->msg('e36')) unless $self->state =~ /^prompt/;
-L22: push @out, $self->msg('m8');
-L23: return (1, @out);
-```
-
-### Message keys returned
-
-`e36`, `e5`, `m8`
-
-## Built-in help (secondary)
-
-The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.
-
-=== "Help variant"
+=== "Available form"
 
     ```text
     SET/STARTUP <call>
@@ -83,7 +35,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **Create a user startup script**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     SET/STARTUP
@@ -103,14 +55,10 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
 
     See UNSET/STARTUP to remove a script.
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/set/startup.pl){ .md-button }
-
 ## Verify on a running node
 
 ```text
 HELP SET/STARTUP
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

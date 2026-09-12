@@ -5,80 +5,20 @@
 **Show the likely propagation to a prefix**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User / general</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 SHOW/MUF [token ...]
 ```
 
-The handler tokenizes the argument line on whitespace; branches below determine ordering and cardinality.
-
-### Access and execution restrictions
-
-No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
-
-### Important calls
-
-`DXBearing::bdist()`, `DXBearing::lltos()`, `Minimuf::ds()`, `Minimuf::ion()`, `Minimuf::minimuf()`, `Minimuf::pathloss()`, `Minimuf::spots()`, `Minimuf::zenith()`, `Prefix::extract()`, `self->msg()`
-
-### Argument parsing evidence
-
-Source: `cmd/show/muf.pl` · SHA-256 `9a94c33e3e31c1a6213dde2a57b53d6383ec77acf548e550b92221258e5b1cc2`
-
-```perl
-L14: my ($self, $line) = @_;
-L15: my @f = split /\s+/, $line;
-L17: my $prefix = uc shift @f;
-L23: my $f = shift @f;
-L24: $lp++ if $f =~ /^l/;
-L25: $hr2 = $f if $f =~ /^\d+$/;
-L192: $out =~ s/\s+$//;
-```
-
-### Validation and access evidence
-
-Source: `cmd/show/muf.pl` · SHA-256 `9a94c33e3e31c1a6213dde2a57b53d6383ec77acf548e550b92221258e5b1cc2`
-
-```perl
-L18: return (1, $self->msg('e4')) unless $prefix;
-L24: $lp++ if $f =~ /^l/;
-L25: $hr2 = $f if $f =~ /^\d+$/;
-```
-
-### Output and error evidence
-
-Source: `cmd/show/muf.pl` · SHA-256 `9a94c33e3e31c1a6213dde2a57b53d6383ec77acf548e550b92221258e5b1cc2`
-
-```perl
-L18: return (1, $self->msg('e4')) unless $prefix;
-L44: push @out, $self->msg('heade1');
-L124: push @out, sprintf("RxSens: $rsens dBM SFI:%4.0f R:%4.0f Month: $month Day: $day", $flux, $ssn);
-L125: push @out, sprintf("Power : %3.0f dBW Distance:%6.0f km Delay:%5.1f ms", $dB1, $d * $R, $delay);
-L126: push @out, sprintf("Location Lat / Long Azim");
-L127: push @out, sprintf("%-30.30s %-18s %3.0f", $loc1, DXBearing::lltos($lat1*$r2d, -$lon1*$r2d), $b1 * $r2d);
-L128: push @out, sprintf("%-30.30s %-18s %3.0f", $a->name, DXBearing::lltos($lat2*$r2d, -$lon2*$r2d), $b2 * $r2d);
-L133: push @out, $head;
-L193: push @out, $out;
-L196: return (1, @out);
-```
-
-### Message keys returned
-
-`e4`, `heade1`
-
-## Built-in help (secondary)
-
-This section comes from `Commands_en.hlp` and may lag the implementation.
+## Command description
 
 ```text
 SHOW/MUF <prefix> [<hours>][long]
@@ -161,14 +101,10 @@ Gives you an estimate of the long path propagation characterics. It
 should be noted that the figures will probably not be very useful, nor
 terrible accurate, but it is included for completeness.
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/show/muf.pl){ .md-button }
-
 ## Verify on a running node
 
 ```text
 HELP SHOW/MUF
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

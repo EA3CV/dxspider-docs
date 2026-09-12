@@ -5,89 +5,27 @@
 **Send a private talk message or enter interactive talk mode.**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User / general</span></div>
 <div><span class="meta-label">Category</span><br>Communications</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 TALK [arguments; see parser evidence]
 ```
 
-The handler uses a custom parser or treats the argument line as free text. See parser evidence.
+### Who can use it
 
-### Access and execution restrictions
+- It cannot be run through remote-command execution.
+- It cannot be run from a command script.
 
-- The handler restricts remote-command execution.
-- The handler restricts execution from scripts.
+## Command forms and examples
 
-### Observable implementation effects
-
-- Uses or emits DX protocol data.
-
-### Important calls
-
-`BadWords::check()`, `DXProt::pc93()`, `Route::get()`, `me->normal()`, `self->badcount()`, `self->msg()`, `self->send_talks()`, `self->state()`, `self->talklist()`
-
-### Argument parsing evidence
-
-Source: `cmd/talk.pl` · SHA-256 `70e3b0d6411d53e2450b8dd1c9b478d101ec2347291aeac4cfb784e7d88ff1dd`
-
-```perl
-L12: my $line;
-L25: $inline =~ s/(?:\s*>([A-Za-z0-9\-]+))\s*//;
-L27: ($to, $line) = $inline =~ /^\s*([A-Za-z0-9\-]+)\s*(.*)?$/;
-L56: if (@bad = BadWords::check($line)) {
-L58: LogDbg('DXCommand', "$self->{call} swore: $line (with words:" . join(',', @bad) . ")");
-L63: if ($line) {
-L64: Log('talk', $to, $from, '>' . ($via || ($dxchan && $dxchan->call) || '*'), $line);
-L66: $self->send_talks($to, $line);
-```
-
-### Validation and access evidence
-
-Source: `cmd/talk.pl` · SHA-256 `70e3b0d6411d53e2450b8dd1c9b478d101ec2347291aeac4cfb784e7d88ff1dd`
-
-```perl
-L15: return (1, $self->msg('e5')) if $self->remotecmd || $self->inscript;
-L31: return (1, $self->msg('e8')) unless $to;
-L35: return (1, $self->msg('e22', $to)) unless is_callsign($to);
-L36: return (1, $self->msg('e28')) unless $self->isregistered || $to eq $main::myalias;
-```
-
-### Output and error evidence
-
-Source: `cmd/talk.pl` · SHA-256 `70e3b0d6411d53e2450b8dd1c9b478d101ec2347291aeac4cfb784e7d88ff1dd`
-
-```perl
-L15: return (1, $self->msg('e5')) if $self->remotecmd || $self->inscript;
-L31: return (1, $self->msg('e8')) unless $to;
-L35: return (1, $self->msg('e22', $to)) unless is_callsign($to);
-L36: return (1, $self->msg('e28')) unless $self->isregistered || $to eq $main::myalias;
-L72: $main::me->normal(DXProt::pc93($to, $self->call, $via, $self->msg('talkstart'), undef, $ipaddr));
-L78: $main::me->normal(DXProt::pc93($to, $self->call, $via, $self->msg('talkstart'), undef, $ipaddr));
-L79: push @out, $self->msg('talkinst');
-L82: Log('talk', $to, $from, '>' . ($via || ($dxchan && $dxchan->call) || '*'), $self->msg('talkstart'), undef, $ipaddr);
-L83: push @out, $self->talk_prompt;
-L86: return (1, @out);
-```
-
-### Message keys returned
-
-`e22`, `e28`, `e5`, `e7`, `e8`, `talkinst`, `talkstart`
-
-## Built-in help (secondary)
-
-The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.
-
-=== "Help variant"
+=== "Available form"
 
     ```text
     TALK <call> [<text>]
@@ -96,7 +34,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **Send a text message to another station**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     TALK <call> > <node> [<text>]
@@ -170,10 +108,6 @@ TALK G1ABC > GB7DJK Hello John
 /SHOW/DX
 ```
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/talk.pl){ .md-button }
-
 ## Related commands
 
 - [`SHOW/TALK`](show--talk.md)
@@ -186,4 +120,4 @@ TALK G1ABC > GB7DJK Hello John
 HELP TALK
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

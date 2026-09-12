@@ -5,94 +5,32 @@
 **Browse DXSpider messages by ownership, age, sender, recipient, subject or message-number range.**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-sysop">Direct administration guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">Administration</span></div>
 <div><span class="meta-label">Category</span><br>Messages</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 DIRECTORY [token ...]
 ```
 
-The handler tokenizes the argument line on whitespace; branches below determine ordering and cardinality.
+### Who can use it
 
-### Access and execution restrictions
+- This command is restricted to an appropriately privileged operator.
 
-- The handler contains a direct privilege guard.
-
-### Observable implementation effects
-
-- Uses the internal message subsystem.
-
-### Recognized tokens, keys or enumerated values in this handler
+### Available options and values
 
 `<`, `>`, `ALL`
 
-These values are extracted from comparisons, argument hashes and `qw(...)` lists in the handler. Their exact role and combinations are established by the parser evidence below.
+The valid combinations are described in the command forms and examples below.
 
-### Important calls
+## Command forms and examples
 
-`DXMsg::get_all()`, `self->msg()`
-
-### Argument parsing evidence
-
-Source: `cmd/directory.pl` · SHA-256 `d98ebb24bac540d250f1ef8333c26a53c247876864454867649e97eb4b609020`
-
-```perl
-L9: my ($self, $line) = @_;
-L10: my @f = split /\s+/, $line;
-L27: $f = uc shift @f;
-L32: } elsif ($f =~ /^O/o) { # dir/own
-L35: } elsif ($f =~ /^N/o) { # dir/new
-L38: } elsif ($f =~ /^S/o) { # dir/subject
-L39: $f = shift @f;
-L41: $f =~ s{(.)}{"\Q$1"}ge;
-L42: @ref = grep { $_->subject =~ m{$f}i } @all;
-L45: } elsif ($f eq '>' || $f =~ /^T/o){
-L46: $f = uc shift @f;
-L49: @ref = grep { $_->to =~ m{$f} } @all;
-L52: } elsif ($f eq '<' || $f =~ /^F/o){
-L53: $f = uc shift @f;
-L56: @ref = grep { $_->from =~ m{$f} } @all;
-L59: } elsif ($f =~ /^(\d+)-(\d+)$/) { # a range of items
-L62: } elsif ($f =~ /^\d+$/ && $f > 0) { # a number of items
-```
-
-### Validation and access evidence
-
-Source: `cmd/directory.pl` · SHA-256 `d98ebb24bac540d250f1ef8333c26a53c247876864454867649e97eb4b609020`
-
-```perl
-L21: return (1, $self->msg('dir1')) unless @all;
-```
-
-### Output and error evidence
-
-Source: `cmd/directory.pl` · SHA-256 `d98ebb24bac540d250f1ef8333c26a53c247876864454867649e97eb4b609020`
-
-```perl
-L21: return (1, $self->msg('dir1')) unless @all;
-L79: push @out, $ref->dir;
-L83: push @out, $self->msg('dir1');
-L85: return (1, @out);
-```
-
-### Message keys returned
-
-`dir1`
-
-## Built-in help (secondary)
-
-The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.
-
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY
@@ -101,7 +39,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **List messages**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY ALL
@@ -110,7 +48,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **List all messages**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY OWN
@@ -119,7 +57,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **List your own messages**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY NEW
@@ -128,7 +66,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **List all new messages**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY TO <call>
@@ -137,7 +75,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **List all messages to <call>**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY FROM <call>
@@ -146,7 +84,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **List all messages from <call>**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY SUBJECT <string>
@@ -155,7 +93,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **List all messages with <string> in subject**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY <nn>
@@ -164,7 +102,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **List last <nn> messages**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY <from>-<to>
@@ -198,7 +136,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
      DIR/S QSL 10-100 5
     ```
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DIRECTORY-
@@ -250,10 +188,6 @@ DIRECTORY SUBJECT IOTA 200-250
 DIR/T G1* 10
 ```
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/directory.pl){ .md-button }
-
 ## Related commands
 
 - [`READ`](read.md)
@@ -267,4 +201,4 @@ DIR/T G1* 10
 HELP DIRECTORY
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

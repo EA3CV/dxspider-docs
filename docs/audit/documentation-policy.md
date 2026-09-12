@@ -8,7 +8,7 @@ Development-branch naming is not part of the public documentation.
 
 ## Source priority
 
-1. Current implementation.
+1. Current implementation, used internally for verification only.
 2. Current command-help metadata, when consistent with implementation.
 3. Current wiki documentation.
 4. Administration Manual v1.51.
@@ -22,6 +22,8 @@ Development-branch naming is not part of the public documentation.
 
 ## No inferred semantics
 
-Command names are not sufficient evidence for behaviour. Targeting, persistence, side effects and authorization are verified before publication.
+Command names are not sufficient evidence for behaviour. Arguments, accepted values,
+restrictions and command availability are verified before publication. Source code and
+line-level implementation evidence are never included on the public command-guide pages.
 
 `cmd/*.pl` is the executable inventory. A `Commands_en.hlp` entry cannot create a command page by itself and cannot override the implementation. Missing, conflicting or potentially stale help is retained only as secondary comparison material.

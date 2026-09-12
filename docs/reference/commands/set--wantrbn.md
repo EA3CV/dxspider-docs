@@ -5,76 +5,26 @@
 **Choose which curated RBN/Skimmer categories are delivered to the user.**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-sysop">Direct administration guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">Administration</span></div>
 <div><span class="meta-label">Category</span><br>RBN</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 SET/WANTRBN [token ...]
 ```
 
-The handler tokenizes the argument line on whitespace; branches below determine ordering and cardinality.
+### Who can use it
 
-### Access and execution restrictions
+- This command is restricted to an appropriately privileged operator.
 
-- The handler contains a direct privilege guard.
+## Command forms and examples
 
-### Important calls
-
-`DXUser::get_current()`, `self->msg()`, `user->wantbeacon()`, `user->wantcw()`, `user->wantft()`, `user->wantpsk()`, `user->wantrbn()`, `user->wantrtty()`
-
-### Argument parsing evidence
-
-Source: `cmd/set/wantrbn.pl` · SHA-256 `efb212d7fee5efbbb8c682f01c7703667eb53fe197b59edb42a1c9180c215548`
-
-```perl
-L9: my ($self, $line) = @_;
-L10: my @args = split /\s+/, uc $line;
-L17: dbg('set/skimmer @args = "' . join(', ', @args) . '"') if isdbg('set/skim');
-L19: while (@args) {
-L20: my $a = shift @args;
-L31: my ($want) = $a =~ /^(FT|BCN|BEA|DXF|CW|PSK|MSK|FSK|RTT|NO)/;
-```
-
-### Validation and access evidence
-
-Source: `cmd/set/wantrbn.pl` · SHA-256 `efb212d7fee5efbbb8c682f01c7703667eb53fe197b59edb42a1c9180c215548`
-
-```perl
-L22: if ($a !~ /^(?:FT|BCN|BEA|DXF|CW|PSK|MSK|FSK|RTT|NO)/ && is_callsign($a)) {
-L23: return (1, $self->msg('e5')) if $a ne $self->call && $self->priv < 9;
-L32: return (1, $self->msg('e39', $a)) unless $want;
-```
-
-### Output and error evidence
-
-Source: `cmd/set/wantrbn.pl` · SHA-256 `efb212d7fee5efbbb8c682f01c7703667eb53fe197b59edb42a1c9180c215548`
-
-```perl
-L23: return (1, $self->msg('e5')) if $a ne $self->call && $self->priv < 9;
-L32: return (1, $self->msg('e39', $a)) unless $want;
-L111: push @out, $self->msg('skims', $call, $s);
-L114: push @out, $self->msg('e3', "Set Skimmer", $call);
-L117: return (1, @out);
-```
-
-### Message keys returned
-
-`e3`, `e39`, `e5`, `skims`
-
-## Built-in help (secondary)
-
-The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.
-
-=== "Help variant"
+=== "Available form"
 
     ```text
     SET/WANTRBN
@@ -83,7 +33,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **[category ..]^Allow (some) RBN/Skimmer spots**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     SET/WANTRBN
@@ -118,10 +68,6 @@ SET/WANTRBN PSK RTTY FT
 UNSET/WANTRBN
 ```
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/set/wantrbn.pl){ .md-button }
-
 ## Related commands
 
 - [`UNSET/WANTRBN`](unset--wantrbn.md)
@@ -135,4 +81,4 @@ UNSET/WANTRBN
 HELP SET/WANTRBN
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

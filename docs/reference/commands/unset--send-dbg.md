@@ -2,71 +2,28 @@
 
 <div class="command-hero" markdown>
 
-**send debug information to this connection**
+**Available in the current DXSpider version; practical description pending.**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-sysop">Direct administration guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">Administration</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 UNSET/SEND_DBG [arguments; see parser evidence]
 ```
 
-The handler uses a custom parser or treats the argument line as free text. See parser evidence.
+### Who can use it
 
-### Access and execution restrictions
+- This command is restricted to an appropriately privileged operator.
 
-- The handler contains a direct privilege guard.
-
-### Important calls
-
-`self->msg()`, `self->senddbg()`
-
-### Argument parsing evidence
-
-Source: `cmd/unset/send_dbg.pl` · SHA-256 `0c6e79495d9635127f4b1cdd1d95c714017f0a62f1c37f0597de942b6915c266`
-
-```perl
-L9: my ($self, $line) = @_;
-```
-
-### Validation and access evidence
-
-Source: `cmd/unset/send_dbg.pl` · SHA-256 `0c6e79495d9635127f4b1cdd1d95c714017f0a62f1c37f0597de942b6915c266`
-
-```perl
-L10: return (1, $self->msg('e5')) if $self->priv < 8;
-L12: return (1, $self->msg('done'));
-```
-
-### Output and error evidence
-
-Source: `cmd/unset/send_dbg.pl` · SHA-256 `0c6e79495d9635127f4b1cdd1d95c714017f0a62f1c37f0597de942b6915c266`
-
-```perl
-L10: return (1, $self->msg('e5')) if $self->priv < 8;
-L12: return (1, $self->msg('done'));
-```
-
-### Message keys returned
-
-`done`, `e5`
-
-!!! info "No built-in help entry"
-    This command exists in `cmd/` but has no matching header in `Commands_en.hlp`. Its page is therefore derived from implementation evidence only.
-
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/unset/send_dbg.pl){ .md-button }
+!!! info "Documentation status"
+    This command is part of the current DXSpider command set, but a fuller practical description and additional tested examples are still needed.
 
 ## Verify on a running node
 
@@ -74,4 +31,4 @@ L12: return (1, $self->msg('done'));
 HELP UNSET/SEND_DBG
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

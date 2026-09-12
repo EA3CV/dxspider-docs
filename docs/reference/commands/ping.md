@@ -5,76 +5,22 @@
 **User level link check command**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User / general</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 PING [arguments; see parser evidence]
 ```
 
-The handler uses a custom parser or treats the argument line as free text. See parser evidence.
+## Command forms and examples
 
-### Access and execution restrictions
-
-No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
-
-### Important calls
-
-`DXXml::Ping::add()`, `Route::Node::get()`, `self->msg()`
-
-### Argument parsing evidence
-
-Source: `cmd/ping.pl` · SHA-256 `6f7626e693e193ebc66d6ab6d3150a3e0843a8df45d05bab96b31ee7dc111567`
-
-```perl
-L18: my $self = shift;
-L19: my $line = uc shift; # only one callsign allowed
-L20: my ($call) = $line =~ /^\s*(\S+)/;
-```
-
-### Validation and access evidence
-
-Source: `cmd/ping.pl` · SHA-256 `6f7626e693e193ebc66d6ab6d3150a3e0843a8df45d05bab96b31ee7dc111567`
-
-```perl
-L24: if ($self->{priv} < 1) {
-L32: return (1, $self->msg('e6')) if !$call;
-L35: return (1, $self->msg('pinge1')) if $call eq $main::mycall;
-L40: return (1, $self->msg('e7', $call)) unless $noderef;
-L45: return (1, $self->msg('pingo', $call));
-```
-
-### Output and error evidence
-
-Source: `cmd/ping.pl` · SHA-256 `6f7626e693e193ebc66d6ab6d3150a3e0843a8df45d05bab96b31ee7dc111567`
-
-```perl
-L26: return (1, "PONG $call");
-L28: ++$counter, return (1, "PONG $counter")
-L32: return (1, $self->msg('e6')) if !$call;
-L35: return (1, $self->msg('pinge1')) if $call eq $main::mycall;
-L40: return (1, $self->msg('e7', $call)) unless $noderef;
-L45: return (1, $self->msg('pingo', $call));
-```
-
-### Message keys returned
-
-`e6`, `e7`, `pinge1`, `pingo`
-
-## Built-in help (secondary)
-
-The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.
-
-=== "Help variant"
+=== "Available form"
 
     ```text
     PING [argument]
@@ -102,7 +48,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
 
     respectively.
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     PING <node call>
@@ -116,14 +62,10 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     it takes is output to the console in seconds.
     Any visible cluster node can be PINGed.
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/ping.pl){ .md-button }
-
 ## Verify on a running node
 
 ```text
 HELP PING
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

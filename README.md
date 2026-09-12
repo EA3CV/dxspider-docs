@@ -6,24 +6,29 @@ Modern web documentation for **DXSpider 1.57**, applicable to **Mojo build 686 a
 
 This is not an A–Z list padded with generated one-line descriptions.
 
-The site combines, in this order of authority:
+The site combines:
 
-- the current `cmd/` source tree as the executable inventory and source of truth;
-- implementation-derived argument, validation, restriction, effect and output evidence;
-- the current `Commands_en.hlp` as secondary text that may lag the code;
+- the commands actually available in the current DXSpider version;
+- arguments, accepted options and access restrictions verified against current behaviour;
+- the current English help as an editorial starting point, never as the sole authority;
 - task-oriented guides and recipes;
 - a dedicated filter-language guide;
-- editorial examples for important workflows;
+- practical command forms and realistic examples;
 - separate User and SYSOP navigation;
 - a searchable MkDocs Material site.
 
-Internal command authorization levels are intentionally not published.
+The implementation is inspected only during generation and verification. Source code,
+internal routines, file paths, line-level evidence and internal authorization levels
+are intentionally not published on command-guide pages.
 
 ## Automatic reference build
 
 The GitHub workflow checks out the current DXSpider source, parses its help and command tree, generates the reference, validates the documentation and publishes GitHub Pages.
 
-Every executable `cmd/*.pl` handler receives a page, including commands missing from help. The generator never invents behaviour from a filename: uncertain or delegated semantics remain explicitly marked and are accompanied by exact source-line evidence.
+Every available command receives a page, including commands missing from the old help.
+The generator does not invent behaviour from command names. When the available evidence
+is insufficient, the page says so and recommends checking the running node instead of
+presenting an assumption as fact.
 
 ## Local preview
 

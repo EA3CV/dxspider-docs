@@ -5,71 +5,25 @@
 **Allow spots from this callsign again**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-sysop">Direct administration guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">Administration</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 UNSET/BADSPOTTER [arguments; see parser evidence]
 ```
 
-The handler uses a custom parser or treats the argument line as free text. See parser evidence.
+### Who can use it
 
-### Access and execution restrictions
+- This command is restricted to an appropriately privileged operator.
+- It cannot be run through remote-command execution.
 
-- The handler contains a direct privilege guard.
-- The handler restricts remote-command execution.
-
-### Important calls
-
-`badspotter->unset()`, `self->msg()`
-
-### Argument parsing evidence
-
-Source: `cmd/unset/badspotter.pl` · SHA-256 `94ec09f5e009741f64a19d1638615efa63d8bcd2dcfc07258c2634bd2d2ee8f2`
-
-```perl
-L8: my ($self, $line) = @_;
-L12: $line = join(' ', map {s|[/-]\d+$||; $_} split(/\s+/, $line));
-L13: $line = join(' ', map {s|[/-]\d+$||; $_} split(/\s+/, $line));
-L14: return $DXProt::badspotter->unset(8, $self->msg('e6'), $self, $line);
-```
-
-### Validation and access evidence
-
-Source: `cmd/unset/badspotter.pl` · SHA-256 `94ec09f5e009741f64a19d1638615efa63d8bcd2dcfc07258c2634bd2d2ee8f2`
-
-```perl
-L9: return (1, $self->msg('e5')) if $self->remotecmd;
-L11: return (1, $self->msg('e5')) if $self->priv < 6;
-L14: return $DXProt::badspotter->unset(8, $self->msg('e6'), $self, $line);
-```
-
-### Output and error evidence
-
-Source: `cmd/unset/badspotter.pl` · SHA-256 `94ec09f5e009741f64a19d1638615efa63d8bcd2dcfc07258c2634bd2d2ee8f2`
-
-```perl
-L9: return (1, $self->msg('e5')) if $self->remotecmd;
-L11: return (1, $self->msg('e5')) if $self->priv < 6;
-L14: return $DXProt::badspotter->unset(8, $self->msg('e6'), $self, $line);
-```
-
-### Message keys returned
-
-`e5`, `e6`
-
-## Built-in help (secondary)
-
-This section comes from `Commands_en.hlp` and may lag the implementation.
+## Command description
 
 ```text
 UNSET/BADSPOTTER <call>..
@@ -105,14 +59,10 @@ Use with extreme care. This command may well be superceded by FILTERing.
 This command will also stop TALK and ANNOUNCE/FULL from any user marked
 as a BADSPOTTER.
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/unset/badspotter.pl){ .md-button }
-
 ## Verify on a running node
 
 ```text
 HELP UNSET/BADSPOTTER
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

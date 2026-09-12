@@ -5,68 +5,20 @@
 **Set an 'reject' filter line for routing**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-user">No direct handler guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-user">User / general</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 REJECT/ROUTE <arguments accepted by delegated parser>
 ```
 
-The complete argument line is delegated to another parser. Follow the cited call for the final grammar.
-
-### Access and execution restrictions
-
-No direct privilege, remote-command, script, or local-context guard was found in this handler. This does not rule out checks in delegated functions or the surrounding session path.
-
-### Observable implementation effects
-
-- Reads or modifies filter state/files.
-
-### Important calls
-
-`filterdef->cmd()`, `self->msg()`
-
-### Argument parsing evidence
-
-Source: `cmd/reject/route.pl` · SHA-256 `d7237f0d67906ce66d5480b5ccaf8b9f9a97e7f8cfaae43260022dff1f88708a`
-
-```perl
-L9: my ($self, $line) = @_;
-L13: my ($r, $filter, $fno) = $Route::filterdef->cmd($self, $sort, $type, $line);
-```
-
-### Validation and access evidence
-
-Source: `cmd/reject/route.pl` · SHA-256 `d7237f0d67906ce66d5480b5ccaf8b9f9a97e7f8cfaae43260022dff1f88708a`
-
-```perl
-L15: return ($ok, $r ? $filter : $self->msg('filter1', $fno, $filter->{name}));
-```
-
-### Output and error evidence
-
-Source: `cmd/reject/route.pl` · SHA-256 `d7237f0d67906ce66d5480b5ccaf8b9f9a97e7f8cfaae43260022dff1f88708a`
-
-```perl
-L15: return ($ok, $r ? $filter : $self->msg('filter1', $fno, $filter->{name}));
-```
-
-### Message keys returned
-
-`filter1`
-
-## Built-in help (secondary)
-
-This section comes from `Commands_en.hlp` and may lag the implementation.
+## Command description
 
 ```text
 REJECT/ROUTE <call> [0-9] <pattern>
@@ -111,14 +63,10 @@ rej/route all     (equiv to [very] restricted mode)
 
 as with ACCEPT/ROUTE 'by' is now a synonym for 'call'.
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/reject/route.pl){ .md-button }
-
 ## Verify on a running node
 
 ```text
 HELP REJECT/ROUTE
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.

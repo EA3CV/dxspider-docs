@@ -5,80 +5,32 @@
 **Create a database entry**
 
 <div class="command-meta" markdown>
-<div><span class="meta-label">Code classification</span><br><span class="badge badge-sysop">Direct administration guard</span></div>
+<div><span class="meta-label">Guide</span><br><span class="badge badge-sysop">Administration</span></div>
 <div><span class="meta-label">Category</span><br>Command reference</div>
 <div><span class="meta-label">Applies to</span><br>DXSpider 1.57 · Mojo ≥ 686</div>
 </div>
 
 </div>
 
-!!! warning "Implementation is authoritative"
-    The command source determines real behaviour. Built-in help is shown later only for comparison and may lag the implementation.
-
-## Effective interface from code
+## Usage
 
 ```text
 DBCREATE [token ...]
 ```
 
-The handler tokenizes the argument line on whitespace; branches below determine ordering and cardinality.
+### Who can use it
 
-### Access and execution restrictions
+- This command is restricted to an appropriately privileged operator.
 
-- The handler contains a direct privilege guard.
-
-### Recognized tokens, keys or enumerated values in this handler
+### Available options and values
 
 `chain`, `cmd`, `remote`
 
-These values are extracted from comparisons, argument hashes and `qw(...)` lists in the handler. Their exact role and combinations are established by the parser evidence below.
+The valid combinations are described in the command forms and examples below.
 
-### Important calls
+## Command forms and examples
 
-`DXDb::getdesc()`, `DXDb::new()`, `self->msg()`
-
-### Argument parsing evidence
-
-Source: `cmd/dbcreate.pl` · SHA-256 `a35a6fb95afe7ddf8bd45c1b7cc01320936cd419674aec5daa9a9a520559af69`
-
-```perl
-L7: my ($self, $line) = @_;
-L8: my @f = split /\s+/, $line;
-L9: my $name = shift @f if @f;
-L19: my $f = lc shift @f;
-L21: $remote = uc shift @f if @f;
-L25: $cmd = lc shift @f if @f;
-```
-
-### Validation and access evidence
-
-Source: `cmd/dbcreate.pl` · SHA-256 `a35a6fb95afe7ddf8bd45c1b7cc01320936cd419674aec5daa9a9a520559af69`
-
-```perl
-L12: return (1, $self->msg('e5')) if $self->priv < 9;
-L13: return (1, $self->msg('db6', $name)) if DXDb::getdesc($name);
-```
-
-### Output and error evidence
-
-Source: `cmd/dbcreate.pl` · SHA-256 `a35a6fb95afe7ddf8bd45c1b7cc01320936cd419674aec5daa9a9a520559af69`
-
-```perl
-L12: return (1, $self->msg('e5')) if $self->priv < 9;
-L13: return (1, $self->msg('db6', $name)) if DXDb::getdesc($name);
-L36: push @out, $self->msg($remote ? 'db7' : 'db8', $name, $remote);
-L37: return (1, @out);
-```
-
-### Message keys returned
-
-`db6`, `e5`
-
-## Built-in help (secondary)
-
-The following forms come from `Commands_en.hlp`; compare them with the implementation evidence above.
-
-=== "Help variant"
+=== "Available form"
 
     ```text
     DBCREATE <name>
@@ -87,7 +39,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **Create a database entry**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DBCREATE <name> chain <name> [<name>..]
@@ -96,7 +48,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **Create a chained database entry**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DBCREATE <name> remote <node>
@@ -105,7 +57,7 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     **Create a remote database entry**
 
 
-=== "Help variant"
+=== "Available form"
 
     ```text
     DBCREATE <name> cmd <dxspider command>
@@ -195,14 +147,10 @@ The following forms come from `Commands_en.hlp`; compare them with the implement
     See DXEXPORT for how to export an AK1A data in a form able to be imported.
     See DBSHOW for generic database enquiry
 
-## Implementation
-
-[View the current command source on GitHub](https://github.com/EA3CV/dxspider/blob/b53589e2425e5ba27b6623611571470f278140c1/cmd/dbcreate.pl){ .md-button }
-
 ## Verify on a running node
 
 ```text
 HELP DBCREATE
 ```
 
-Compare the installed handler with this page when local overrides or a different revision may be present.
+Use the node help to check for local overrides or differences in another installed revision.
